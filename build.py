@@ -873,7 +873,7 @@ fa = home.index("<footer"); sa = home.index("<script>", fa)
 home = home[:fa] + FOOTER + home[sa:]
 home = home.replace("</style>", EXTRA_CSS + "</style>", 1)
 # in-body CTA anchors -> pages
-home = home.replace('href="#analysis"', 'href="{R}rent-analysis/"').replace('href="#contact"', 'href="{R}rent-analysis/"')
+home = home.replace('href="#analysis"', 'href="#contact"')   # in-body rent CTAs scroll to the home wizard
 home = home.replace('<a class="btn btn-g" href="tel:+13614340040">Talk to Jon</a>', '<a class="btn btn-g" href="{R}what-we-charge/">See what we charge</a>')
 # About -> photo band
 a = home.index("<!-- ============ ABOUT ============ -->"); b = home.index("<!-- ============ OUR COMPANIES ============ -->")
@@ -909,15 +909,16 @@ home = home.replace('<section class="sec" id="areas" style="background:var(--pap
 home = home.replace('<span class="town">Corpus Christi</span><span class="town">Padre Island</span>\n        <span class="town">Calallen</span><span class="town">Robstown</span>\n        <span class="town">Surrounding Areas</span>',
                     "".join('<a href="{R}%s" style="text-decoration:none"><span class="town">%s</span></a>' % (p, t) for p, t in TOWNS + [("service-areas/", "Surrounding Areas")]))
 home = home.replace('<p style="margin-top:26px;font-size:15px;color:var(--muted)">Own something just outside the list?', '<p style="margin-top:26px;font-size:15px;color:#C9C2CF">Own something just outside the list?')
-# Contact/wizard -> CTA band linking to the rent-analysis page
-a = home.index("<!-- ============ CONTACT / WIZARD ============ -->"); b = home.index("<footer")
-home = home[:a] + "<!-- ============ CTA ============ -->\n" + cta("owner").replace('class="sec photo-band cta-band"', 'class="sec photo-band cta-band" id="contact"') + "\n\n" + home[b:]
+# Home keeps its own copy of the wizard (Jeffrey 9/28: both places). Separate Netlify form name:
+# two copies of one form name = fields silently dropped (netlify-form-fields-registered-once).
+home = home.replace('name="owner-inquiry" method="POST"', 'name="owner-inquiry-home" method="POST"', 1)
+home = home.replace('<input type="hidden" name="form-name" value="owner-inquiry">', '<input type="hidden" name="form-name" value="owner-inquiry-home">', 1)
 # tenants section on home -> link cards
 home = home.replace('<a class="btn btn-g" href="#" style="margin-top:16px">Download the application</a>', '<a class="btn btn-g" href="{R}apply/" style="margin-top:16px">How to apply</a>')
 home = home.replace('<a class="btn btn-g" href="sms:+13615102325" style="margin-top:16px">Text a repair request</a>', '<a class="btn btn-g" href="{R}maintenance-request/" style="margin-top:16px">Report a repair</a>')
-# scripts: wizard is gone from home
+# scripts: common + wizard
 sa = home.index("<script>", home.index("demo-tag")); sb = home.index("</script>", sa)
-home = home[:sa] + "<script>" + COMMON_JS + "</script>" + home[sb + len("</script>"):]
+home = home[:sa] + "<script>" + COMMON_JS + FORM_JS + "</script>" + home[sb + len("</script>"):]
 home = home.replace("{R}", "")
 io.open("index.html", "w", encoding="utf-8").write(finalize(home))
 print("built home + %d pages" % count)
