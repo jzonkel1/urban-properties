@@ -336,7 +336,7 @@ service_page("rent-collection-owner-deposits/", "Rent Collection &amp; Owner Dep
 
 service_page("maintenance-coordination/", "Maintenance Coordination", "Repairs Without The 2 A.M. Call", "Tenants call <em>us.</em> Trades we trust show up.",
     "Repair requests come to the office by text or call, we dispatch vetted local trades, and you hear about anything over $250 before it happens.",
-    "int-kitchen-blue.jpg", "One call ends it. And it isn&rsquo;t to you.",
+    "stock-tools.jpg", "One call ends it. And it isn&rsquo;t to you.",
     ["A water heater doesn&rsquo;t care what time it is. Our tenants text or call the office, and the office decides what&rsquo;s urgent, who to send and what it should cost.",
      "We use plumbers, electricians and handymen we&rsquo;ve worked with for years, on our own buildings as well as yours."],
     ["Tenant requests by text or call to (361) 510-2325", "Vetted local trades, no markup on their invoice", "Your approval on anything over $250",
@@ -350,7 +350,7 @@ service_page("maintenance-coordination/", "Maintenance Coordination", "Repairs W
     [("Do I have to approve every repair?", "Only over $250. Small items are handled so the tenant isn&rsquo;t waiting and you aren&rsquo;t getting a call about a faucet."),
      ("Can I use my own plumber?", "Yes. Tell us at onboarding and they go on the list for your property."),
      ("Who pays for tenant damage?", "The tenant, out of the deposit or by invoice, per the lease. Wear and tear is the owner&rsquo;s.")],
-    "prop-tan-corner.jpg")
+    "stock-maintenance.jpg")
 
 service_page("lease-renewals-enforcement/", "Lease Renewals &amp; Enforcement", "Written By A Broker", "Leases that hold up, and get <em>renewed.</em>",
     "Texas leases prepared and enforced by a licensed broker, renewals negotiated before the term ends, and rules that actually get followed.",
@@ -386,7 +386,7 @@ service_page("move-in-move-out-inspections/", "Move-In / Move-Out Inspections", 
     [("Do I need to be there?", "No. You&rsquo;re welcome to, but the report and photos come to you either way."),
      ("How long does a turnover take?", "Depends on condition. A clean unit relists in days. We tell you the make-ready scope and cost up front."),
      ("Who decides deposit deductions?", "We recommend based on the reports and Texas rules; you approve.")],
-    "ext-backyard.jpg")
+    "stock-inspection.jpg")
 
 service_page("investment-property-sales/", "Investment Property Sales", "Buy The Next Door", "The broker who manages it can help you <em>buy it.</em>",
     "Buying the next rental or selling the last one. A full Texas brokerage in the same office that manages your property.",
