@@ -244,6 +244,8 @@ h2.big{font-size:clamp(33px,4.6vw,52px)}
 .band-img{border-radius:var(--r);overflow:hidden;box-shadow:0 30px 70px -30px rgba(0,0,0,.8);aspect-ratio:4/3}
 .band-img img{width:100%;height:100%;object-fit:cover}
 #about .band-img{aspect-ratio:4/3}
+/* text column much taller than the photo: portrait photo, top-aligned, sticks while the list scrolls */
+@media(min-width:861px){.g2.tall{align-items:start}.g2.tall>.band-img{position:sticky;top:112px;aspect-ratio:4/5}#owners .band-img img{object-position:68% 50%}}
 .fee{margin-top:30px;border:1px solid var(--line);border-radius:14px;background:var(--paper-2);padding:20px 22px}
 .fee-h{font-family:var(--sans);font-size:11.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--pur);margin-bottom:12px}
 .fee-row{display:grid;grid-template-columns:170px 1fr;gap:14px;padding:10px 0;border-top:1px solid var(--line);align-items:baseline}
@@ -582,7 +584,7 @@ footer h4{color:#fff;font-family:var(--sans);font-size:12.5px;font-weight:800;le
 <section class="hero">
   <div class="hero-bg">
     <picture>
-      <source srcset="img/hero-1200.webp?v=b2ccb596 1200w, img/hero.webp?v=b342c3dd 2400w" sizes="(max-width:700px) 200vw, 100vw" type="image/webp"><img src="img/hero.jpg?v=09c97dfc" srcset="img/hero-1200.jpg?v=211c3069 1200w, img/hero.jpg?v=09c97dfc 2400w" sizes="(max-width:700px) 200vw, 100vw" alt="Newly built rental duplexes managed by Urban Properties in Corpus Christi" fetchpriority="high">
+      <source srcset="img/hero-home-1200.webp?v=585e7d9d 1200w, img/hero-home.webp?v=265a0db3 2400w" sizes="(max-width:700px) 200vw, 100vw" type="image/webp"><img src="img/hero-home.jpg?v=eda1bcc3" srcset="img/hero-home-1200.jpg?v=ef607044 1200w, img/hero-home.jpg?v=eda1bcc3 2400w" sizes="(max-width:700px) 200vw, 100vw" alt="A single-family home in Corpus Christi at dusk" fetchpriority="high">
     </picture>
   </div>
   <div class="hero-scrim"></div>
@@ -644,7 +646,7 @@ footer h4{color:#fff;font-family:var(--sans);font-size:12.5px;font-weight:800;le
     </div>
     <div class="band-img" style="box-shadow:var(--sh-l)">
       <picture>
-        <source srcset="img/prop-blue-street-1200.webp?v=a8639bb2 1200w, img/prop-blue-street.webp?v=2d50f510 2400w" sizes="(min-width:900px) 50vw, 100vw" type="image/webp"><img src="img/prop-blue-street.jpg?v=7d21f9c9" srcset="img/prop-blue-street-1200.jpg?v=74077594 1200w, img/prop-blue-street.jpg?v=7d21f9c9 2400w" sizes="(min-width:900px) 50vw, 100vw" alt="Rental duplexes on a Corpus Christi street">
+        <source srcset="img/ext-duplex-front-1200.webp?v=dcb46b0e 1200w, img/ext-duplex-front.webp?v=7f0cbf36 2400w" sizes="(min-width:900px) 50vw, 100vw" type="image/webp"><img src="img/ext-duplex-front.jpg?v=60b4b9ec" srcset="img/ext-duplex-front-1200.jpg?v=a1736533 1200w, img/ext-duplex-front.jpg?v=60b4b9ec 2400w" sizes="(min-width:900px) 50vw, 100vw" alt="Rental duplexes on a Corpus Christi street">
       </picture>
     </div>
   </div>
@@ -1011,6 +1013,12 @@ footer h4{color:#fff;font-family:var(--sans);font-size:12.5px;font-weight:800;le
 <div class="demo-tag">Demo — Zonkel Media</div>
 
 <script>
+/* ---- tall text beside a photo -> .tall (see CSS) */
+(function(){var gs=[].slice.call(document.querySelectorAll('.g2')).filter(function(g){return g.querySelector(':scope>.band-img')});
+function fit(){gs.forEach(function(g){g.classList.remove('tall');var im=g.querySelector(':scope>.band-img'),tx=[].filter.call(g.children,function(c){return c!==im})[0];
+if(tx&&innerWidth>860&&tx.offsetHeight>im.offsetHeight*1.45)g.classList.add('tall')})}
+fit();addEventListener('resize',fit);addEventListener('load',fit)})();
+
 document.getElementById('yr').textContent = new Date().getFullYear();
 
 /* ---- mobile drawer ---- */
