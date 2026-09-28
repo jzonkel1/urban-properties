@@ -381,6 +381,10 @@ footer h4{color:#fff;font-family:var(--sans);font-size:12.5px;font-weight:800;le
 .phero .eyebrow{color:#DCA8EA}.phero .eyebrow::after{background:rgba(255,255,255,.3)}
 .phero h1{color:#fff;font-size:clamp(36px,4.8vw,64px);line-height:1.06;letter-spacing:-.018em;max-width:17ch}
 .phero h1 em{font-style:normal;color:#E2B4EE}
+/* group photo: pin right, fade into ink on the left so the headline never sits on a face */
+.phero-team .hero-bg img{position:absolute;right:0;top:0;width:66%;height:100%;object-position:50% 30%;
+  -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 30%);mask-image:linear-gradient(90deg,transparent 0,#000 30%)}
+@media(max-width:860px){.phero-team .hero-bg img{width:100%;object-position:60% 20%;-webkit-mask-image:none;mask-image:none}}
 .phero p.hl{color:#DAD3E2;font-size:clamp(16.5px,1.3vw,19.5px);margin:18px 0 26px;max-width:54ch}
 .crumb{font-size:13px;color:#A79FB2;margin-bottom:18px;display:flex;gap:8px;flex-wrap:wrap}.crumb a{color:#DCA8EA}
 .photo-band{position:relative;overflow:hidden;background:var(--ink);color:#DAD3E2}
@@ -575,7 +579,7 @@ footer h4{color:#fff;font-family:var(--sans);font-size:12.5px;font-weight:800;le
 </div>
 
 <section class="phero">
-  <div class="hero-bg"><picture><source srcset="../img/prop-tan-corner.webp" type="image/webp"><img src="../img/prop-tan-corner.jpg" alt="The answers, &lt;em&gt;before you have to ask.&lt;/em&gt;"></picture></div>
+  <div class="hero-bg"><picture><source srcset="../img/prop-tan-corner-1200.webp?v=eaf2a2e8 1200w, ../img/prop-tan-corner.webp?v=12edd760 2400w" sizes="(max-width:700px) 200vw, 100vw" type="image/webp"><img src="../img/prop-tan-corner.jpg?v=21577765" srcset="../img/prop-tan-corner-1200.jpg?v=b59510e6 1200w, ../img/prop-tan-corner.jpg?v=21577765 2400w" sizes="(max-width:700px) 200vw, 100vw" alt="The answers, before you have to ask."></picture></div>
   <div class="hero-scrim"></div><div class="hero-scrim2"></div>
   <div class="wrap">
     <div class="crumb"><a href="../">Home</a><span>/</span><a href="../tenants/">Tenants</a><span>/</span><span>FAQs</span></div>
@@ -590,7 +594,7 @@ footer h4{color:#fff;font-family:var(--sans);font-size:12.5px;font-weight:800;le
 </section><section class="sec"><div class="wrap" style="max-width:860px">
   <div class="center" style="margin-bottom:40px"><div class="eyebrow c">Renting With Us</div><h2 class="big">Frequently asked</h2></div>
   <div class="faq"><details><summary>When is rent due?</summary><p>On the date in your lease, usually the 1st. The grace period and late fee are in the lease too, and they&rsquo;re applied the same way every month.</p></details><details><summary>How do I pay?</summary><p>In person at 5117 Williams Dr, or Cash App, Avail, Venmo or PayPal. Details on the <a href="../pay-rent/">Pay Rent</a> page.</p></details><details><summary>How do I report a repair?</summary><p>Text or call (361) 510-2325, or use the <a href="../maintenance-request/">maintenance request form</a>. Emergencies: call.</p></details><details><summary>Can I have a pet?</summary><p>Depends on the property and your lease. Ask before you bring one home; unauthorized pets are a lease violation.</p></details><details><summary>What happens to my deposit?</summary><p>It&rsquo;s held per Texas law and returned, itemized, within the required timeline after move-out, less any damage beyond normal wear and tear and any unpaid balance.</p></details><details><summary>How do I give notice?</summary><p>In writing, with the notice period your lease requires (usually 30 days). Text or email the office and we&rsquo;ll confirm the date.</p></details><details><summary>Can I renew?</summary><p>We&rsquo;ll reach out about 60 days before your lease ends. If you want to stay, say so and we&rsquo;ll send the renewal.</p></details><details><summary>Can I sublet or add a roommate?</summary><p>Not without written approval. Anyone living there has to be on the lease and screened.</p></details><details><summary>Who do I call about a neighbor problem?</summary><p>The office. If it&rsquo;s a safety issue, call 911 first, then let us know.</p></details><details><summary>What if I&rsquo;m going to be late on rent?</summary><p>Text the office before the due date. That conversation is always easier early.</p></details></div></div></section><section class="sec photo-band cta-band">
-  <div class="pb-bg"><picture><source srcset="../img/int-living.webp" type="image/webp"><img src="../img/int-living.jpg" alt="" loading="lazy"></picture></div>
+  <div class="pb-bg"><picture><source srcset="../img/int-living-1200.webp?v=e524f9e2 1200w, ../img/int-living.webp?v=4c0367ca 2400w" sizes="(max-width:700px) 200vw, 100vw" type="image/webp"><img src="../img/int-living.jpg?v=da86b2a4" srcset="../img/int-living-1200.jpg?v=ba2ee991 1200w, ../img/int-living.jpg?v=da86b2a4 2400w" sizes="(max-width:700px) 200vw, 100vw" alt="" loading="lazy"></picture></div>
   <div class="wrap">
     <div class="eyebrow c">Questions?</div>
     <h2 class="big">Text the office. A real person answers.</h2>

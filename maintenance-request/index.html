@@ -381,6 +381,10 @@ footer h4{color:#fff;font-family:var(--sans);font-size:12.5px;font-weight:800;le
 .phero .eyebrow{color:#DCA8EA}.phero .eyebrow::after{background:rgba(255,255,255,.3)}
 .phero h1{color:#fff;font-size:clamp(36px,4.8vw,64px);line-height:1.06;letter-spacing:-.018em;max-width:17ch}
 .phero h1 em{font-style:normal;color:#E2B4EE}
+/* group photo: pin right, fade into ink on the left so the headline never sits on a face */
+.phero-team .hero-bg img{position:absolute;right:0;top:0;width:66%;height:100%;object-position:50% 30%;
+  -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 30%);mask-image:linear-gradient(90deg,transparent 0,#000 30%)}
+@media(max-width:860px){.phero-team .hero-bg img{width:100%;object-position:60% 20%;-webkit-mask-image:none;mask-image:none}}
 .phero p.hl{color:#DAD3E2;font-size:clamp(16.5px,1.3vw,19.5px);margin:18px 0 26px;max-width:54ch}
 .crumb{font-size:13px;color:#A79FB2;margin-bottom:18px;display:flex;gap:8px;flex-wrap:wrap}.crumb a{color:#DCA8EA}
 .photo-band{position:relative;overflow:hidden;background:var(--ink);color:#DAD3E2}
@@ -575,7 +579,7 @@ footer h4{color:#fff;font-family:var(--sans);font-size:12.5px;font-weight:800;le
 </div>
 
 <section class="phero">
-  <div class="hero-bg"><picture><source srcset="../img/int-kitchen-blue.webp" type="image/webp"><img src="../img/int-kitchen-blue.jpg" alt="Something broke? &lt;em&gt;Tell us.&lt;/em&gt;"></picture></div>
+  <div class="hero-bg"><picture><source srcset="../img/int-kitchen-blue-1200.webp?v=56fa0a88 1200w, ../img/int-kitchen-blue.webp?v=fdfb8a9e 1946w" sizes="(max-width:700px) 200vw, 100vw" type="image/webp"><img src="../img/int-kitchen-blue.jpg?v=9252173e" srcset="../img/int-kitchen-blue-1200.jpg?v=93b7bc55 1200w, ../img/int-kitchen-blue.jpg?v=9252173e 1946w" sizes="(max-width:700px) 200vw, 100vw" alt="Something broke? Tell us."></picture></div>
   <div class="hero-scrim"></div><div class="hero-scrim2"></div>
   <div class="wrap">
     <div class="crumb"><a href="../">Home</a><span>/</span><a href="../tenants/">Tenants</a><span>/</span><span>Maintenance Request</span></div>
@@ -605,7 +609,7 @@ footer h4{color:#fff;font-family:var(--sans);font-size:12.5px;font-weight:800;le
 </form></div></section><section class="sec"><div class="wrap" style="max-width:860px">
   <div class="center" style="margin-bottom:40px"><div class="eyebrow c">What To Expect</div><h2 class="big">After you report it</h2></div>
   <div class="faq"><details><summary>How fast will someone come?</summary><p>Emergencies same day. Everything else is scheduled with you, usually within a few days depending on the trade.</p></details><details><summary>Do I have to be home?</summary><p>Not if you tell us it&rsquo;s OK to enter. If you have pets or would rather be there, say so and we&rsquo;ll schedule around you.</p></details><details><summary>Who pays for the repair?</summary><p>Normal wear and repairs are on the owner. Damage caused by the tenant is charged back per the lease.</p></details><details><summary>What counts as an emergency?</summary><p>Anything that&rsquo;s a safety issue or is actively damaging the property: water where it shouldn&rsquo;t be, no power, no working toilet, no A/C in extreme heat.</p></details></div></div></section><section class="sec photo-band cta-band">
-  <div class="pb-bg"><picture><source srcset="../img/int-living.webp" type="image/webp"><img src="../img/int-living.jpg" alt="" loading="lazy"></picture></div>
+  <div class="pb-bg"><picture><source srcset="../img/int-living-1200.webp?v=e524f9e2 1200w, ../img/int-living.webp?v=4c0367ca 2400w" sizes="(max-width:700px) 200vw, 100vw" type="image/webp"><img src="../img/int-living.jpg?v=da86b2a4" srcset="../img/int-living-1200.jpg?v=ba2ee991 1200w, ../img/int-living.jpg?v=da86b2a4 2400w" sizes="(max-width:700px) 200vw, 100vw" alt="" loading="lazy"></picture></div>
   <div class="wrap">
     <div class="eyebrow c">Questions?</div>
     <h2 class="big">Text the office. A real person answers.</h2>

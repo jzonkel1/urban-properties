@@ -381,6 +381,10 @@ footer h4{color:#fff;font-family:var(--sans);font-size:12.5px;font-weight:800;le
 .phero .eyebrow{color:#DCA8EA}.phero .eyebrow::after{background:rgba(255,255,255,.3)}
 .phero h1{color:#fff;font-size:clamp(36px,4.8vw,64px);line-height:1.06;letter-spacing:-.018em;max-width:17ch}
 .phero h1 em{font-style:normal;color:#E2B4EE}
+/* group photo: pin right, fade into ink on the left so the headline never sits on a face */
+.phero-team .hero-bg img{position:absolute;right:0;top:0;width:66%;height:100%;object-position:50% 30%;
+  -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 30%);mask-image:linear-gradient(90deg,transparent 0,#000 30%)}
+@media(max-width:860px){.phero-team .hero-bg img{width:100%;object-position:60% 20%;-webkit-mask-image:none;mask-image:none}}
 .phero p.hl{color:#DAD3E2;font-size:clamp(16.5px,1.3vw,19.5px);margin:18px 0 26px;max-width:54ch}
 .crumb{font-size:13px;color:#A79FB2;margin-bottom:18px;display:flex;gap:8px;flex-wrap:wrap}.crumb a{color:#DCA8EA}
 .photo-band{position:relative;overflow:hidden;background:var(--ink);color:#DAD3E2}
@@ -575,7 +579,7 @@ footer h4{color:#fff;font-family:var(--sans);font-size:12.5px;font-weight:800;le
 </div>
 
 <section class="phero">
-  <div class="hero-bg"><picture><source srcset="../img/hero.webp" type="image/webp"><img src="../img/hero.jpg" alt="From dirt &lt;em&gt;to deposit.&lt;/em&gt;"></picture></div>
+  <div class="hero-bg"><picture><source srcset="../img/build-fourplex-1200.webp?v=ffb655d8 1200w, ../img/build-fourplex.webp?v=ac71ff9f 2400w" sizes="(max-width:700px) 200vw, 100vw" type="image/webp"><img src="../img/build-fourplex.jpg?v=64d229e5" srcset="../img/build-fourplex-1200.jpg?v=692007aa 1200w, ../img/build-fourplex.jpg?v=64d229e5 2400w" sizes="(max-width:700px) 200vw, 100vw" alt="From dirt to deposit."></picture></div>
   <div class="hero-scrim"></div><div class="hero-scrim2"></div>
   <div class="wrap">
     <div class="crumb"><a href="../">Home</a><span>/</span><span>Build-to-Rent</span></div>
@@ -598,7 +602,7 @@ footer h4{color:#fff;font-family:var(--sans);font-size:12.5px;font-weight:800;le
   </div></div></section><section class="sec"><div class="wrap"><div class="center" style="margin-bottom:58px"><div class="eyebrow c">How It Goes</div><h2 class="big">Land to lease-up</h2></div><div class="steps"><div class="step"><div class="bar"></div><h4>The lot</h4><p>You have one, or we find one. Manhattan Builders confirms what fits and what it costs before you commit.</p></div><div class="step"><div class="bar"></div><h4>The build</h4><p>Duplex, fourplex or small multifamily, built by a Coastal Bend builder since 2003.</p></div><div class="step"><div class="bar"></div><h4>The tenants</h4><p>CC Lease Locators has renters looking before the paint is dry. Screened and placed by our office.</p></div><div class="step"><h4>The deposit</h4><p>Urban Properties manages it. Rent in, your share out, one office for the life of the asset.</p></div></div></div></section><section class="sec"><div class="wrap" style="max-width:860px">
   <div class="center" style="margin-bottom:40px"><div class="eyebrow c">Investors Ask</div><h2 class="big">Straight answers</h2></div>
   <div class="faq"><details><summary>Why build instead of buy?</summary><p>New construction rents at the top of the market, needs almost no maintenance for years, and you know exactly what you paid for every part of it.</p></details><details><summary>Do I have to use all three companies?</summary><p>No. But the numbers work best when the builder, the leasing office and the manager are the same people with the same file.</p></details><details><summary>What does a duplex cost to build here?</summary><p>Depends on the lot and the finish. Call Jon. You&rsquo;ll get a real number, not a range from a website.</p></details></div></div></section><section class="sec photo-band cta-band">
-  <div class="pb-bg"><picture><source srcset="../img/hero.webp" type="image/webp"><img src="../img/hero.jpg" alt="" loading="lazy"></picture></div>
+  <div class="pb-bg"><picture><source srcset="../img/hero-1200.webp?v=b2ccb596 1200w, ../img/hero.webp?v=b342c3dd 2400w" sizes="(max-width:700px) 200vw, 100vw" type="image/webp"><img src="../img/hero.jpg?v=09c97dfc" srcset="../img/hero-1200.jpg?v=211c3069 1200w, ../img/hero.jpg?v=09c97dfc 2400w" sizes="(max-width:700px) 200vw, 100vw" alt="" loading="lazy"></picture></div>
   <div class="wrap">
     <div class="eyebrow c">Free, No Obligation</div>
     <h2 class="big">Let&rsquo;s find out what your property is worth.</h2>

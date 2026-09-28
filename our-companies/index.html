@@ -381,6 +381,10 @@ footer h4{color:#fff;font-family:var(--sans);font-size:12.5px;font-weight:800;le
 .phero .eyebrow{color:#DCA8EA}.phero .eyebrow::after{background:rgba(255,255,255,.3)}
 .phero h1{color:#fff;font-size:clamp(36px,4.8vw,64px);line-height:1.06;letter-spacing:-.018em;max-width:17ch}
 .phero h1 em{font-style:normal;color:#E2B4EE}
+/* group photo: pin right, fade into ink on the left so the headline never sits on a face */
+.phero-team .hero-bg img{position:absolute;right:0;top:0;width:66%;height:100%;object-position:50% 30%;
+  -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 30%);mask-image:linear-gradient(90deg,transparent 0,#000 30%)}
+@media(max-width:860px){.phero-team .hero-bg img{width:100%;object-position:60% 20%;-webkit-mask-image:none;mask-image:none}}
 .phero p.hl{color:#DAD3E2;font-size:clamp(16.5px,1.3vw,19.5px);margin:18px 0 26px;max-width:54ch}
 .crumb{font-size:13px;color:#A79FB2;margin-bottom:18px;display:flex;gap:8px;flex-wrap:wrap}.crumb a{color:#DCA8EA}
 .photo-band{position:relative;overflow:hidden;background:var(--ink);color:#DAD3E2}
@@ -575,7 +579,7 @@ footer h4{color:#fff;font-family:var(--sans);font-size:12.5px;font-weight:800;le
 </div>
 
 <section class="phero">
-  <div class="hero-bg"><picture><source srcset="../img/hero.webp" type="image/webp"><img src="../img/hero.jpg" alt="We build it, fill it, manage it, &lt;em&gt;and sell it.&lt;/em&gt;"></picture></div>
+  <div class="hero-bg"><picture><source srcset="../img/mb-modern-1200.webp?v=76be7a65 1200w, ../img/mb-modern.webp?v=ab7da2d6 2400w" sizes="(max-width:700px) 200vw, 100vw" type="image/webp"><img src="../img/mb-modern.jpg?v=c8e63c5f" srcset="../img/mb-modern-1200.jpg?v=05915ee5 1200w, ../img/mb-modern.jpg?v=c8e63c5f 2400w" sizes="(max-width:700px) 200vw, 100vw" alt="We build it, fill it, manage it, and sell it."></picture></div>
   <div class="hero-scrim"></div><div class="hero-scrim2"></div>
   <div class="wrap">
     <div class="crumb"><a href="../">Home</a><span>/</span><span>Our Companies</span></div>
@@ -596,7 +600,7 @@ footer h4{color:#fff;font-family:var(--sans);font-size:12.5px;font-weight:800;le
   </div><p class="co-note">Own land and thinking about building to rent? <a href="../build-to-rent/">Here&rsquo;s how that works.</a> One team takes it from dirt to deposit.</p></div></section><section class="sec"><div class="wrap">
   <div class="center" style="margin-bottom:50px"><div class="eyebrow c">Why It Matters To You</div><h2 class="big">One file, start to finish</h2></div>
   <div class="g3"><div class="card"><h3>For owners</h3><p>The builder knows the building, the locator knows the renters, the manager knows the numbers. Nothing gets lost between companies.</p></div><div class="card"><h3>For investors</h3><p>Buy a lot, build a duplex, lease it up, manage it, sell it. Same office, same people, one phone number.</p></div><div class="card"><h3>For renters</h3><p>CC Lease Locators finds you a place for free. If it&rsquo;s one of ours, you already know who manages it.</p></div></div></div></section><section class="sec photo-band cta-band">
-  <div class="pb-bg"><picture><source srcset="../img/hero.webp" type="image/webp"><img src="../img/hero.jpg" alt="" loading="lazy"></picture></div>
+  <div class="pb-bg"><picture><source srcset="../img/hero-1200.webp?v=b2ccb596 1200w, ../img/hero.webp?v=b342c3dd 2400w" sizes="(max-width:700px) 200vw, 100vw" type="image/webp"><img src="../img/hero.jpg?v=09c97dfc" srcset="../img/hero-1200.jpg?v=211c3069 1200w, ../img/hero.jpg?v=09c97dfc 2400w" sizes="(max-width:700px) 200vw, 100vw" alt="" loading="lazy"></picture></div>
   <div class="wrap">
     <div class="eyebrow c">Free, No Obligation</div>
     <h2 class="big">Let&rsquo;s find out what your property is worth.</h2>

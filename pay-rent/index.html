@@ -381,6 +381,10 @@ footer h4{color:#fff;font-family:var(--sans);font-size:12.5px;font-weight:800;le
 .phero .eyebrow{color:#DCA8EA}.phero .eyebrow::after{background:rgba(255,255,255,.3)}
 .phero h1{color:#fff;font-size:clamp(36px,4.8vw,64px);line-height:1.06;letter-spacing:-.018em;max-width:17ch}
 .phero h1 em{font-style:normal;color:#E2B4EE}
+/* group photo: pin right, fade into ink on the left so the headline never sits on a face */
+.phero-team .hero-bg img{position:absolute;right:0;top:0;width:66%;height:100%;object-position:50% 30%;
+  -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 30%);mask-image:linear-gradient(90deg,transparent 0,#000 30%)}
+@media(max-width:860px){.phero-team .hero-bg img{width:100%;object-position:60% 20%;-webkit-mask-image:none;mask-image:none}}
 .phero p.hl{color:#DAD3E2;font-size:clamp(16.5px,1.3vw,19.5px);margin:18px 0 26px;max-width:54ch}
 .crumb{font-size:13px;color:#A79FB2;margin-bottom:18px;display:flex;gap:8px;flex-wrap:wrap}.crumb a{color:#DCA8EA}
 .photo-band{position:relative;overflow:hidden;background:var(--ink);color:#DAD3E2}
@@ -575,7 +579,7 @@ footer h4{color:#fff;font-family:var(--sans);font-size:12.5px;font-weight:800;le
 </div>
 
 <section class="phero">
-  <div class="hero-bg"><picture><source srcset="../img/int-living.webp" type="image/webp"><img src="../img/int-living.jpg" alt="Pay rent the way that &lt;em&gt;works for you.&lt;/em&gt;"></picture></div>
+  <div class="hero-bg"><picture><source srcset="../img/int-living-1200.webp?v=e524f9e2 1200w, ../img/int-living.webp?v=4c0367ca 2400w" sizes="(max-width:700px) 200vw, 100vw" type="image/webp"><img src="../img/int-living.jpg?v=da86b2a4" srcset="../img/int-living-1200.jpg?v=ba2ee991 1200w, ../img/int-living.jpg?v=da86b2a4 2400w" sizes="(max-width:700px) 200vw, 100vw" alt="Pay rent the way that works for you."></picture></div>
   <div class="hero-scrim"></div><div class="hero-scrim2"></div>
   <div class="wrap">
     <div class="crumb"><a href="../">Home</a><span>/</span><a href="../tenants/">Tenants</a><span>/</span><span>Pay Rent</span></div>
@@ -593,7 +597,7 @@ footer h4{color:#fff;font-family:var(--sans);font-size:12.5px;font-weight:800;le
   <div class="eyebrow">Good To Know</div><h2 class="big">Due dates and late fees</h2>
   <div class="prose"><p>Rent is due on the date in your lease. Your lease also states the grace period and the late fee, and the office applies them the same way every month. If something has come up and you know rent will be late, text the office <b>before</b> the due date. That conversation is always easier early.</p>
   <p>Always put your unit address in the note on an electronic payment, so it&rsquo;s credited to the right account the same day.</p></div></div></section><section class="sec photo-band cta-band">
-  <div class="pb-bg"><picture><source srcset="../img/int-living.webp" type="image/webp"><img src="../img/int-living.jpg" alt="" loading="lazy"></picture></div>
+  <div class="pb-bg"><picture><source srcset="../img/int-living-1200.webp?v=e524f9e2 1200w, ../img/int-living.webp?v=4c0367ca 2400w" sizes="(max-width:700px) 200vw, 100vw" type="image/webp"><img src="../img/int-living.jpg?v=da86b2a4" srcset="../img/int-living-1200.jpg?v=ba2ee991 1200w, ../img/int-living.jpg?v=da86b2a4 2400w" sizes="(max-width:700px) 200vw, 100vw" alt="" loading="lazy"></picture></div>
   <div class="wrap">
     <div class="eyebrow c">Questions?</div>
     <h2 class="big">Text the office. A real person answers.</h2>

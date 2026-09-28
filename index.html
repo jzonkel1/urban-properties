@@ -381,6 +381,10 @@ footer h4{color:#fff;font-family:var(--sans);font-size:12.5px;font-weight:800;le
 .phero .eyebrow{color:#DCA8EA}.phero .eyebrow::after{background:rgba(255,255,255,.3)}
 .phero h1{color:#fff;font-size:clamp(36px,4.8vw,64px);line-height:1.06;letter-spacing:-.018em;max-width:17ch}
 .phero h1 em{font-style:normal;color:#E2B4EE}
+/* group photo: pin right, fade into ink on the left so the headline never sits on a face */
+.phero-team .hero-bg img{position:absolute;right:0;top:0;width:66%;height:100%;object-position:50% 30%;
+  -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 30%);mask-image:linear-gradient(90deg,transparent 0,#000 30%)}
+@media(max-width:860px){.phero-team .hero-bg img{width:100%;object-position:60% 20%;-webkit-mask-image:none;mask-image:none}}
 .phero p.hl{color:#DAD3E2;font-size:clamp(16.5px,1.3vw,19.5px);margin:18px 0 26px;max-width:54ch}
 .crumb{font-size:13px;color:#A79FB2;margin-bottom:18px;display:flex;gap:8px;flex-wrap:wrap}.crumb a{color:#DCA8EA}
 .photo-band{position:relative;overflow:hidden;background:var(--ink);color:#DAD3E2}
@@ -578,8 +582,7 @@ footer h4{color:#fff;font-family:var(--sans);font-size:12.5px;font-weight:800;le
 <section class="hero">
   <div class="hero-bg">
     <picture>
-      <source srcset="img/hero.webp" type="image/webp">
-      <img src="img/hero.jpg" alt="Newly built rental duplexes managed by Urban Properties in Corpus Christi" fetchpriority="high">
+      <source srcset="img/hero-1200.webp?v=b2ccb596 1200w, img/hero.webp?v=b342c3dd 2400w" sizes="(max-width:700px) 200vw, 100vw" type="image/webp"><img src="img/hero.jpg?v=09c97dfc" srcset="img/hero-1200.jpg?v=211c3069 1200w, img/hero.jpg?v=09c97dfc 2400w" sizes="(max-width:700px) 200vw, 100vw" alt="Newly built rental duplexes managed by Urban Properties in Corpus Christi" fetchpriority="high">
     </picture>
   </div>
   <div class="hero-scrim"></div>
@@ -641,8 +644,7 @@ footer h4{color:#fff;font-family:var(--sans);font-size:12.5px;font-weight:800;le
     </div>
     <div class="band-img" style="box-shadow:var(--sh-l)">
       <picture>
-        <source srcset="img/prop-blue-street.webp" type="image/webp">
-        <img src="img/prop-blue-street.jpg" alt="Rental duplexes on a Corpus Christi street">
+        <source srcset="img/prop-blue-street-1200.webp?v=a8639bb2 1200w, img/prop-blue-street.webp?v=2d50f510 2400w" sizes="(min-width:900px) 50vw, 100vw" type="image/webp"><img src="img/prop-blue-street.jpg?v=7d21f9c9" srcset="img/prop-blue-street-1200.jpg?v=74077594 1200w, img/prop-blue-street.jpg?v=7d21f9c9 2400w" sizes="(min-width:900px) 50vw, 100vw" alt="Rental duplexes on a Corpus Christi street">
       </picture>
     </div>
   </div>
@@ -747,8 +749,7 @@ footer h4{color:#fff;font-family:var(--sans);font-size:12.5px;font-weight:800;le
     </div>
     <div class="band-img">
       <picture>
-        <source srcset="img/int-kitchen-open.webp" type="image/webp">
-        <img src="img/int-kitchen-open.jpg" alt="Interior of a managed rental property">
+        <source srcset="img/int-kitchen-open-1200.webp?v=bb3a928a 1200w, img/int-kitchen-open.webp?v=9da4b99a 2400w" sizes="(min-width:900px) 50vw, 100vw" type="image/webp"><img src="img/int-kitchen-open.jpg?v=fb7f68dd" srcset="img/int-kitchen-open-1200.jpg?v=e0ce7013 1200w, img/int-kitchen-open.jpg?v=fb7f68dd 2400w" sizes="(min-width:900px) 50vw, 100vw" alt="Interior of a managed rental property">
       </picture>
     </div>
   </div>
@@ -763,12 +764,12 @@ footer h4{color:#fff;font-family:var(--sans);font-size:12.5px;font-weight:800;le
       <p class="lead">Single family, duplex, fourplex and townhome units across the Coastal Bend.</p>
     </div>
     <div class="gal">
-      <figure class="w2 h2"><picture><source srcset="img/prop-blue-street.webp" type="image/webp"><img src="img/prop-blue-street.jpg" alt="Duplex rental units, Corpus Christi" loading="lazy"></picture></figure>
-      <figure><picture><source srcset="img/int-kitchen-white.webp" type="image/webp"><img src="img/int-kitchen-white.jpg" alt="Rental unit kitchen" loading="lazy"></picture></figure>
-      <figure><picture><source srcset="img/int-living.webp" type="image/webp"><img src="img/int-living.jpg" alt="Rental unit living area" loading="lazy"></picture></figure>
-      <figure class="w2"><picture><source srcset="img/prop-yard.webp" type="image/webp"><img src="img/prop-yard.jpg" alt="Rental property with fenced yard" loading="lazy"></picture></figure>
-      <figure class="w2"><picture><source srcset="img/int-kitchen-blue.webp" type="image/webp"><img src="img/int-kitchen-blue.jpg" alt="Renovated kitchen in a managed property" loading="lazy"></picture></figure>
-      <figure class="w2"><picture><source srcset="img/prop-grey-row.webp" type="image/webp"><img src="img/prop-grey-row.jpg" alt="Row of managed rental units" loading="lazy"></picture></figure>
+      <figure class="w2 h2"><picture><source srcset="img/prop-blue-street-1200.webp?v=a8639bb2 1200w, img/prop-blue-street.webp?v=2d50f510 2400w" sizes="(max-width:860px) 50vw, 50vw" type="image/webp"><img src="img/prop-blue-street.jpg?v=7d21f9c9" srcset="img/prop-blue-street-1200.jpg?v=74077594 1200w, img/prop-blue-street.jpg?v=7d21f9c9 2400w" sizes="(max-width:860px) 50vw, 50vw" alt="Duplex rental units, Corpus Christi" loading="lazy"></picture></figure>
+      <figure><picture><source srcset="img/int-kitchen-white-1200.webp?v=b269c2c2 1200w, img/int-kitchen-white.webp?v=9c0e2ee1 2400w" sizes="(max-width:860px) 50vw, 50vw" type="image/webp"><img src="img/int-kitchen-white.jpg?v=b877971c" srcset="img/int-kitchen-white-1200.jpg?v=14067786 1200w, img/int-kitchen-white.jpg?v=b877971c 2400w" sizes="(max-width:860px) 50vw, 50vw" alt="Rental unit kitchen" loading="lazy"></picture></figure>
+      <figure><picture><source srcset="img/int-living-1200.webp?v=e524f9e2 1200w, img/int-living.webp?v=4c0367ca 2400w" sizes="(max-width:860px) 50vw, 50vw" type="image/webp"><img src="img/int-living.jpg?v=da86b2a4" srcset="img/int-living-1200.jpg?v=ba2ee991 1200w, img/int-living.jpg?v=da86b2a4 2400w" sizes="(max-width:860px) 50vw, 50vw" alt="Rental unit living area" loading="lazy"></picture></figure>
+      <figure class="w2"><picture><source srcset="img/ext-backyard-1200.webp?v=2bc0274f 1200w, img/ext-backyard.webp?v=e75e0acb 2400w" sizes="(max-width:860px) 50vw, 50vw" type="image/webp"><img src="img/ext-backyard.jpg?v=4e1383fe" srcset="img/ext-backyard-1200.jpg?v=b4d0452b 1200w, img/ext-backyard.jpg?v=4e1383fe 2400w" sizes="(max-width:860px) 50vw, 50vw" alt="Fenced back yard at a managed duplex" loading="lazy"></picture></figure>
+      <figure class="w2"><picture><source srcset="img/int-kitchen-open-1200.webp?v=bb3a928a 1200w, img/int-kitchen-open.webp?v=9da4b99a 2400w" sizes="(max-width:860px) 50vw, 50vw" type="image/webp"><img src="img/int-kitchen-open.jpg?v=fb7f68dd" srcset="img/int-kitchen-open-1200.jpg?v=e0ce7013 1200w, img/int-kitchen-open.jpg?v=fb7f68dd 2400w" sizes="(max-width:860px) 50vw, 50vw" alt="Kitchen in a managed duplex unit" loading="lazy"></picture></figure>
+      <figure class="w2"><picture><source srcset="img/prop-grey-row-1200.webp?v=21bcfd53 1200w, img/prop-grey-row.webp?v=c46920d2 2400w" sizes="(max-width:860px) 50vw, 50vw" type="image/webp"><img src="img/prop-grey-row.jpg?v=7d6a9144" srcset="img/prop-grey-row-1200.jpg?v=6c0d56f5 1200w, img/prop-grey-row.jpg?v=7d6a9144 2400w" sizes="(max-width:860px) 50vw, 50vw" alt="Row of managed rental units" loading="lazy"></picture></figure>
     </div>
   </div>
 </section>
@@ -839,7 +840,7 @@ footer h4{color:#fff;font-family:var(--sans);font-size:12.5px;font-weight:800;le
 
 <!-- ============ ABOUT ============ -->
 <section class="sec photo-band" id="about">
-  <div class="pb-bg"><picture><source srcset="img/prop-grey-row.webp" type="image/webp"><img src="img/prop-grey-row.jpg" alt="" loading="lazy"></picture></div>
+  <div class="pb-bg"><picture><source srcset="img/team-1200.webp?v=7048b556 1200w, img/team.webp?v=cbe26507 2400w" sizes="(max-width:700px) 200vw, 100vw" type="image/webp"><img src="img/team.jpg?v=2992c1e0" srcset="img/team-1200.jpg?v=0db289d1 1200w, img/team.jpg?v=2992c1e0 2400w" sizes="(max-width:700px) 200vw, 100vw" alt="" loading="lazy"></picture></div>
   <div class="wrap g2">
     <div>
       <div class="eyebrow">About Urban Properties</div>
@@ -897,7 +898,7 @@ footer h4{color:#fff;font-family:var(--sans);font-size:12.5px;font-weight:800;le
 
 <!-- ============ SERVICE AREA ============ -->
 <section class="sec photo-band" id="areas">
-  <div class="pb-bg"><picture><source srcset="img/prop-yard.webp" type="image/webp"><img src="img/prop-yard.jpg" alt="" loading="lazy"></picture></div>
+  <div class="pb-bg"><picture><source srcset="img/prop-yard-1200.webp?v=a966c2ec 1200w, img/prop-yard.webp?v=44a6cd91 2400w" sizes="(max-width:700px) 200vw, 100vw" type="image/webp"><img src="img/prop-yard.jpg?v=9b4a6ba0" srcset="img/prop-yard-1200.jpg?v=f8f35c14 1200w, img/prop-yard.jpg?v=9b4a6ba0 2400w" sizes="(max-width:700px) 200vw, 100vw" alt="" loading="lazy"></picture></div>
   <div class="wrap g2">
     <div>
       <div class="eyebrow">Where We Work</div>
@@ -917,7 +918,7 @@ footer h4{color:#fff;font-family:var(--sans);font-size:12.5px;font-weight:800;le
 
 <!-- ============ CTA ============ -->
 <section class="sec photo-band cta-band" id="contact">
-  <div class="pb-bg"><picture><source srcset="img/hero.webp" type="image/webp"><img src="img/hero.jpg" alt="" loading="lazy"></picture></div>
+  <div class="pb-bg"><picture><source srcset="img/hero-1200.webp?v=b2ccb596 1200w, img/hero.webp?v=b342c3dd 2400w" sizes="(max-width:700px) 200vw, 100vw" type="image/webp"><img src="img/hero.jpg?v=09c97dfc" srcset="img/hero-1200.jpg?v=211c3069 1200w, img/hero.jpg?v=09c97dfc 2400w" sizes="(max-width:700px) 200vw, 100vw" alt="" loading="lazy"></picture></div>
   <div class="wrap">
     <div class="eyebrow c">Free, No Obligation</div>
     <h2 class="big">Let&rsquo;s find out what your property is worth.</h2>

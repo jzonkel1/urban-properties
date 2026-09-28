@@ -8,6 +8,7 @@ Pages are one folder deep (e.g. /apply/index.html) so links use a {R} prefix:
   "" on the home page, "../" on subpages.
 """
 import io, os, re, html
+from PIL import Image
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 os.chdir(ROOT)
@@ -121,6 +122,10 @@ EXTRA_CSS = """
 .phero .eyebrow{color:#DCA8EA}.phero .eyebrow::after{background:rgba(255,255,255,.3)}
 .phero h1{color:#fff;font-size:clamp(36px,4.8vw,64px);line-height:1.06;letter-spacing:-.018em;max-width:17ch}
 .phero h1 em{font-style:normal;color:#E2B4EE}
+/* group photo: pin right, fade into ink on the left so the headline never sits on a face */
+.phero-team .hero-bg img{position:absolute;right:0;top:0;width:66%;height:100%;object-position:50% 30%;
+  -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 30%);mask-image:linear-gradient(90deg,transparent 0,#000 30%)}
+@media(max-width:860px){.phero-team .hero-bg img{width:100%;object-position:60% 20%;-webkit-mask-image:none;mask-image:none}}
 .phero p.hl{color:#DAD3E2;font-size:clamp(16.5px,1.3vw,19.5px);margin:18px 0 26px;max-width:54ch}
 .crumb{font-size:13px;color:#A79FB2;margin-bottom:18px;display:flex;gap:8px;flex-wrap:wrap}.crumb a{color:#DCA8EA}
 .photo-band{position:relative;overflow:hidden;background:var(--ink);color:#DAD3E2}
@@ -167,7 +172,7 @@ def pic(img, alt, lazy=True):
 
 def hero(eyebrow, h1, hl, img, crumb, btn2=None):
     b2 = btn2 or ('<a class="btn btn-o" href="{R}rent-analysis/">What will my property rent for?</a>')
-    return '''<section class="phero">
+    return '''<section class="phero%s">
   <div class="hero-bg">%s</div>
   <div class="hero-scrim"></div><div class="hero-scrim2"></div>
   <div class="wrap">
@@ -180,7 +185,7 @@ def hero(eyebrow, h1, hl, img, crumb, btn2=None):
       %s
     </div>
   </div>
-</section>''' % (pic(img, h1, lazy=False), crumb, eyebrow, h1, hl, TEL, CALL_SVG, PHONE, b2)
+</section>''' % (" phero-team" if img.startswith("team") else "", pic(img, re.sub(r"<[^>]+>", "", h1), lazy=False), crumb, eyebrow, h1, hl, TEL, CALL_SVG, PHONE, b2)
 
 def cta(kind="owner"):
     if kind == "tenant":
@@ -309,7 +314,7 @@ service_page("tenant-screening-placement/", "Tenant Screening &amp; Placement", 
     [("What do you charge to place a tenant?", "One month&rsquo;s rent, collected out of the tenant&rsquo;s first month. You don&rsquo;t write a check."),
      ("Who pays the application fee?", "The applicant. $50 per application."),
      ("What are the requirements?", "Stable, verifiable income and rental history preferred. Pets and other specifics are set with you, per property.")],
-    "prop-yard.jpg")
+    "ext-duplex-front.jpg")
 
 service_page("rent-collection-owner-deposits/", "Rent Collection &amp; Owner Deposits", "Get Paid On Time", "Rent comes in. Your share <em>goes out.</em> Automatically.",
     "Clear due dates, consistent follow-up, and your money deposited to your account every month without you chasing anyone.",
@@ -381,7 +386,7 @@ service_page("move-in-move-out-inspections/", "Move-In / Move-Out Inspections", 
     [("Do I need to be there?", "No. You&rsquo;re welcome to, but the report and photos come to you either way."),
      ("How long does a turnover take?", "Depends on condition. A clean unit relists in days. We tell you the make-ready scope and cost up front."),
      ("Who decides deposit deductions?", "We recommend based on the reports and Texas rules; you approve.")],
-    "prop-yard.jpg")
+    "ext-backyard.jpg")
 
 service_page("investment-property-sales/", "Investment Property Sales", "Buy The Next Door", "The broker who manages it can help you <em>buy it.</em>",
     "Buying the next rental or selling the last one. A full Texas brokerage in the same office that manages your property.",
@@ -403,7 +408,7 @@ service_page("investment-property-sales/", "Investment Property Sales", "Buy The
 
 service_page("residential-sales/", "Residential Sales", "Buying &amp; Selling Homes", "A Corpus Christi brokerage with <em>six agents</em> and one broker.",
     "Buying or selling a home in Corpus Christi and the surrounding area, with agents who know what every block is worth because we manage rentals on them.",
-    "prop-yard.jpg", "Local agents, licensed broker, straight answers.",
+    "mb-home.jpg", "Local agents, licensed broker, straight answers.",
     ["Urban Properties is a full Texas real estate brokerage. Our agents help families buy and sell homes across Corpus Christi, Padre Island, Calallen and Robstown.",
      "Because the same office manages rental property, we see what homes actually rent for, what they cost to maintain, and which streets are moving. That&rsquo;s useful whether you&rsquo;re buying your first house or selling one you&rsquo;ve had for twenty years."],
     ["Six licensed agents under broker Jon Roel", "Listings on the MLS and every major site", "Pricing from real local comps",
@@ -417,11 +422,11 @@ service_page("residential-sales/", "Residential Sales", "Buying &amp; Selling Ho
     [("Which areas do you cover for sales?", "Corpus Christi, Padre Island, Calallen, Robstown and the surrounding area."),
      ("Should I sell or rent my house out?", "Ask us. We&rsquo;ll give you the sale number and the rent number from the same office, and tell you which we&rsquo;d do."),
      ("Do you work with first-time buyers?", "Yes, and with the local lenders who make that easier.")],
-    "int-kitchen-open.jpg")
+    "mb-kitchen.jpg")
 
 service_page("lot-land-sales/", "Lot &amp; Land Sales", "Lots, Acreage, Infill", "Buy the dirt. <em>Build the deposit.</em>",
     "Lots, acreage and infill parcels across the Coastal Bend, from a brokerage that shares an office with a home builder.",
-    "prop-tan-corner.jpg", "Land is where the whole chain starts.",
+    "aerial-lot.jpg", "Land is where the whole chain starts.",
     ["We help buyers find and close on residential lots, small acreage and infill parcels in and around Corpus Christi, and we list land for owners ready to sell.",
      "The difference here: Manhattan Builders is down the hall. If you&rsquo;re buying to build, the person who can tell you what fits on the lot and what it costs is in the same building."],
     ["Residential lots, acreage and infill parcels", "Zoning, utilities and setback questions answered before you offer", "Build feasibility from Manhattan Builders",
@@ -435,7 +440,7 @@ service_page("lot-land-sales/", "Lot &amp; Land Sales", "Lots, Acreage, Infill",
     [("Can you tell me if a lot is buildable?", "Yes. The builder reviews it before you make an offer."),
      ("Do you sell commercial land?", "Yes. Small commercial parcels and pad sites in the Corpus Christi area."),
      ("What does it cost to list land with you?", "Standard listing commission, agreed in writing up front.")],
-    "prop-blue-street.jpg")
+    "aerial-lot-2.jpg")
 
 service_page("commercial-leasing-multifamily/", "Commercial Leasing &amp; Multifamily", "Bigger Buildings, Same Process", "Duplexes, complexes, HOAs and <em>commercial space.</em>",
     "Leased and managed with the same process, by an office that owns and runs an eight-tenant commercial building and an eight-unit townhome complex of its own.",
@@ -514,7 +519,7 @@ page("what-we-charge/", "What We Charge", "Urban Properties management fees: one
 
 how_body = (hero("Getting Started", "Four steps, and you&rsquo;re <em>out of the day-to-day.</em>",
                  "From the first call to the first deposit, here&rsquo;s exactly what happens and what we need from you.",
-                 "prop-yard.jpg", "<span>How Onboarding Works</span>")
+                 "int-kitchen-island.jpg", "<span>How Onboarding Works</span>")
     + steps4("The Process", "What happens, in order", [
         ("Free rent analysis", "Tell us about the property. We come back with what it should rent for and what we&rsquo;d do first."),
         ("Sign &amp; onboard", "Management agreement, keys, a walkthrough. We photograph and document the condition."),
@@ -538,7 +543,7 @@ page("how-onboarding-works/", "How Onboarding Works", "How to hand your Corpus C
 
 btr_body = (hero("For Investors", "From dirt <em>to deposit.</em>",
                  "Manhattan Builders builds it. CC Lease Locators fills it. Urban Properties manages it and, when you&rsquo;re ready, sells it. One office, one team.",
-                 "hero.jpg", "<span>Build-to-Rent</span>")
+                 "build-fourplex.jpg", "<span>Build-to-Rent</span>")
     + '''<section class="band sec"><div class="wrap">
   <div class="center" style="margin-bottom:46px"><div class="eyebrow c">One Office, Three Companies</div><h2 class="big">We build it, fill it, manage it, and sell it.</h2></div>
   <div class="cos">
@@ -596,7 +601,7 @@ apply_body = (hero("Apply", "Apply for a <em>rental.</em>",
   <div class="band-img" style="box-shadow:var(--sh-l)">%s</div></div></section>''' % ("".join(CHECK % b for b in [
         "Download the application and fill it out for every adult who will live there",
         "Bring it to 5117 Williams Dr (Mon&ndash;Fri, 9 to 5) or send it back the way we sent it to you, with the $50 fee",
-        "We verify income, rental history and background, then call you with the answer"]), JON_SMS, pic("prop-yard.jpg", "Rental home with fenced yard"))
+        "We verify income, rental history and background, then call you with the answer"]), JON_SMS, pic("door-entry.jpg", "Front door of a rental home"))
     + faq("Before You Apply", "Applicants usually ask", [
         ("What do I need to bring?", "Photo ID, proof of income (recent pay stubs or an offer letter), and your last two landlords&rsquo; contact info."),
         ("How long does approval take?", "Usually a day or two once we can reach your references."),
@@ -686,7 +691,7 @@ town_page("corpus-christi/", "Corpus Christi", "Corpus Christi rental property, 
     "Corpus+Christi,+TX")
 town_page("padre-island/", "Padre Island", "Island rentals, <em>handled from the mainland.</em>",
     "Property management for homes, condos and townhomes on Padre Island, with tenant placement, rent collection and maintenance handled by our Corpus Christi office.",
-    "prop-yard.jpg",
+    "ext-duplex-front.jpg",
     "Island properties have their own rhythm: salt air, seasonal demand, HOAs and a tenant pool that ranges from Navy families to long-term locals.",
     "We manage on the Island the same way we manage everywhere else, with one addition: we know which trades will actually drive over the causeway.",
     ["Single-family homes, condos and townhomes", "Long-term leases, not short-term rental turnover", "HOA rules written into the lease and enforced", "Island-familiar maintenance trades"],
@@ -723,11 +728,11 @@ page("service-areas/", "Service Areas", "Urban Properties manages rental propert
 TEAM = [("Jon Roel", "Broker"), ("Laura Vasquez", "Realtor"), ("Amy Soza", "Realtor"), ("Danny Guerrero", "Realtor"), ("Maria Cruz", "Realtor"), ("Michael Benavidez", "Realtor")]
 about_body = (hero("About Urban Properties", "A Corpus Christi brokerage that <em>actually answers the phone.</em>",
                    "Full-service real estate since 2009. Property management, tenant placement, sales, and a builder down the hall. All under one licensed roof, led by broker Jon Roel.",
-                   "prop-grey-row.jpg", "<span>About</span>")
+                   "team.jpg", "<span>About</span>")
     + intro("Since 2009", "The same person who manages your rental can tell you what to buy next.", [
         "Urban Properties started in 2009 as the brokerage side of a family that was already building homes in Corpus Christi. Sixteen years on, we manage rental property, place tenants through our sister firm CC Lease Locators, and help people buy and sell, all from one office on Williams Drive.",
         "We own and manage our own buildings, an eight-unit townhome complex, an eight-tenant commercial building, a duplex and houses, and we run yours the same way. You&rsquo;re not handing your investment to a call center three states away."],
-        [], "int-living.jpg", "Managed rental interior",
+        [], "ext-duplex-front.jpg", "Duplexes Urban Properties owns and manages in Corpus Christi",
         extra='<div class="team" style="margin-top:30px"><div class="team-h">The team</div><ul>%s</ul></div>' % "".join('<li><b>%s</b><span>%s</span></li>' % t for t in TEAM))
     + cards("What We Stand On", "Four things you can hold us to", [
         ("Results", "Occupied units and rent that arrives on time. That&rsquo;s the job."),
@@ -741,7 +746,7 @@ page("about/", "About Urban Properties", "Urban Properties: a Corpus Christi rea
 
 cos_body = (hero("One Office, Three Companies", "We build it, fill it, manage it, <em>and sell it.</em>",
                  "Manhattan Builders, CC Lease Locators and Urban Properties share one office at 5117 Williams Drive. Whatever stage your property is at, the next call is to the same people.",
-                 "hero.jpg", "<span>Our Companies</span>")
+                 "mb-modern.jpg", "<span>Our Companies</span>")
     + '''<section class="band sec"><div class="wrap"><div class="cos">
     <a class="co" href="https://manhattanbuilders.cc" target="_blank" rel="noopener"><div class="co-step">Builds it</div><div class="co-name">Manhattan Builders</div><p>Custom homes, multifamily and light commercial across the Coastal Bend since 2003. Corpus Christi, Padre Island, Port Aransas, Rockport.</p><span class="co-link">manhattanbuilders.cc &rarr;</span></a>
     <div class="co-arr">&rarr;</div>
@@ -760,7 +765,7 @@ def review(text, name, ini):
     return '<div class="rev"><div class="stars">%s</div><p>%s</p><div class="who"><div class="av">%s</div><div><div class="nm">%s</div><div class="src">Google Review</div></div></div></div>' % (STAR * 5, text, ini, name)
 rev_body = (hero("Reviews", "Straight from <em>Google.</em>",
                  "What owners and clients say about working with Jon and the office. Every one of these is a real Google review.",
-                 "int-kitchen-open.jpg", "<span>Reviews</span>")
+                 "team.jpg", "<span>Reviews</span>")
     + '''<section class="sec"><div class="wrap"><div class="revs">%s%s</div>
   <p class="center" style="margin-top:36px;color:var(--muted)">Worked with us? <b>Search &ldquo;Urban Properties Corpus Christi&rdquo; on Google</b> and leave a review. It helps the next owner find us.</p></div></section>''' % (
         review("&ldquo;Mr. Jon Roel and Urban Properties is a very professional company that went above and beyond to get our house ready for rent! Jon has fantastic employees that will make your old house look very sellable!&rdquo;", "Albert Flores", "AF"),
@@ -826,6 +831,28 @@ def head_for(title, desc, path):
     h = h.replace('href="img/', 'href="../img/').replace('href="fonts/', 'href="../fonts/').replace('url(fonts/', 'url(../fonts/')
     return h
 
+import hashlib
+_W = {}
+def _ver(name):
+    p = os.path.join(ROOT, "img", name)
+    return hashlib.md5(open(p, "rb").read()).hexdigest()[:8]
+def finalize(doc):
+    """srcset (1200w + full) + ?v=digest on every photo. Full-bleed boxes crop 'cover', so
+    they ask for 200vw on phones (tall box, wide photo) - see cover-crop-needs-bigger-sizes."""
+    def sub(m):
+        pre, base = m.group(1), m.group(2)
+        if not os.path.exists(os.path.join(ROOT, "img", base + "-1200.webp")):
+            return m.group(0)
+        w = _W.setdefault(base, Image.open(os.path.join(ROOT, "img", base + ".jpg")).size[0])
+        ctx = doc[max(0, m.start() - 160):m.start()]
+        sizes = ("(max-width:700px) 200vw, 100vw" if ("hero-bg" in ctx or "pb-bg" in ctx)
+                 else "(max-width:860px) 50vw, 50vw" if "<figure" in ctx else "(min-width:900px) 50vw, 100vw")
+        return ('<source srcset="{p}img/{b}-1200.webp?v={v1} 1200w, {p}img/{b}.webp?v={v2} {w}w" sizes="{s}" type="image/webp">'
+                '<img src="{p}img/{b}.jpg?v={v3}" srcset="{p}img/{b}-1200.jpg?v={v4} 1200w, {p}img/{b}.jpg?v={v3} {w}w" sizes="{s}"').format(
+            p=pre, b=base, w=w, s=sizes, v1=_ver(base + "-1200.webp"), v2=_ver(base + ".webp"),
+            v3=_ver(base + ".jpg"), v4=_ver(base + "-1200.jpg"))
+    return re.sub(r'<source srcset="((?:\.\./)?)img/([\w-]+)\.webp" type="image/webp">\s*<img src="(?:\.\./)?img/[\w-]+\.jpg"', sub, doc)
+
 count = 0
 for pg in PAGES:
     R = "../"
@@ -835,7 +862,7 @@ for pg in PAGES:
     doc = doc.replace("{R}", R)
     d = os.path.join(ROOT, pg["slug"].rstrip("/"))
     os.makedirs(d, exist_ok=True)
-    io.open(os.path.join(d, "index.html"), "w", encoding="utf-8").write(doc)
+    io.open(os.path.join(d, "index.html"), "w", encoding="utf-8").write(finalize(doc))
     count += 1
 
 # ---------------------------------------------------------------- render home
@@ -874,7 +901,7 @@ about_home = '''<!-- ============ ABOUT ============ -->
   </div>
 </section>
 
-''' % (pic("prop-grey-row.jpg", ""), "".join('<li><b>%s</b><span>%s</span></li>' % t for t in TEAM))
+''' % (pic("team.jpg", ""), "".join('<li><b>%s</b><span>%s</span></li>' % t for t in TEAM))
 home = home[:a] + about_home + home[b:]
 # Service area -> photo band
 home = home.replace('<section class="sec" id="areas" style="background:var(--paper-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">\n  <div class="wrap g2">',
@@ -892,5 +919,5 @@ home = home.replace('<a class="btn btn-g" href="sms:+13615102325" style="margin-
 sa = home.index("<script>", home.index("demo-tag")); sb = home.index("</script>", sa)
 home = home[:sa] + "<script>" + COMMON_JS + "</script>" + home[sb + len("</script>"):]
 home = home.replace("{R}", "")
-io.open("index.html", "w", encoding="utf-8").write(home)
+io.open("index.html", "w", encoding="utf-8").write(finalize(home))
 print("built home + %d pages" % count)

@@ -381,6 +381,10 @@ footer h4{color:#fff;font-family:var(--sans);font-size:12.5px;font-weight:800;le
 .phero .eyebrow{color:#DCA8EA}.phero .eyebrow::after{background:rgba(255,255,255,.3)}
 .phero h1{color:#fff;font-size:clamp(36px,4.8vw,64px);line-height:1.06;letter-spacing:-.018em;max-width:17ch}
 .phero h1 em{font-style:normal;color:#E2B4EE}
+/* group photo: pin right, fade into ink on the left so the headline never sits on a face */
+.phero-team .hero-bg img{position:absolute;right:0;top:0;width:66%;height:100%;object-position:50% 30%;
+  -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 30%);mask-image:linear-gradient(90deg,transparent 0,#000 30%)}
+@media(max-width:860px){.phero-team .hero-bg img{width:100%;object-position:60% 20%;-webkit-mask-image:none;mask-image:none}}
 .phero p.hl{color:#DAD3E2;font-size:clamp(16.5px,1.3vw,19.5px);margin:18px 0 26px;max-width:54ch}
 .crumb{font-size:13px;color:#A79FB2;margin-bottom:18px;display:flex;gap:8px;flex-wrap:wrap}.crumb a{color:#DCA8EA}
 .photo-band{position:relative;overflow:hidden;background:var(--ink);color:#DAD3E2}
@@ -575,7 +579,7 @@ footer h4{color:#fff;font-family:var(--sans);font-size:12.5px;font-weight:800;le
 </div>
 
 <section class="phero">
-  <div class="hero-bg"><picture><source srcset="../img/prop-yard.webp" type="image/webp"><img src="../img/prop-yard.jpg" alt="Four steps, and you&amp;rsquo;re &lt;em&gt;out of the day-to-day.&lt;/em&gt;"></picture></div>
+  <div class="hero-bg"><picture><source srcset="../img/int-kitchen-island-1200.webp?v=2dfe7600 1200w, ../img/int-kitchen-island.webp?v=7b03beb1 2400w" sizes="(max-width:700px) 200vw, 100vw" type="image/webp"><img src="../img/int-kitchen-island.jpg?v=fac5e51b" srcset="../img/int-kitchen-island-1200.jpg?v=198b02ed 1200w, ../img/int-kitchen-island.jpg?v=fac5e51b 2400w" sizes="(max-width:700px) 200vw, 100vw" alt="Four steps, and you&amp;rsquo;re out of the day-to-day."></picture></div>
   <div class="hero-scrim"></div><div class="hero-scrim2"></div>
   <div class="wrap">
     <div class="crumb"><a href="../">Home</a><span>/</span><span>How Onboarding Works</span></div>
@@ -588,12 +592,12 @@ footer h4{color:#fff;font-family:var(--sans);font-size:12.5px;font-weight:800;le
     </div>
   </div>
 </section><section class="sec"><div class="wrap"><div class="center" style="margin-bottom:58px"><div class="eyebrow c">The Process</div><h2 class="big">What happens, in order</h2></div><div class="steps"><div class="step"><div class="bar"></div><h4>Free rent analysis</h4><p>Tell us about the property. We come back with what it should rent for and what we&rsquo;d do first.</p></div><div class="step"><div class="bar"></div><h4>Sign &amp; onboard</h4><p>Management agreement, keys, a walkthrough. We photograph and document the condition.</p></div><div class="step"><div class="bar"></div><h4>We market and screen</h4><p>Listed on the MLS and everywhere it syndicates, shown, screened. You approve the tenant.</p></div><div class="step"><h4>You get paid</h4><p>Rent lands in your account automatically. The phone calls come to us instead of you.</p></div></div></div></section><section class="sec" style="background:var(--paper-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)"><div class="wrap g2">
-  <div class="band-img" style="box-shadow:var(--sh-l)"><picture><source srcset="../img/int-living.webp" type="image/webp"><img src="../img/int-living.jpg" alt="Managed rental interior" loading="lazy"></picture></div>
+  <div class="band-img" style="box-shadow:var(--sh-l)"><picture><source srcset="../img/int-living-1200.webp?v=e524f9e2 1200w, ../img/int-living.webp?v=4c0367ca 2400w" sizes="(min-width:900px) 50vw, 100vw" type="image/webp"><img src="../img/int-living.jpg?v=da86b2a4" srcset="../img/int-living-1200.jpg?v=ba2ee991 1200w, ../img/int-living.jpg?v=da86b2a4 2400w" sizes="(min-width:900px) 50vw, 100vw" alt="Managed rental interior" loading="lazy"></picture></div>
   <div><div class="eyebrow">What We Need From You</div><h2 class="big">About twenty minutes of your time.</h2>
   <ul class="checks" style="color:var(--body)"><li><svg viewBox="0 0 24 24" style="stroke:var(--pur)"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg><span style="color:var(--body)">A signed management agreement (we send it, you sign on your phone)</span></li><li><svg viewBox="0 0 24 24" style="stroke:var(--pur)"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg><span style="color:var(--body)">Keys, garage remotes, gate codes</span></li><li><svg viewBox="0 0 24 24" style="stroke:var(--pur)"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg><span style="color:var(--body)">The current lease and deposit records, if there&rsquo;s a tenant in place</span></li><li><svg viewBox="0 0 24 24" style="stroke:var(--pur)"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg><span style="color:var(--body)">The bank account your rent should be deposited to</span></li><li><svg viewBox="0 0 24 24" style="stroke:var(--pur)"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg><span style="color:var(--body)">Any rules you want enforced: pets, smoking, occupancy</span></li><li><svg viewBox="0 0 24 24" style="stroke:var(--pur)"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg><span style="color:var(--body)">Your preferred trades, if you have them. Otherwise we use ours.</span></li></ul></div></div></section><section class="sec"><div class="wrap" style="max-width:860px">
   <div class="center" style="margin-bottom:40px"><div class="eyebrow c">Timing</div><h2 class="big">How long things take</h2></div>
   <div class="faq"><details><summary>How fast can you start?</summary><p>If the property already has a tenant, usually within a week. If it&rsquo;s vacant, we list it as soon as it&rsquo;s photographed and ready.</p></details><details><summary>How long to find a tenant?</summary><p>Depends on price and condition. Priced right, most units in Corpus Christi lease within a few weeks, and CC Lease Locators has renters looking already.</p></details><details><summary>When&rsquo;s the first deposit?</summary><p>After the first rent clears. Your share is deposited to the account you gave us.</p></details></div></div></section><section class="sec photo-band cta-band">
-  <div class="pb-bg"><picture><source srcset="../img/hero.webp" type="image/webp"><img src="../img/hero.jpg" alt="" loading="lazy"></picture></div>
+  <div class="pb-bg"><picture><source srcset="../img/hero-1200.webp?v=b2ccb596 1200w, ../img/hero.webp?v=b342c3dd 2400w" sizes="(max-width:700px) 200vw, 100vw" type="image/webp"><img src="../img/hero.jpg?v=09c97dfc" srcset="../img/hero-1200.jpg?v=211c3069 1200w, ../img/hero.jpg?v=09c97dfc 2400w" sizes="(max-width:700px) 200vw, 100vw" alt="" loading="lazy"></picture></div>
   <div class="wrap">
     <div class="eyebrow c">Free, No Obligation</div>
     <h2 class="big">Let&rsquo;s find out what your property is worth.</h2>

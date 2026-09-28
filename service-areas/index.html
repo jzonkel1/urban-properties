@@ -381,6 +381,10 @@ footer h4{color:#fff;font-family:var(--sans);font-size:12.5px;font-weight:800;le
 .phero .eyebrow{color:#DCA8EA}.phero .eyebrow::after{background:rgba(255,255,255,.3)}
 .phero h1{color:#fff;font-size:clamp(36px,4.8vw,64px);line-height:1.06;letter-spacing:-.018em;max-width:17ch}
 .phero h1 em{font-style:normal;color:#E2B4EE}
+/* group photo: pin right, fade into ink on the left so the headline never sits on a face */
+.phero-team .hero-bg img{position:absolute;right:0;top:0;width:66%;height:100%;object-position:50% 30%;
+  -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 30%);mask-image:linear-gradient(90deg,transparent 0,#000 30%)}
+@media(max-width:860px){.phero-team .hero-bg img{width:100%;object-position:60% 20%;-webkit-mask-image:none;mask-image:none}}
 .phero p.hl{color:#DAD3E2;font-size:clamp(16.5px,1.3vw,19.5px);margin:18px 0 26px;max-width:54ch}
 .crumb{font-size:13px;color:#A79FB2;margin-bottom:18px;display:flex;gap:8px;flex-wrap:wrap}.crumb a{color:#DCA8EA}
 .photo-band{position:relative;overflow:hidden;background:var(--ink);color:#DAD3E2}
@@ -575,7 +579,7 @@ footer h4{color:#fff;font-family:var(--sans);font-size:12.5px;font-weight:800;le
 </div>
 
 <section class="phero">
-  <div class="hero-bg"><picture><source srcset="../img/hero.webp" type="image/webp"><img src="../img/hero.jpg" alt="Managing across the &lt;em&gt;Coastal Bend.&lt;/em&gt;"></picture></div>
+  <div class="hero-bg"><picture><source srcset="../img/hero-1200.webp?v=b2ccb596 1200w, ../img/hero.webp?v=b342c3dd 2400w" sizes="(max-width:700px) 200vw, 100vw" type="image/webp"><img src="../img/hero.jpg?v=09c97dfc" srcset="../img/hero-1200.jpg?v=211c3069 1200w, ../img/hero.jpg?v=09c97dfc 2400w" sizes="(max-width:700px) 200vw, 100vw" alt="Managing across the Coastal Bend."></picture></div>
   <div class="hero-scrim"></div><div class="hero-scrim2"></div>
   <div class="wrap">
     <div class="crumb"><a href="../">Home</a><span>/</span><span>Service Areas</span></div>
@@ -594,7 +598,7 @@ footer h4{color:#fff;font-family:var(--sans);font-size:12.5px;font-weight:800;le
   <div><div class="eyebrow">The Office</div><h2 class="big">5117 Williams Drive, Corpus Christi.</h2><p class="lead">Mon&ndash;Fri, 9:00am to 5:00pm. Tenants drop rent here; owners are welcome any time.</p>
   <div style="margin-top:28px;display:flex;gap:12px;flex-wrap:wrap"><a class="btn btn-p" href="tel:+13614340040"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"/></svg> Call (361) 434-0040</a><a class="btn btn-g" href="../contact/">Contact</a></div></div>
   <div class="mapbox"><iframe src="https://www.google.com/maps?q=5117+Williams+Dr,+Corpus+Christi,+TX+78411&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Urban Properties office location"></iframe></div></div></section><section class="sec photo-band cta-band">
-  <div class="pb-bg"><picture><source srcset="../img/hero.webp" type="image/webp"><img src="../img/hero.jpg" alt="" loading="lazy"></picture></div>
+  <div class="pb-bg"><picture><source srcset="../img/hero-1200.webp?v=b2ccb596 1200w, ../img/hero.webp?v=b342c3dd 2400w" sizes="(max-width:700px) 200vw, 100vw" type="image/webp"><img src="../img/hero.jpg?v=09c97dfc" srcset="../img/hero-1200.jpg?v=211c3069 1200w, ../img/hero.jpg?v=09c97dfc 2400w" sizes="(max-width:700px) 200vw, 100vw" alt="" loading="lazy"></picture></div>
   <div class="wrap">
     <div class="eyebrow c">Free, No Obligation</div>
     <h2 class="big">Let&rsquo;s find out what your property is worth.</h2>

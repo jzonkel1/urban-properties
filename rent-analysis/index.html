@@ -381,6 +381,10 @@ footer h4{color:#fff;font-family:var(--sans);font-size:12.5px;font-weight:800;le
 .phero .eyebrow{color:#DCA8EA}.phero .eyebrow::after{background:rgba(255,255,255,.3)}
 .phero h1{color:#fff;font-size:clamp(36px,4.8vw,64px);line-height:1.06;letter-spacing:-.018em;max-width:17ch}
 .phero h1 em{font-style:normal;color:#E2B4EE}
+/* group photo: pin right, fade into ink on the left so the headline never sits on a face */
+.phero-team .hero-bg img{position:absolute;right:0;top:0;width:66%;height:100%;object-position:50% 30%;
+  -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 30%);mask-image:linear-gradient(90deg,transparent 0,#000 30%)}
+@media(max-width:860px){.phero-team .hero-bg img{width:100%;object-position:60% 20%;-webkit-mask-image:none;mask-image:none}}
 .phero p.hl{color:#DAD3E2;font-size:clamp(16.5px,1.3vw,19.5px);margin:18px 0 26px;max-width:54ch}
 .crumb{font-size:13px;color:#A79FB2;margin-bottom:18px;display:flex;gap:8px;flex-wrap:wrap}.crumb a{color:#DCA8EA}
 .photo-band{position:relative;overflow:hidden;background:var(--ink);color:#DAD3E2}
@@ -575,7 +579,7 @@ footer h4{color:#fff;font-family:var(--sans);font-size:12.5px;font-weight:800;le
 </div>
 
 <section class="phero">
-  <div class="hero-bg"><picture><source srcset="../img/int-kitchen-open.webp" type="image/webp"><img src="../img/int-kitchen-open.jpg" alt="What will your property &lt;em&gt;actually&lt;/em&gt; rent for?"></picture></div>
+  <div class="hero-bg"><picture><source srcset="../img/int-kitchen-open-1200.webp?v=bb3a928a 1200w, ../img/int-kitchen-open.webp?v=9da4b99a 2400w" sizes="(max-width:700px) 200vw, 100vw" type="image/webp"><img src="../img/int-kitchen-open.jpg?v=fb7f68dd" srcset="../img/int-kitchen-open-1200.jpg?v=e0ce7013 1200w, ../img/int-kitchen-open.jpg?v=fb7f68dd 2400w" sizes="(max-width:700px) 200vw, 100vw" alt="What will your property actually rent for?"></picture></div>
   <div class="hero-scrim"></div><div class="hero-scrim2"></div>
   <div class="wrap">
     <div class="crumb"><a href="../">Home</a><span>/</span><span>Free Rent Analysis</span></div>
@@ -666,8 +670,8 @@ footer h4{color:#fff;font-family:var(--sans);font-size:12.5px;font-weight:800;le
     </form></div></section><section class="sec" style="background:var(--paper-2);border-top:1px solid var(--line)"><div class="wrap g2">
   <div><div class="eyebrow">What You Get</div><h2 class="big">A number you can plan around.</h2>
   <ul class="checks" style="color:var(--body)"><li><svg viewBox="0 0 24 24" style="stroke:var(--pur)"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg><span style="color:var(--body)">What comparable units nearby are actually leasing for right now</span></li><li><svg viewBox="0 0 24 24" style="stroke:var(--pur)"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg><span style="color:var(--body)">Where your property should be priced to lease in weeks, not months</span></li><li><svg viewBox="0 0 24 24" style="stroke:var(--pur)"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg><span style="color:var(--body)">The one or two things we&rsquo;d fix before listing, and roughly what they cost</span></li><li><svg viewBox="0 0 24 24" style="stroke:var(--pur)"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg><span style="color:var(--body)">What you&rsquo;d net after our 10% if we managed it</span></li><li><svg viewBox="0 0 24 24" style="stroke:var(--pur)"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg><span style="color:var(--body)">A call or text from Jon, not an automated report</span></li></ul></div>
-  <div class="band-img" style="box-shadow:var(--sh-l)"><picture><source srcset="../img/prop-blue-street.webp" type="image/webp"><img src="../img/prop-blue-street.jpg" alt="Managed rental in Corpus Christi" loading="lazy"></picture></div></div></section><section class="sec photo-band cta-band">
-  <div class="pb-bg"><picture><source srcset="../img/hero.webp" type="image/webp"><img src="../img/hero.jpg" alt="" loading="lazy"></picture></div>
+  <div class="band-img" style="box-shadow:var(--sh-l)"><picture><source srcset="../img/prop-blue-street-1200.webp?v=a8639bb2 1200w, ../img/prop-blue-street.webp?v=2d50f510 2400w" sizes="(min-width:900px) 50vw, 100vw" type="image/webp"><img src="../img/prop-blue-street.jpg?v=7d21f9c9" srcset="../img/prop-blue-street-1200.jpg?v=74077594 1200w, ../img/prop-blue-street.jpg?v=7d21f9c9 2400w" sizes="(min-width:900px) 50vw, 100vw" alt="Managed rental in Corpus Christi" loading="lazy"></picture></div></div></section><section class="sec photo-band cta-band">
+  <div class="pb-bg"><picture><source srcset="../img/hero-1200.webp?v=b2ccb596 1200w, ../img/hero.webp?v=b342c3dd 2400w" sizes="(max-width:700px) 200vw, 100vw" type="image/webp"><img src="../img/hero.jpg?v=09c97dfc" srcset="../img/hero-1200.jpg?v=211c3069 1200w, ../img/hero.jpg?v=09c97dfc 2400w" sizes="(max-width:700px) 200vw, 100vw" alt="" loading="lazy"></picture></div>
   <div class="wrap">
     <div class="eyebrow c">Free, No Obligation</div>
     <h2 class="big">Let&rsquo;s find out what your property is worth.</h2>
