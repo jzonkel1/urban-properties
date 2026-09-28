@@ -119,8 +119,8 @@ EXTRA_CSS = """
 .phero .hero-bg{position:absolute;inset:0}.phero .hero-bg img{width:100%;height:100%;object-fit:cover}
 .phero .wrap{position:relative;z-index:2;width:100%;padding-top:110px;padding-bottom:58px}
 .phero .eyebrow{color:#DCA8EA}.phero .eyebrow::after{background:rgba(255,255,255,.3)}
-.phero h1{color:#fff;font-size:clamp(36px,4.8vw,64px);line-height:1.04;letter-spacing:-.025em;max-width:17ch}
-.phero h1 em{font-style:italic;color:#E2B4EE}
+.phero h1{color:#fff;font-size:clamp(36px,4.8vw,64px);line-height:1.06;letter-spacing:-.018em;max-width:17ch}
+.phero h1 em{font-style:normal;color:#E2B4EE}
 .phero p.hl{color:#DAD3E2;font-size:clamp(16.5px,1.3vw,19.5px);margin:18px 0 26px;max-width:54ch}
 .crumb{font-size:13px;color:#A79FB2;margin-bottom:18px;display:flex;gap:8px;flex-wrap:wrap}.crumb a{color:#DCA8EA}
 .photo-band{position:relative;overflow:hidden;background:var(--ink);color:#DAD3E2}
@@ -136,11 +136,11 @@ EXTRA_CSS = """
 .cta-band .pb-bg::after{background:linear-gradient(180deg,rgba(23,20,27,.8),rgba(23,20,27,.92))}
 .cta-band .wrap{text-align:center}.cta-band .lead{margin-left:auto;margin-right:auto}
 .facts{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;margin-top:32px}
-.facts div>div{font-family:var(--serif);font-size:19px;color:#fff}.facts p{font-size:14.5px;color:#C9C2CF;margin:4px 0 0}
+.facts div>div{font-family:var(--serif);font-weight:700;font-size:19px;color:#fff}.facts p{font-size:14.5px;color:#C9C2CF;margin:4px 0 0}
 .prose p{font-size:17px;color:var(--body);max-width:68ch;margin:0 0 18px;line-height:1.7}
 .prose h3{font-size:26px;margin:34px 0 10px}
 .faq details{border-top:1px solid var(--line);padding:18px 0}.faq details:last-child{border-bottom:1px solid var(--line)}
-.faq summary{cursor:pointer;font-family:var(--serif);font-size:21px;color:var(--ink);list-style:none;display:flex;justify-content:space-between;gap:16px;align-items:center}
+.faq summary{cursor:pointer;font-family:var(--serif);font-weight:700;font-size:21px;color:var(--ink);list-style:none;display:flex;justify-content:space-between;gap:16px;align-items:center}
 .faq summary::-webkit-details-marker{display:none}
 .faq summary::after{content:"+";color:var(--pur);font-size:26px;line-height:1;flex:none}.faq details[open] summary::after{content:"\\2013"}
 .faq p{margin:12px 0 0;color:var(--body);max-width:70ch;font-size:16px}
@@ -823,7 +823,7 @@ def head_for(title, desc, path):
     h = re.sub(r'<meta property="og:title" content="[^"]*">', '<meta property="og:title" content="%s">' % html.escape(re.sub(r"&amp;", "&", title), quote=True), h, count=1)
     h = h.replace('content="https://jzonkel1.github.io/urban-properties/"', 'content="https://jzonkel1.github.io/urban-properties/%s"' % path)
     h = h.replace('href="https://jzonkel1.github.io/urban-properties/"', 'href="https://jzonkel1.github.io/urban-properties/%s"' % path)
-    h = h.replace('href="img/', 'href="../img/')
+    h = h.replace('href="img/', 'href="../img/').replace('href="fonts/', 'href="../fonts/').replace('url(fonts/', 'url(../fonts/')
     return h
 
 count = 0
