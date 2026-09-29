@@ -242,12 +242,13 @@ def intro(eyebrow, h2, paras, bullets, img, alt, imgfirst=False, extra=""):
     inner = (im + txt) if imgfirst else (txt + im)
     return '<section class="sec"><div class="wrap g2%s">%s</div></section>' % (" imgfirst" if imgfirst else "", inner)
 
-def gallery(eyebrow, h2, lead, items, bg=False):
+def gallery(eyebrow, h2, lead, items, bg=False, more=None):
     """items: (img, caption, cls) - captioned photo grid, reuses .gal"""
     figs = "".join('<figure class="%s">%s<figcaption>%s</figcaption></figure>' % (c, pic(i, cap), cap) for i, cap, c in items)
     return ('<section class="sec"%s><div class="wrap"><div class="center" style="margin-bottom:40px"><div class="eyebrow c">%s</div>'
-            '<h2 class="big">%s</h2><p class="lead">%s</p></div><div class="gal gal-cap">%s</div></div></section>'
-            % (' style="background:var(--paper-2);border-top:1px solid var(--line)"' if bg else "", eyebrow, h2, lead, figs))
+            '<h2 class="big">%s</h2><p class="lead">%s</p></div><div class="gal gal-cap">%s</div>%s</div></section>'
+            % (' style="background:var(--paper-2);border-top:1px solid var(--line)"' if bg else "", eyebrow, h2, lead, figs,
+               ('<div class="center" style="margin-top:34px"><a class="btn btn-g btn-lg" href="{R}gallery/#%s">See the full gallery %s</a></div>' % (more, ARR)) if more else ""))
 
 def cards(eyebrow, h2, items, lead="", bg=True):
     cs = "".join('<div class="card"><h3>%s</h3><p>%s</p></div>' % (h, p) for h, p in items)
@@ -592,7 +593,7 @@ btr_body = (hero("For Investors", "From dirt <em>to deposit.</em>",
         ("wip-rafters.jpg", "Vaulted rafters, before the roof deck", ""),
         ("wip-interior-framing.jpg", "Interior framing", ""),
         ("wip-porch-beams.jpg", "Porch beams and brackets", "w2"),
-        ("wip-kitchen-rough.jpg", "Kitchen cabinets going in", "w2")], bg=True)
+        ("wip-kitchen-rough.jpg", "Kitchen cabinets going in", "w2")], bg=True, more="progress")
     + steps4("How It Goes", "Land to lease-up", [
         ("The lot", "You have one, or we find one. Manhattan Builders confirms what fits and what it costs before you commit."),
         ("The build", "Duplex, fourplex or small multifamily, built by a Coastal Bend builder since 2003."),
@@ -814,7 +815,7 @@ cos_body = (hero("One Office, Three Companies", "We build it, fill it, manage it
         ("mb-entry.jpg", "Front entry", ""),
         ("mb-bath.jpg", "Primary bath, freestanding tub", ""),
         ("mb-backsplash.jpg", "Patterned tile backsplash", ""),
-        ("mb-red-entry.jpg", "Board-and-batten entry", "")])
+        ("mb-red-entry.jpg", "Board-and-batten entry", "")], more="finished")
     + cards("Why It Matters To You", "One file, start to finish", [
         ("For owners", "The builder knows the building, the locator knows the renters, the manager knows the numbers. Nothing gets lost between companies."),
         ("For investors", "Buy a lot, build a duplex, lease it up, manage it, sell it. Same office, same people, one phone number."),
@@ -861,6 +862,43 @@ contact_body = (hero("Contact", "Call, text, or <em>come by.</em>",
   <p>All information deemed reliable but not guaranteed. Equal Housing Opportunity.</p></div></div></section>''')
 page("contact/", "Contact", "Contact Urban Properties: 5117 Williams Dr, Corpus Christi, TX 78411. Call (361) 434-0040 or text (361) 510-2325.", contact_body, has_form=True)
 
+
+# ---- full photo gallery ---------------------------------------------------
+import json as _json
+_G = _json.load(open(os.path.join(ROOT, "_src-sheets", "gallery.json")))
+def _gsec(key, eyebrow, h2, lead, bg):
+    figs = "".join('<a class="fg-i" href="{R}img/gallery/%s.jpg" data-cap="%s"><picture><source srcset="{R}img/gallery/%s-t.webp" type="image/webp"><img src="{R}img/gallery/%s-t.jpg" alt="%s" loading="lazy" width="720" height="540"></picture><span>%s</span></a>' % (n, c, n, n, c, c) for n, c in _G[key])
+    return ('<section class="sec" id="%s"%s><div class="wrap"><div class="center" style="margin-bottom:36px"><div class="eyebrow c">%s</div><h2 class="big">%s</h2><p class="lead">%s</p></div><div class="fg">%s</div></div></section>'
+            % (key, ' style="background:var(--paper-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)"' if bg else "", eyebrow, h2, lead, figs))
+GAL_CSS = """<style>
+.gal-jump{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px}
+.fg{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.fg-i{position:relative;display:block;border-radius:12px;overflow:hidden;background:var(--paper-2);aspect-ratio:4/3}
+.fg-i img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}.fg-i:hover img{transform:scale(1.05)}
+.fg-i span{position:absolute;left:0;right:0;bottom:0;padding:24px 12px 10px;color:#fff;font-size:14px;font-weight:600;background:linear-gradient(transparent,rgba(23,20,27,.78))}
+@media(max-width:860px){.fg{grid-template-columns:repeat(2,1fr);gap:10px}.fg-i span{font-size:12.5px;padding:18px 9px 8px}}
+.lb{position:fixed;inset:0;z-index:200;background:rgba(12,10,15,.94);display:none;align-items:center;justify-content:center;flex-direction:column;padding:20px}
+.lb.on{display:flex}.lb img{max-width:min(1400px,94vw);max-height:80vh;border-radius:8px;box-shadow:0 30px 80px -20px rgba(0,0,0,.8)}
+.lb p{color:#E7E1EE;margin:14px 0 0;font-size:15.5px;text-align:center}
+.lb button{position:absolute;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;width:48px;height:48px;border-radius:50%;font-size:22px;cursor:pointer;display:grid;place-items:center}
+.lb button:hover{background:rgba(255,255,255,.2)}.lb .x{top:18px;right:18px}.lb .pv{left:18px;top:50%}.lb .nx{right:18px;top:50%}
+</style>"""
+GAL_JS = """<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Photo viewer"><button class="x" aria-label="Close">&times;</button><button class="pv" aria-label="Previous photo">&lsaquo;</button><img alt=""><p></p><button class="nx" aria-label="Next photo">&rsaquo;</button></div>
+<script>(function(){var L=[].slice.call(document.querySelectorAll('.fg-i')),b=document.getElementById('lb'),im=b.querySelector('img'),cp=b.querySelector('p'),i=0;
+function show(n){i=(n+L.length)%L.length;im.src=L[i].href;im.alt=L[i].dataset.cap;cp.textContent=L[i].dataset.cap;b.classList.add('on');document.body.style.overflow='hidden'}
+function hide(){b.classList.remove('on');document.body.style.overflow='';L[i].focus()}
+L.forEach(function(a,n){a.addEventListener('click',function(e){e.preventDefault();show(n)})});
+b.querySelector('.x').onclick=hide;b.querySelector('.pv').onclick=function(){show(i-1)};b.querySelector('.nx').onclick=function(){show(i+1)};
+b.addEventListener('click',function(e){if(e.target===b)hide()});
+document.addEventListener('keydown',function(e){if(!b.classList.contains('on'))return;if(e.key==='Escape')hide();if(e.key==='ArrowLeft')show(i-1);if(e.key==='ArrowRight')show(i+1)})})();</script>"""
+gal_body = (GAL_CSS + '<section class="sec legal-hero" style="padding-bottom:40px"><div class="wrap"><div class="crumb" style="color:var(--muted)"><a href="{R}" style="color:var(--pur)">Home</a><span>/</span>Photo Gallery</div>'
+    '<h1 class="big" style="font-size:clamp(36px,4.8vw,60px);margin:14px 0 12px">Photo gallery</h1><p class="lead" style="max-width:62ch">Properties we manage, homes our sister company Manhattan Builders has on the way up, and finished work. Tap any photo to see it full size.</p>'
+    '<div class="gal-jump"><a class="btn btn-g" href="#managed">Properties we manage</a><a class="btn btn-g" href="#progress">Builds in progress</a><a class="btn btn-g" href="#finished">Finished homes</a></div></div></section>'
+    + _gsec("managed", "Urban Properties", "Properties we manage", "Duplexes, townhomes and the units inside them, managed by our office.", True)
+    + _gsec("progress", "Manhattan Builders", "Builds in progress", "Straight from the job site: homes on their way up across the Coastal Bend.", False)
+    + _gsec("finished", "Manhattan Builders", "Finished homes", "New homes built by our sister company, Manhattan Builders.", True)
+    + GAL_JS)
+page("gallery/", "Photo Gallery", "Photos of rental properties managed by Urban Properties in Corpus Christi, plus Manhattan Builders homes in progress and finished.", gal_body)
 
 # ---- legal pages --------------------------------------------------------
 EFFECTIVE = "September 29, 2026"

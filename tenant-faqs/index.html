@@ -120,11 +120,18 @@ h2.big{font-size:clamp(33px,4.6vw,52px)}
 .menu .caret{width:11px;height:11px;opacity:.5}
 .nav-cta{display:flex;align-items:center;gap:12px;margin-left:8px}
 .nav-tel{font-weight:800;font-size:16px;color:var(--ink);white-space:nowrap}
-.burger{display:none;margin-left:auto;width:46px;height:46px;border:1px solid var(--line);
-  background:#fff;border-radius:11px;cursor:pointer;align-items:center;justify-content:center}
-.burger span{display:block;width:19px;height:2px;background:var(--ink);position:relative}
-.burger span::before,.burger span::after{content:"";position:absolute;left:0;width:19px;height:2px;background:var(--ink)}
-.burger span::before{top:-6px}.burger span::after{top:6px}
+.burger{display:none;margin-left:auto;width:50px;height:50px;border:0;border-radius:15px;cursor:pointer;align-items:center;justify-content:center;
+  background:linear-gradient(180deg,#9140a5 0%,#782888 55%,#681f77 100%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.28),0 10px 22px -10px rgba(120,40,136,.85);transition:transform .16s ease,box-shadow .16s ease}
+.burger:active{transform:scale(.94)}
+.burger span{display:block;width:20px;height:2.2px;border-radius:2px;background:#fff;position:relative;transition:background .2s ease}
+.burger span::before,.burger span::after{content:"";position:absolute;left:0;width:20px;height:2.2px;border-radius:2px;background:#fff;
+  transition:top .22s ease .12s,transform .22s ease 0s}
+.burger span::before{top:-6.5px}.burger span::after{top:6.5px}
+.burger.open span{background:transparent}
+.burger.open span::before,.burger.open span::after{top:0;transition:top .22s ease 0s,transform .22s ease .14s}
+.burger.open span::before{transform:rotate(45deg)}.burger.open span::after{transform:rotate(-45deg)}
+body.dopen .nav{z-index:110}
 @media(max-width:1180px){
   .menu,.nav-cta{display:none}
   .burger{display:flex}
@@ -135,7 +142,7 @@ h2.big{font-size:clamp(33px,4.6vw,52px)}
 .drawer{position:fixed;inset:0;z-index:100;background:var(--paper);overflow-y:auto;
   transform:translateX(100%);transition:transform .3s cubic-bezier(.4,0,.2,1);padding-bottom:40px}
 .drawer.open{transform:none}
-.drawer-top{display:flex;align-items:center;justify-content:space-between;padding:16px 24px;
+.drawer-top{display:none!important;align-items:center;justify-content:space-between;padding:16px 24px;
   border-bottom:1px solid var(--line);position:sticky;top:0;background:var(--paper)}
 .drawer-top img{height:40px}
 .xbtn{width:44px;height:44px;border:1px solid var(--line);background:#fff;border-radius:11px;
@@ -377,7 +384,7 @@ footer h4{color:#fff;font-family:var(--sans);font-size:12.5px;font-weight:800;le
 .fbot{margin-top:24px}
 
 /* ---------- sticky call bar ---------- */
-.callbar{position:fixed;left:0;right:0;bottom:0;z-index:80;display:none;gap:1px;
+.callbar{position:fixed;left:0;right:0;bottom:0;z-index:80;display:none;gap:0;
   background:rgba(255,255,255,.12);box-shadow:0 -6px 24px rgba(0,0,0,.18);
   padding-bottom:env(safe-area-inset-bottom)}
 .callbar a{flex:1;display:flex;align-items:center;justify-content:center;gap:8px;
@@ -526,6 +533,7 @@ footer h4{color:#fff;font-family:var(--sans);font-size:12.5px;font-weight:800;le
           <li><a href="https://ccleaselocators.com" target="_blank" rel="noopener">CC Lease Locators &mdash; Apartment Locating</a></li>
           <li><a href="../build-to-rent/">Build-to-Rent for Investors</a></li>
           <li><a href="../reviews/">Reviews</a></li>
+          <li><a href="../gallery/">Photo Gallery</a></li>
         </ul>
       </li>
     </ul>
@@ -535,7 +543,7 @@ footer h4{color:#fff;font-family:var(--sans);font-size:12.5px;font-weight:800;le
       <a class="btn btn-p" href="../rent-analysis/">Free Rent Analysis</a>
     </div>
 
-    <button class="burger" id="burger" aria-label="Open menu"><span></span></button>
+    <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="drawer"><span></span></button>
   </div>
 </header>
 
@@ -602,6 +610,7 @@ footer h4{color:#fff;font-family:var(--sans);font-size:12.5px;font-weight:800;le
         <li><a href="https://manhattanbuilders.cc" target="_blank" rel="noopener">Manhattan Builders &mdash; Custom Homes</a></li>
         <li><a href="https://ccleaselocators.com" target="_blank" rel="noopener">CC Lease Locators &mdash; Apartment Locating</a></li>
         <li><a href="../build-to-rent/">Build-to-Rent for Investors</a></li>
+        <li><a href="../gallery/">Photo Gallery</a></li>
       </ul>
     </div>
     <a class="dlink" href="../reviews/">Reviews</a>
@@ -672,6 +681,7 @@ footer h4{color:#fff;font-family:var(--sans);font-size:12.5px;font-weight:800;le
           <li><a href="../what-we-charge/">What We Charge</a></li>
           <li><a href="../pay-rent/">Pay Rent</a></li>
           <li><a href="../about/">About Us</a></li>
+          <li><a href="../gallery/">Photo Gallery</a></li>
         </ul>
       </div>
       <div>
@@ -733,11 +743,18 @@ fit();addEventListener('resize',fit);addEventListener('load',fit)})();
 document.getElementById('yr').textContent = new Date().getFullYear();
 
 /* ---- mobile drawer ---- */
-var drawer = document.getElementById('drawer');
-document.getElementById('burger').onclick = function(){ drawer.classList.add('open'); document.body.style.overflow='hidden'; };
-document.getElementById('xbtn').onclick = function(){ drawer.classList.remove('open'); document.body.style.overflow=''; };
+var drawer = document.getElementById('drawer'), burger = document.getElementById('burger'), navEl = document.querySelector('.nav');
+function setDrawer(on){
+  if(on) drawer.style.paddingTop = Math.max(0, navEl.getBoundingClientRect().bottom) + 'px';
+  drawer.classList.toggle('open', on); burger.classList.toggle('open', on); document.body.classList.toggle('dopen', on);
+  burger.setAttribute('aria-expanded', on ? 'true' : 'false'); burger.setAttribute('aria-label', on ? 'Close menu' : 'Open menu');
+  document.body.style.overflow = on ? 'hidden' : '';
+}
+burger.onclick = function(){ setDrawer(!drawer.classList.contains('open')); };
+document.getElementById('xbtn').onclick = function(){ setDrawer(false); };
+document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && drawer.classList.contains('open')) setDrawer(false); });
 drawer.querySelectorAll('a').forEach(function(a){
-  a.addEventListener('click', function(){ drawer.classList.remove('open'); document.body.style.overflow=''; });
+  a.addEventListener('click', function(){ setDrawer(false); });
 });
 drawer.querySelectorAll('.dgroup>button').forEach(function(b){
   b.onclick = function(){ b.parentElement.classList.toggle('open'); };
