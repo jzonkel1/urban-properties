@@ -122,6 +122,7 @@ EXTRA_CSS = """
 .phero .eyebrow{color:#DCA8EA}.phero .eyebrow::after{background:rgba(255,255,255,.3)}
 .phero h1{color:#fff;font-size:clamp(36px,4.8vw,64px);line-height:1.06;letter-spacing:-.018em;max-width:17ch}
 .phero h1 em{font-style:normal;color:#E2B4EE}
+.gal-cap figure{position:relative}.gal-cap figcaption{position:absolute;left:0;right:0;bottom:0;padding:26px 14px 11px;color:#fff;font-size:14px;font-weight:600;line-height:1.3;background:linear-gradient(transparent,rgba(23,20,27,.78))}
 /* group photo: pin right, fade into ink on the left so the headline never sits on a face */
 .phero-team .hero-bg img{position:absolute;right:0;top:0;width:66%;height:100%;object-position:50% 30%;
   -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 30%);mask-image:linear-gradient(90deg,transparent 0,#000 30%)}
@@ -221,6 +222,13 @@ def intro(eyebrow, h2, paras, bullets, img, alt, imgfirst=False, extra=""):
     im = '<div class="band-img" style="box-shadow:var(--sh-l)">%s</div>' % pic(img, alt)
     inner = (im + txt) if imgfirst else (txt + im)
     return '<section class="sec"><div class="wrap g2%s">%s</div></section>' % (" imgfirst" if imgfirst else "", inner)
+
+def gallery(eyebrow, h2, lead, items, bg=False):
+    """items: (img, caption, cls) - captioned photo grid, reuses .gal"""
+    figs = "".join('<figure class="%s">%s<figcaption>%s</figcaption></figure>' % (c, pic(i, cap), cap) for i, cap, c in items)
+    return ('<section class="sec"%s><div class="wrap"><div class="center" style="margin-bottom:40px"><div class="eyebrow c">%s</div>'
+            '<h2 class="big">%s</h2><p class="lead">%s</p></div><div class="gal gal-cap">%s</div></div></section>'
+            % (' style="background:var(--paper-2);border-top:1px solid var(--line)"' if bg else "", eyebrow, h2, lead, figs))
 
 def cards(eyebrow, h2, items, lead="", bg=True):
     cs = "".join('<div class="card"><h3>%s</h3><p>%s</p></div>' % (h, p) for h, p in items)
@@ -553,6 +561,19 @@ btr_body = (hero("For Investors", "From dirt <em>to deposit.</em>",
     <div class="co-arr">&rarr;</div>
     <a class="co you" href="{R}property-management/"><div class="co-step">Manages &amp; sells it</div><div class="co-name">Urban Properties</div><p>Property management and a full brokerage, for the day you&rsquo;re ready to buy the next one or sell the last.</p><span class="co-link">You&rsquo;re here</span></a>
   </div></div></section>'''
+    + intro("On The Job Right Now", "This one is still going up.", [
+        "The drawing is a real Manhattan Builders home under construction right now, sketched from a job-site photo. Every build-to-rent project starts the same way: a lot, a plan, and a crew we&rsquo;ve worked with for years.",
+        "When it&rsquo;s finished, CC Lease Locators fills it and Urban Properties manages it. Same office, same file, from the slab to the first deposit."],
+        [], "wip-drawing.jpg", "Sketch of a Manhattan Builders home currently under construction")
+    + gallery("From The Job Site", "Builds in progress", "Straight from Jon&rsquo;s phone: Manhattan Builders homes on their way up across the Coastal Bend.", [
+        ("wip-wrapped.jpg", "Framed, wrapped and ready for windows", "w2"),
+        ("wip-raised-coastal.jpg", "Raised coastal home on pilings", "w2"),
+        ("wip-framing-water.jpg", "Wall framing, bay-view lot", ""),
+        ("wip-roofing.jpg", "Roof going on", ""),
+        ("wip-rafters.jpg", "Vaulted rafters, before the roof deck", ""),
+        ("wip-interior-framing.jpg", "Interior framing", ""),
+        ("wip-porch-beams.jpg", "Porch beams and brackets", "w2"),
+        ("wip-kitchen-rough.jpg", "Kitchen cabinets going in", "w2")], bg=True)
     + steps4("How It Goes", "Land to lease-up", [
         ("The lot", "You have one, or we find one. Manhattan Builders confirms what fits and what it costs before you commit."),
         ("The build", "Duplex, fourplex or small multifamily, built by a Coastal Bend builder since 2003."),
@@ -732,7 +753,7 @@ about_body = (hero("About Urban Properties", "A Corpus Christi brokerage that <e
     + intro("Since 2009", "The same person who manages your rental can tell you what to buy next.", [
         "Urban Properties started in 2009 as the brokerage side of a family that was already building homes in Corpus Christi. Sixteen years on, we manage rental property, place tenants through our sister firm CC Lease Locators, and help people buy and sell, all from one office on Williams Drive.",
         "We own and manage our own buildings, an eight-unit townhome complex, an eight-tenant commercial building, a duplex and houses, and we run yours the same way. You&rsquo;re not handing your investment to a call center three states away."],
-        [], "ext-duplex-front.jpg", "Duplexes Urban Properties owns and manages in Corpus Christi",
+        [], "jon-roel.jpg", "Jon Roel, broker and owner of Urban Properties, with his son",
         extra='<div class="team" style="margin-top:30px"><div class="team-h">The team</div><ul>%s</ul></div>' % "".join('<li><b>%s</b><span>%s</span></li>' % t for t in TEAM))
     + cards("What We Stand On", "Four things you can hold us to", [
         ("Results", "Occupied units and rent that arrives on time. That&rsquo;s the job."),
@@ -754,6 +775,15 @@ cos_body = (hero("One Office, Three Companies", "We build it, fill it, manage it
     <div class="co-arr">&rarr;</div>
     <a class="co you" href="{R}property-management/"><div class="co-step">Manages &amp; sells it</div><div class="co-name">Urban Properties</div><p>Property management and a full brokerage since 2009, for the day you&rsquo;re ready to buy the next one or sell the last.</p><span class="co-link">You&rsquo;re here</span></a>
   </div><p class="co-note">Own land and thinking about building to rent? <a href="{R}build-to-rent/">Here&rsquo;s how that works.</a> One team takes it from dirt to deposit.</p></div></section>'''
+    + gallery("Manhattan Builders", "Finished work", "Homes built by our sister company, Manhattan Builders, across the Coastal Bend.", [
+        ("mb-white-modern.jpg", "Modern farmhouse exterior", "w2"),
+        ("mb-red-modern.jpg", "Contemporary exterior, red accent wall", "w2"),
+        ("mb-kitchen-island.jpg", "Kitchen with waterfall island", "w2"),
+        ("mb-bedroom.jpg", "Primary bedroom", "w2"),
+        ("mb-entry.jpg", "Front entry", ""),
+        ("mb-bath.jpg", "Primary bath, freestanding tub", ""),
+        ("mb-backsplash.jpg", "Patterned tile backsplash", ""),
+        ("mb-red-entry.jpg", "Board-and-batten entry", "")])
     + cards("Why It Matters To You", "One file, start to finish", [
         ("For owners", "The builder knows the building, the locator knows the renters, the manager knows the numbers. Nothing gets lost between companies."),
         ("For investors", "Buy a lot, build a duplex, lease it up, manage it, sell it. Same office, same people, one phone number."),
