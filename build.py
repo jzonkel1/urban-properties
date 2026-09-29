@@ -321,17 +321,17 @@ service_page("full-service-management/", "Full-Service Management", "Property Ma
      ("Your rules, enforced", "Late fees, pet policies, lease terms. We hold the line so you don&rsquo;t have to."),
      ("Owner of record stays you", "Your property, your deposit account, your decisions on anything big."),
      ("Sell when you&rsquo;re ready", "The broker managing the door can also list it. Same office, same file.")],
-    [("How fast can you take over a property that already has a tenant?", "Usually inside a week. We collect the lease, the deposit records and the keys, introduce ourselves to the tenant, and rent comes to us from the next due date."),
+    [("How fast can you take over a property that already has a tenant?", "We collect the lease, the deposit records and the keys, introduce ourselves to the tenant, and rent comes to us from the next due date."),
      ("Do I approve the tenant?", "Yes. We screen and recommend; you say yes before anyone signs."),
      ("What if I only want part of this?", "Then you pay for that part. Placement only is one month&rsquo;s rent. Management only is 10%. See <a href=\"{R}what-we-charge/\">what we charge</a>.")],
     "int-kitchen-open.jpg")
 
 service_page("tenant-screening-placement/", "Tenant Screening &amp; Placement", "Find The Right Tenant", "The decision that decides the next <em>two years.</em>",
-    "Credit, income, rental history, background and eviction checks, then a signed lease. One month&rsquo;s rent, paid out of the tenant&rsquo;s first month.",
+    "Income and rental history verified, then a signed lease. One month&rsquo;s rent, paid out of the tenant&rsquo;s first month.",
     "int-kitchen-white.jpg", "A good tenant is the whole game.",
     ["Most rental headaches trace back to one bad placement. So we treat screening like the most important thing we do, because it is.",
-     "Our sister firm, CC Lease Locators, places renters across Corpus Christi every week, which means your vacancy gets a steady stream of candidates who are already looking."],
-    ["Listed on the MLS and syndicated to Zillow, Realtor.com, Trulia, Redfin and Homes.com", "Showings handled by our agents", "Credit, income verification, rental history, background and eviction checks",
+     "Our sister firm, CC Lease Locators, places renters across Corpus Christi, which means your vacancy gets a steady stream of candidates who are already looking."],
+    ["Listed on the MLS and syndicated to Zillow, Realtor.com, Trulia, Redfin and Homes.com", "Showings handled by our agents", "Income and rental history verified on every applicant",
      "$50 application fee paid by the applicant, not you", "You approve the tenant before anyone signs", "Lease prepared and executed by a licensed broker"],
     [("Priced right, from day one", "A vacancy that sits for six weeks costs more than a rent that&rsquo;s $50 too low. We price from real comps."),
      ("Screened, not guessed", "Stable income, verified history, a clean background. We don&rsquo;t rent to a good feeling."),
@@ -368,7 +368,7 @@ service_page("maintenance-coordination/", "Maintenance Coordination", "Repairs W
     ["A water heater doesn&rsquo;t care what time it is. Our tenants text or call the office, and the office decides what&rsquo;s urgent, who to send and what it should cost.",
      "We use plumbers, electricians and handymen we&rsquo;ve worked with for years, on our own buildings as well as yours."],
     ["Tenant requests by text or call to (361) 510-2325", "Vetted local trades, no markup on their invoice", "Your approval on anything over $250",
-     "Emergencies handled the same day", "Photos before and after when it matters", "Preventive items caught at inspections"],
+     "Emergencies go to the front of the line", "Photos before and after when it matters", "Preventive items caught at inspections"],
     [("Text or call", "Tenants text the office with the address and the problem. Photos help. Emergencies, they call."),
      ("Triage first", "Not every request is a repair. Some are a reset button or a filter. We sort that before anyone drives out."),
      ("Trades we already use", "The same people who service the eight-unit complex and the commercial building we own."),
@@ -384,8 +384,8 @@ service_page("lease-renewals-enforcement/", "Lease Renewals &amp; Enforcement", 
     "Texas leases prepared and enforced by a licensed broker, renewals negotiated before the term ends, and rules that actually get followed.",
     "prop-grey-row.jpg", "A lease is only as good as the person enforcing it.",
     ["We use current Texas lease forms, filled out for your property and your rules: pets, smoking, occupancy, late fees, maintenance responsibilities.",
-     "Sixty days before a lease ends we&rsquo;re already talking to the tenant about renewal and to you about the rent. Turnover is the most expensive thing that happens to a rental; we try not to let it happen by accident."],
-    ["Texas lease forms, prepared by a licensed broker", "Your rules written in and enforced", "Renewal conversations start 60 days out",
+     "Well before a lease ends we&rsquo;re already talking to the tenant about renewal and to you about the rent. Turnover is the most expensive thing that happens to a rental; we try not to let it happen by accident."],
+    ["Texas lease forms, prepared by a licensed broker", "Your rules written in and enforced", "Renewal conversations start well before the lease ends",
      "Rent adjusted to market at renewal, with your approval", "Notices served properly and on time", "Eviction coordinated with counsel if it ever comes to it"],
     [("The right paperwork", "Lease, addenda, disclosures and the notices Texas requires. Done correctly the first time."),
      ("Renewals ahead of time", "Good tenants get asked to stay before they start looking. Rent moves with the market."),
@@ -401,12 +401,12 @@ service_page("lease-renewals-enforcement/", "Lease Renewals &amp; Enforcement", 
 service_page("move-in-move-out-inspections/", "Move-In / Move-Out Inspections", "Documented Both Ways", "Photos in. Photos out. <em>No arguments.</em>",
     "A documented condition report with photos at move-in and move-out, so the deposit is settled on evidence instead of memory.",
     "int-kitchen-white.jpg", "The deposit conversation is easy when it&rsquo;s on paper.",
-    ["Before a tenant gets the keys, we walk the property and photograph every room, appliance and surface. When they leave, we do it again.",
+    ["Before a tenant gets the keys, we walk the property and document its condition with photos. When they leave, we do it again.",
      "That record is what makes a deposit deduction fair and defensible, and it&rsquo;s what tells you when a unit needs work before the next listing."],
-    ["Room-by-room condition report with photos", "Tenant signs off on the move-in report", "Move-out walkthrough within days of vacancy",
+    ["Room-by-room condition report with photos", "Condition documented before the keys change hands", "Move-out walkthrough within days of vacancy",
      "Deposit itemization per Texas rules and timelines", "Make-ready list so the unit relists fast", "Records kept for the life of the tenancy"],
     [("Move-in", "Documented and signed before the first night. The tenant knows exactly what they&rsquo;re responsible for."),
-     ("During", "Occasional check-ins and maintenance visits catch problems while they&rsquo;re small."),
+     ("During", "Maintenance visits are a chance to catch small problems before they grow."),
      ("Move-out", "Compared against the move-in report. Damage beyond wear and tear comes out of the deposit."),
      ("Deposit handled", "Itemized and returned within the timeline Texas requires. We do the paperwork."),
      ("Make-ready", "Paint, clean, repair. We line up the trades so the unit is back on the market quickly."),
@@ -421,7 +421,7 @@ service_page("investment-property-sales/", "Investment Property Sales", "Buy The
     "prop-blue-street.jpg", "We know what it will rent for before you make the offer.",
     ["Most investors buy with a guess about rent and a guess about expenses. We manage thirty doors in this market; we know what a duplex on that street rents for and what it costs to run.",
      "That&rsquo;s the advantage of buying through the office that will manage it: the numbers you underwrite are the numbers you&rsquo;ll actually see."],
-    ["Off-market and MLS opportunities across Corpus Christi", "Rent and expense estimates from a manager, not a listing", "Offer, inspection and closing handled by a licensed broker",
+    ["MLS opportunities across Corpus Christi, vetted by a manager", "Rent and expense estimates from a manager, not a listing", "Offer, inspection and closing handled by a licensed broker",
      "Tenant placement lined up before you close", "Management ready on day one", "Sell the same way when you&rsquo;re ready to trade up"],
     [("Real rent numbers", "From the office that collects rent on thirty doors. Not a website estimate."),
      ("Real expense numbers", "We know what repairs, turnover and vacancy actually cost here."),
@@ -431,20 +431,20 @@ service_page("investment-property-sales/", "Investment Property Sales", "Buy The
      ("Selling", "When it&rsquo;s time, we list it with the rent roll and the records that make it easy to sell.")],
     [("Do I have to use you for management if I buy through you?", "No. But most do, because the analysis we used to buy it is the plan we manage it with."),
      ("Do you help with financing?", "We&rsquo;ll connect you with local lenders who do investment loans and know these numbers."),
-     ("What about 1031 exchanges?", "We&rsquo;ve handled them. Tell us the timeline early.")],
+     ("What about 1031 exchanges?", "Talk to Jon early. Exchanges run on strict deadlines, and the timeline shapes the search.")],
     "prop-grey-row.jpg")
 
-service_page("residential-sales/", "Residential Sales", "Buying &amp; Selling Homes", "A Corpus Christi brokerage with <em>six agents</em> and one broker.",
+service_page("residential-sales/", "Residential Sales", "Buying &amp; Selling Homes", "A Corpus Christi brokerage with <em>five agents</em> and one broker.",
     "Buying or selling a home in Corpus Christi and the surrounding area, with agents who know what every block is worth because we manage rentals on them.",
     "mb-home.jpg", "Local agents, licensed broker, straight answers.",
     ["Urban Properties is a full Texas real estate brokerage. Our agents help families buy and sell homes across Corpus Christi, Padre Island, Calallen and Robstown.",
      "Because the same office manages rental property, we see what homes actually rent for, what they cost to maintain, and which streets are moving. That&rsquo;s useful whether you&rsquo;re buying your first house or selling one you&rsquo;ve had for twenty years."],
-    ["Six licensed agents under broker Jon Roel", "Listings on the MLS and every major site", "Pricing from real local comps",
+    ["Five licensed agents under broker Jon Roel", "Listings on the MLS and every major site", "Pricing from real local comps",
      "Showings, offers and negotiation handled", "Inspection and closing coordinated", "Investors and first-time buyers alike"],
     [("Selling", "Priced from comps we trust, photographed, listed everywhere, shown by our agents."),
      ("Buying", "Tell us the budget and the neighborhoods. We find it, show it, write the offer, and get you to closing."),
      ("Rent it instead?", "Sometimes the better move is to keep the house and rent it. We&rsquo;ll run both numbers for you honestly."),
-     ("Relocating", "Coming to Corpus for work or the base? We handle the search remotely and the closing in person."),
+     ("Relocating", "Coming to Corpus for work or the base? We can start the search before you get here."),
      ("Lots and land too", "Buying a lot to build on? See <a href=\"{R}lot-land-sales/\">lot and land sales</a>."),
      ("The team", "Laura Vasquez, Amy Soza, Danny Guerrero, Maria Cruz, Michael Benavidez. <a href=\"{R}about/\">Meet them</a>.")],
     [("Which areas do you cover for sales?", "Corpus Christi, Padre Island, Calallen, Robstown and the surrounding area."),
@@ -459,7 +459,7 @@ service_page("lot-land-sales/", "Lot &amp; Land Sales", "Lots, Acreage, Infill",
      "The difference here: Manhattan Builders is down the hall. If you&rsquo;re buying to build, the person who can tell you what fits on the lot and what it costs is in the same building."],
     ["Residential lots, acreage and infill parcels", "Zoning, utilities and setback questions answered before you offer", "Build feasibility from Manhattan Builders",
      "Listing and marketing for land owners", "Closing handled by a licensed broker", "Build-to-rent path if you&rsquo;re investing"],
-    [("Find the lot", "MLS and off-market parcels. We know which ones have water and sewer at the street."),
+    [("Find the lot", "MLS parcels, checked for utilities, zoning and access before you offer."),
      ("Check the build", "Manhattan Builders reviews the lot for what can go on it and what that costs. Before you close."),
      ("Sell your land", "Priced, listed and marketed to builders and investors, not just posted."),
      ("Infill", "Corpus Christi has empty lots in good neighborhoods. Duplexes on them rent well. We know that firsthand."),
@@ -484,7 +484,7 @@ service_page("commercial-leasing-multifamily/", "Commercial Leasing &amp; Multif
      ("Ready for the lender", "Clean records make refinancing and selling simple. We keep them that way."),
      ("Build one", "Manhattan Builders builds multifamily. Land to lease-up, one office. See <a href=\"{R}build-to-rent/\">build-to-rent</a>.")],
     [("What size buildings do you take?", "Duplexes up to small apartment communities, and small commercial properties. Call about anything larger."),
-     ("Do you handle HOA finances?", "Dues collection, vendor payments and records, yes. Reserve studies and audits are coordinated with your CPA."),
+     ("Do you handle HOA finances?", "Tell Jon what your association needs. The scope is set in writing in the management agreement."),
      ("What do you charge on commercial?", "Depends on the property. Call for a quote; it&rsquo;s a percentage of collected rent like everything else we do.")],
     "int-kitchen-blue.jpg")
 
@@ -497,13 +497,13 @@ pm_body = (hero("Property Management", "Everything between &ldquo;I own a rental
   <div class="g3">%s</div></div></section>''' % "".join(
         '<a class="card" href="{R}%s" style="text-decoration:none;display:block"><h3>%s</h3><p>%s</p></a>' % (p, l, d) for (p, l), d in zip(SERVICE_LIST, [
             "Marketing, leasing, rent, maintenance and renewals. The option most owners pick.",
-            "Credit, income, history, background. You approve the tenant before anyone signs.",
+            "Income and rental history verified. You approve the tenant before anyone signs.",
             "Clear due dates, consistent follow-up, your share auto-deposited monthly.",
             "Tenants text the office. Vetted trades show up. You approve anything over $250.",
-            "Texas leases prepared and enforced by a licensed broker. Renewals started 60 days out.",
+            "Texas leases prepared and enforced by a licensed broker. Renewals started early.",
             "Photos and a signed condition report both ways. Deposits settled on evidence.",
             "Buy the next door through the office that already knows what it rents for.",
-            "Six agents, one broker, real local comps. Buying or selling a home.",
+            "Five agents, one broker, real local comps. Buying or selling a home.",
             "Lots, acreage and infill, with a home builder down the hall.",
             "Duplexes, complexes, HOAs and commercial, run like our own buildings."]))
     + '<section class="sec" style="background:var(--paper-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)"><div class="wrap" style="max-width:900px">%s</div></section>' % FEES)
@@ -532,10 +532,10 @@ wwc_body = (hero("Pricing", "Two numbers. <em>No fine print.</em>",
     + cards("What&rsquo;s Inside The 10%", "Management, all in", [
         ("Rent collection", "Due dates, late fees, follow-up. Your share deposited automatically."),
         ("Maintenance coordination", "Tenant requests to the office, vetted trades dispatched, no markup on invoices."),
-        ("Lease enforcement", "Your rules held, notices served correctly, renewals started 60 days out."),
+        ("Lease enforcement", "Your rules held, notices served correctly, renewals started early."),
         ("Inspections", "Move-in and move-out condition reports with photos."),
         ("Owner communication", "You hear from us when something needs a decision or costs over $250."),
-        ("No extras", "No setup fee, no renewal fee, no markup on repairs. Ten percent of collected rent.")])
+        ("One price list", "One month&rsquo;s rent to place. Ten percent of collected rent to manage. Nothing hidden.")])
     + faq("Fair Questions", "About the money", [
         ("Do I pay the placement fee?", "No. One month&rsquo;s rent is collected out of the tenant&rsquo;s first month. You don&rsquo;t write a check."),
         ("Is 10% charged on vacant months?", "No. It&rsquo;s a percentage of collected rent. If nothing came in, nothing is charged."),
@@ -557,14 +557,14 @@ how_body = (hero("Getting Started", "Four steps, and you&rsquo;re <em>out of the
   <div class="band-img" style="box-shadow:var(--sh-l)">%s</div>
   <div><div class="eyebrow">What We Need From You</div><h2 class="big">About twenty minutes of your time.</h2>
   <ul class="checks" style="color:var(--body)">%s</ul></div></div></section>''' % (pic("int-living.jpg", "Managed rental interior"), "".join(CHECK % b for b in [
-        "A signed management agreement (we send it, you sign on your phone)",
+        "A signed management agreement",
         "Keys, garage remotes, gate codes",
         "The current lease and deposit records, if there&rsquo;s a tenant in place",
         "The bank account your rent should be deposited to",
         "Any rules you want enforced: pets, smoking, occupancy",
         "Your preferred trades, if you have them. Otherwise we use ours."]))
     + faq("Timing", "How long things take", [
-        ("How fast can you start?", "If the property already has a tenant, usually within a week. If it&rsquo;s vacant, we list it as soon as it&rsquo;s photographed and ready."),
+        ("How fast can you start?", "If the property already has a tenant, we start from the next rent date. If it&rsquo;s vacant, we list it as soon as it&rsquo;s photographed and ready."),
         ("How long to find a tenant?", "Depends on price and condition. Priced right, most units in Corpus Christi lease within a few weeks, and CC Lease Locators has renters looking already."),
         ("When&rsquo;s the first deposit?", "After the first rent clears. Your share is deposited to the account you gave us.")]))
 page("how-onboarding-works/", "How Onboarding Works", "How to hand your Corpus Christi rental to Urban Properties: rent analysis, agreement, marketing, first deposit. Four steps.", how_body)
@@ -575,9 +575,9 @@ btr_body = (hero("For Investors", "From dirt <em>to deposit.</em>",
     + '''<section class="band sec"><div class="wrap">
   <div class="center" style="margin-bottom:46px"><div class="eyebrow c">One Office, Three Companies</div><h2 class="big">We build it, fill it, manage it, and sell it.</h2></div>
   <div class="cos">
-    <a class="co brand" href="https://manhattanbuilders.cc" target="_blank" rel="noopener"><div class="co-step">Builds it</div><div class="co-logo"><img src="{R}img/logo-manhattan.png" alt="Manhattan Builders" loading="lazy"></div><p>Custom homes, multifamily and light commercial across the Coastal Bend since 2003. The duplexes on this site are theirs.</p><span class="co-link">manhattanbuilders.cc &rarr;</span></a>
+    <a class="co brand" href="https://manhattanbuilders.cc" target="_blank" rel="noopener"><div class="co-step">Builds it</div><div class="co-logo"><img src="{R}img/logo-manhattan.png" alt="Manhattan Builders" loading="lazy"></div><p>Custom homes, multifamily and light commercial across the Coastal Bend since 2003.</p><span class="co-link">manhattanbuilders.cc &rarr;</span></a>
     <div class="co-arr">&rarr;</div>
-    <a class="co brand" href="https://ccleaselocators.com" target="_blank" rel="noopener"><div class="co-step">Fills it</div><div class="co-logo"><img src="{R}img/logo-cclease.png" alt="CC Lease Locators" loading="lazy"></div><p>Free apartment locating for renters across Corpus Christi. 4.9 stars from 150 Google reviews, placing tenants every week.</p><span class="co-link">ccleaselocators.com &rarr;</span></a>
+    <a class="co brand" href="https://ccleaselocators.com" target="_blank" rel="noopener"><div class="co-step">Fills it</div><div class="co-logo"><img src="{R}img/logo-cclease.png" alt="CC Lease Locators" loading="lazy"></div><p>Free apartment locating for renters across Corpus Christi. 4.9 stars from 150 Google reviews.</p><span class="co-link">ccleaselocators.com &rarr;</span></a>
     <div class="co-arr">&rarr;</div>
     <a class="co you" href="{R}property-management/"><div class="co-step">Manages &amp; sells it</div><div class="co-logo"><img src="{R}img/logo-light.png" alt="Urban Properties" loading="lazy"></div><p>Property management and a full brokerage, for the day you&rsquo;re ready to buy the next one or sell the last.</p><span class="co-link">You&rsquo;re here</span></a>
   </div></div></section>'''
@@ -620,7 +620,7 @@ ten_hub = (hero("For Tenants", "Renting from us is <em>simple.</em>",
 page("tenants/", "For Tenants", "Urban Properties tenants: apply, pay rent, request maintenance and find available rentals in Corpus Christi.", ten_hub, cta_kind="tenant")
 
 avail_body = (hero("Available Rentals", "Our listings are <em>everywhere</em> you already look.",
-                   "Every Urban Properties rental goes on the MLS and syndicates to Zillow, Realtor.com, Trulia, Redfin and Homes.com the same day.",
+                   "Every Urban Properties rental goes on the MLS and syndicates to Zillow, Realtor.com, Trulia, Redfin and Homes.com.",
                    "prop-blue-street.jpg", '<a href="{R}tenants/">Tenants</a><span>/</span><span>Available Rentals</span>', btn2='<a class="btn btn-o" href="{R}apply/">How to apply</a>')
     + '''<section class="sec"><div class="wrap g2">
   <div><div class="eyebrow">Where To Look</div><h2 class="big">Search &ldquo;Urban Properties&rdquo; on any of these.</h2>
@@ -645,7 +645,7 @@ apply_body = (hero("Apply", "Apply for a <em>rental.</em>",
         "We verify income, rental history and background, then call you with the answer"]), JON_SMS, pic("door-entry.jpg", "Front door of a rental home"))
     + faq("Before You Apply", "Applicants usually ask", [
         ("What do I need to bring?", "Photo ID, proof of income (recent pay stubs or an offer letter), and your last two landlords&rsquo; contact info."),
-        ("How long does approval take?", "Usually a day or two once we can reach your references."),
+        ("How long does approval take?", "As soon as income and rental history are verified. We call you with the answer."),
         ("Is the fee refundable?", "No. It covers the screening whether or not you&rsquo;re approved."),
         ("Do you accept pets?", "It depends on the property. Ask about the specific unit before applying.")]))
 page("apply/", "Apply for a Rental", "Apply for an Urban Properties rental in Corpus Christi. $50 application fee, stable income and rental history preferred.", apply_body, cta_kind="tenant")
@@ -687,7 +687,7 @@ maint_body = (hero("Maintenance", "Something broke? <em>Tell us.</em>",
   <h3 style="margin-top:34px;font-size:24px">Or use the form</h3><p style="color:var(--muted)">Same thing, in writing. It goes straight to the office.</p></div>
   %s</div></section>''' % (JON_SMS, maint_form)
     + faq("What To Expect", "After you report it", [
-        ("How fast will someone come?", "Emergencies same day. Everything else is scheduled with you, usually within a few days depending on the trade."),
+        ("How fast will someone come?", "Emergencies come first. Everything else is scheduled with you as soon as the right trade is available."),
         ("Do I have to be home?", "Not if you tell us it&rsquo;s OK to enter. If you have pets or would rather be there, say so and we&rsquo;ll schedule around you."),
         ("Who pays for the repair?", "Normal wear and repairs are on the owner. Damage caused by the tenant is charged back per the lease."),
         ("What counts as an emergency?", "Anything that&rsquo;s a safety issue or is actively damaging the property: water where it shouldn&rsquo;t be, no power, no working toilet, no A/C in extreme heat.")]))
@@ -703,7 +703,7 @@ faq_body = (hero("Tenant FAQs", "The answers, <em>before you have to ask.</em>",
         ("Can I have a pet?", "Depends on the property and your lease. Ask before you bring one home; unauthorized pets are a lease violation."),
         ("What happens to my deposit?", "It&rsquo;s held per Texas law and returned, itemized, within the required timeline after move-out, less any damage beyond normal wear and tear and any unpaid balance."),
         ("How do I give notice?", "In writing, with the notice period your lease requires (usually 30 days). Text or email the office and we&rsquo;ll confirm the date."),
-        ("Can I renew?", "We&rsquo;ll reach out about 60 days before your lease ends. If you want to stay, say so and we&rsquo;ll send the renewal."),
+        ("Can I renew?", "We&rsquo;ll reach out well before your lease ends. If you want to stay, say so and we&rsquo;ll send the renewal."),
         ("Can I sublet or add a roommate?", "Not without written approval. Anyone living there has to be on the lease and screened."),
         ("Who do I call about a neighbor problem?", "The office. If it&rsquo;s a safety issue, call 911 first, then let us know."),
         ("What if I&rsquo;m going to be late on rent?", "Text the office before the due date. That conversation is always easier early.")]))
@@ -727,7 +727,7 @@ town_page("corpus-christi/", "Corpus Christi", "Corpus Christi rental property, 
     "Single-family homes, duplexes, small apartment communities and commercial space across Corpus Christi, managed by a licensed local brokerage.",
     "prop-blue-street.jpg",
     "Corpus Christi is home. Our office, our own rentals and most of the doors we manage are here, from the Southside to Calallen to the Island.",
-    "That means when a tenant reports a leak on Everhart, someone who knows the property is twenty minutes away, and when you ask what a duplex near the base should rent for, the answer comes from units we already manage.",
+    "That means when a tenant reports a leak on Everhart, someone who knows the property is across town, not across the country, and when you ask what a duplex near the base should rent for, the answer comes from units we already manage.",
     ["Southside, Westside, Flour Bluff, downtown and the Bay area", "Single family, duplex, fourplex, multifamily and commercial", "Tenants placed through CC Lease Locators", "Rent auto-deposited, one point of contact"],
     "Corpus+Christi,+TX")
 town_page("padre-island/", "Padre Island", "Island rentals, <em>handled from the mainland.</em>",
@@ -760,7 +760,7 @@ areas_hub = (hero("Where We Work", "Managing across the <em>Coastal Bend.</em>",
     <div class="card"><h3>Surrounding Areas</h3><p>Own something just outside the list? Call us anyway. If we can&rsquo;t take it, we&rsquo;ll tell you who should.</p></div>
   </div></div></section>''' % "".join('<a class="card" href="{R}%s" style="text-decoration:none;display:block"><h3>%s</h3><p>Property management, tenant placement and sales in %s.</p></a>' % (p, t, t) for p, t in TOWNS)
     + '''<section class="sec" style="background:var(--paper-2);border-top:1px solid var(--line)"><div class="wrap g2">
-  <div><div class="eyebrow">The Office</div><h2 class="big">5117 Williams Drive, Corpus Christi.</h2><p class="lead">Mon&ndash;Fri, 9:00am to 5:00pm. Tenants drop rent here; owners are welcome any time.</p>
+  <div><div class="eyebrow">The Office</div><h2 class="big">5117 Williams Drive, Corpus Christi.</h2><p class="lead">Mon&ndash;Fri, 9:00am to 5:00pm. Tenants drop rent here; owners are welcome to stop by.</p>
   <div style="margin-top:28px;display:flex;gap:12px;flex-wrap:wrap"><a class="btn btn-p" href="%s">%s Call %s</a><a class="btn btn-g" href="{R}contact/">Contact</a></div></div>
   <div class="mapbox"><iframe src="https://www.google.com/maps?q=5117+Williams+Dr,+Corpus+Christi,+TX+78411&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Urban Properties office location"></iframe></div></div></section>''' % (TEL, CALL_SVG, PHONE))
 page("service-areas/", "Service Areas", "Urban Properties manages rental property across Corpus Christi, Padre Island, Calallen, Robstown and the surrounding Coastal Bend.", areas_hub)
@@ -783,16 +783,16 @@ about_body = (hero("About Urban Properties", "A Corpus Christi brokerage that <e
                    "Full-service real estate since 2009. Property management, tenant placement, sales, and a builder down the hall. All under one licensed roof, led by broker Jon Roel.",
                    "team.jpg", "<span>About</span>")
     + intro("Since 2009", "The same person who manages your rental can tell you what to buy next.", [
-        "Urban Properties started in 2009 as the brokerage side of a family that was already building homes in Corpus Christi. Sixteen years on, we manage rental property, place tenants through our sister firm CC Lease Locators, and help people buy and sell, all from one office on Williams Drive.",
+        "Urban Properties opened in 2009. Today we manage rental property, place tenants through our sister firm CC Lease Locators, and help people buy and sell, all from one office on Williams Drive.",
         "We own and manage our own buildings, an eight-unit townhome complex, an eight-tenant commercial building, a duplex and houses, and we run yours the same way. You&rsquo;re not handing your investment to a call center three states away."],
         [], "jon-roel.jpg", "Jon Roel, broker and owner of Urban Properties, with his son",
         extra=roster())
     + cards("What We Stand On", "Four things you can hold us to", [
         ("Results", "Occupied units and rent that arrives on time. That&rsquo;s the job."),
-        ("Experience", "A licensed Texas broker and six agents, not a leasing app."),
+        ("Experience", "A licensed Texas broker and five agents, not a leasing app."),
         ("Commitment", "Your property treated like it&rsquo;s ours. Because ours are next door."),
         ("Straightforward", "Auto-deposit, a direct line, and no surprises. You hear from us when it matters."),
-        ("Local", "5117 Williams Drive. Twenty minutes from every property we manage."),
+        ("Local", "5117 Williams Drive. One office for every property we manage."),
         ("Licensed", "TREC Broker License #9000508. Jon Roel, Designated Broker, License #0547401.")])
     + '''<section class="sec" style="background:var(--paper-2);border-top:1px solid var(--line)"><div class="wrap center"><div class="eyebrow c">Three Companies</div><h2 class="big">We build it, fill it, manage it, and sell it.</h2><p class="lead">Manhattan Builders, CC Lease Locators and Urban Properties share one office and one owner.</p><div style="margin-top:28px"><a class="btn btn-p" href="{R}our-companies/">See how they fit together</a></div></div></section>''')
 page("about/", "About Urban Properties", "Urban Properties: a Corpus Christi real estate brokerage since 2009. Property management, tenant placement and sales, led by broker Jon Roel.", about_body)
@@ -803,7 +803,7 @@ cos_body = (hero("One Office, Three Companies", "We build it, fill it, manage it
     + '''<section class="band sec"><div class="wrap"><div class="cos">
     <a class="co brand" href="https://manhattanbuilders.cc" target="_blank" rel="noopener"><div class="co-step">Builds it</div><div class="co-logo"><img src="{R}img/logo-manhattan.png" alt="Manhattan Builders" loading="lazy"></div><p>Custom homes, multifamily and light commercial across the Coastal Bend since 2003. Corpus Christi, Padre Island, Port Aransas, Rockport.</p><span class="co-link">manhattanbuilders.cc &rarr;</span></a>
     <div class="co-arr">&rarr;</div>
-    <a class="co brand" href="https://ccleaselocators.com" target="_blank" rel="noopener"><div class="co-step">Fills it</div><div class="co-logo"><img src="{R}img/logo-cclease.png" alt="CC Lease Locators" loading="lazy"></div><p>Free apartment locating for renters across Corpus Christi. 4.9 stars from 150 Google reviews, placing tenants every week.</p><span class="co-link">ccleaselocators.com &rarr;</span></a>
+    <a class="co brand" href="https://ccleaselocators.com" target="_blank" rel="noopener"><div class="co-step">Fills it</div><div class="co-logo"><img src="{R}img/logo-cclease.png" alt="CC Lease Locators" loading="lazy"></div><p>Free apartment locating for renters across Corpus Christi. 4.9 stars from 150 Google reviews.</p><span class="co-link">ccleaselocators.com &rarr;</span></a>
     <div class="co-arr">&rarr;</div>
     <a class="co you" href="{R}property-management/"><div class="co-step">Manages &amp; sells it</div><div class="co-logo"><img src="{R}img/logo-light.png" alt="Urban Properties" loading="lazy"></div><p>Property management and a full brokerage since 2009, for the day you&rsquo;re ready to buy the next one or sell the last.</p><span class="co-link">You&rsquo;re here</span></a>
   </div><p class="co-note">Own land and thinking about building to rent? <a href="{R}build-to-rent/">Here&rsquo;s how that works.</a> One team takes it from dirt to deposit.</p></div></section>'''
@@ -1049,7 +1049,7 @@ about_home = '''<!-- ============ ABOUT ============ -->
   </div>
 </section>
 
-''' % (pic("team-wide.jpg", "The Urban Properties team outside the office"), facts_html([("chart", "Results", "Occupied units and rent that arrives on time."), ("award", "Experience", "A licensed broker and six agents, not a leasing app."), ("heart", "Commitment", "Your property treated like it&rsquo;s ours. Ours are next door."), ("phone", "Straightforward", "Auto-deposit, a direct line, no surprises.")]))
+''' % (pic("team-wide.jpg", "The Urban Properties team outside the office"), facts_html([("chart", "Results", "Occupied units and rent that arrives on time."), ("award", "Experience", "A licensed broker and five agents, not a leasing app."), ("heart", "Commitment", "Your property treated like it&rsquo;s ours. Ours are next door."), ("phone", "Straightforward", "Auto-deposit, a direct line, no surprises.")]))
 home = home[:a] + about_home + home[b:]
 # Service area -> photo band
 home = home.replace('<section class="sec" id="areas" style="background:var(--paper-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">\n  <div class="wrap g2">',
