@@ -124,8 +124,9 @@ EXTRA_CSS = """
 .phero h1 em{font-style:normal;color:#E2B4EE}
 .gal-cap figure{position:relative}.gal-cap figcaption{position:absolute;left:0;right:0;bottom:0;padding:26px 14px 11px;color:#fff;font-size:14px;font-weight:600;line-height:1.3;background:linear-gradient(transparent,rgba(23,20,27,.78))}
 /* group photo: pin right, fade into ink on the left so the headline never sits on a face */
-.phero-team .hero-bg img{position:absolute;right:0;top:0;width:66%;height:100%;object-position:50% 30%;
-  -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 30%);mask-image:linear-gradient(90deg,transparent 0,#000 30%)}
+.phero-team .hero-bg img{position:absolute;right:0;top:0;width:60%;height:100%;object-position:50% 30%;
+  -webkit-mask-image:linear-gradient(90deg,transparent 0,rgba(0,0,0,.55) 7%,#000 15%);mask-image:linear-gradient(90deg,transparent 0,rgba(0,0,0,.55) 7%,#000 15%)}
+.phero-team .hero-scrim{background:linear-gradient(94deg,rgba(18,14,22,.92) 0%,rgba(18,14,22,.82) 30%,rgba(18,14,22,.3) 45%,rgba(18,14,22,.12) 100%)}
 @media(max-width:860px){.phero-team .hero-bg img{width:100%;object-position:60% 20%;-webkit-mask-image:none;mask-image:none}}
 .phero p.hl{color:#DAD3E2;font-size:clamp(16.5px,1.3vw,19.5px);margin:18px 0 26px;max-width:54ch}
 .crumb{font-size:13px;color:#A79FB2;margin-bottom:18px;display:flex;gap:8px;flex-wrap:wrap}.crumb a{color:#DCA8EA}
@@ -141,6 +142,25 @@ EXTRA_CSS = """
 .photo-band .mapbox{border-color:rgba(255,255,255,.15)}
 .cta-band .pb-bg::after{background:linear-gradient(180deg,rgba(23,20,27,.8),rgba(23,20,27,.92))}
 .cta-band .wrap{text-align:center}.cta-band .lead{margin-left:auto;margin-right:auto}
+.facts2{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:28px}
+.fact{display:flex;gap:13px;align-items:flex-start;padding:16px;border-radius:14px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12)}
+.fact .fi{flex:none;width:40px;height:40px;border-radius:11px;display:grid;place-items:center;background:linear-gradient(180deg,#9140a5,#681f77);color:#fff;box-shadow:inset 0 1px 0 rgba(255,255,255,.25)}
+.fact .fi svg{width:20px;height:20px}.fact b{display:block;color:#fff;font-size:17px;line-height:1.2}.fact p{margin:3px 0 0;font-size:14px;color:#C9C2CF;line-height:1.45}
+.roster{margin-top:28px;padding:18px;border-radius:16px;background:var(--paper-2);border:1px solid var(--line)}
+.roster-h{font-size:11.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--pur);margin-bottom:12px}
+.av{flex:none;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;font-size:13px;font-weight:800;background:var(--pur-wash);color:var(--pur)}
+.av-lg{width:48px;height:48px;font-size:16px;background:linear-gradient(180deg,#9140a5,#681f77);color:#fff}
+.broker{display:flex;gap:13px;align-items:center;padding-bottom:14px;margin-bottom:12px;border-bottom:1px solid var(--line)}
+.broker b,.agents b{display:block;color:var(--ink);font-size:16px;line-height:1.2}.broker span:not(.av),.agents span:not(.av){font-size:13px;color:var(--muted)}
+.agents{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,1fr);gap:12px 16px}.agents li{display:flex;gap:10px;align-items:center}
+.photo-band .roster{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.12)}.photo-band .roster-h{color:#DCA8EA}
+.photo-band .broker{border-bottom-color:rgba(255,255,255,.14)}.photo-band .broker b,.photo-band .agents b{color:#fff}.photo-band .broker span:not(.av),.photo-band .agents span:not(.av){color:#C9C2CF}
+.photo-band .av:not(.av-lg){background:rgba(226,180,238,.16);color:#E2B4EE}
+@media(max-width:560px){.facts2,.agents{grid-template-columns:1fr}}
+/* home about band: widened team photo (team-wide = real photo + extended office wing on the left), people on the right */
+@media(min-width:861px){.about-band .pb-bg{background:var(--ink)}
+  .about-band .pb-bg img{position:absolute;left:0;right:0;bottom:0;top:auto;width:100%;height:auto;min-height:72%;object-fit:cover;object-position:100% 60%;-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 38%);mask-image:linear-gradient(180deg,transparent 0,#000 38%)}
+  .about-band .pb-bg::after{background:linear-gradient(90deg,rgba(23,20,27,.96) 0%,rgba(23,20,27,.86) 36%,rgba(23,20,27,.3) 54%,rgba(23,20,27,.08) 100%)}}
 .facts{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;margin-top:32px}
 .facts div>div{font-family:var(--serif);font-weight:700;font-size:19px;color:#fff}.facts p{font-size:14.5px;color:#C9C2CF;margin:4px 0 0}
 .prose p{font-size:17px;color:var(--body);max-width:68ch;margin:0 0 18px;line-height:1.7}
@@ -557,11 +577,11 @@ btr_body = (hero("For Investors", "From dirt <em>to deposit.</em>",
     + '''<section class="band sec"><div class="wrap">
   <div class="center" style="margin-bottom:46px"><div class="eyebrow c">One Office, Three Companies</div><h2 class="big">We build it, fill it, manage it, and sell it.</h2></div>
   <div class="cos">
-    <a class="co" href="https://manhattanbuilders.cc" target="_blank" rel="noopener"><div class="co-step">Builds it</div><div class="co-name">Manhattan Builders</div><p>Custom homes, multifamily and light commercial across the Coastal Bend since 2003. The duplexes on this site are theirs.</p><span class="co-link">manhattanbuilders.cc &rarr;</span></a>
+    <a class="co brand" href="https://manhattanbuilders.cc" target="_blank" rel="noopener"><div class="co-step">Builds it</div><div class="co-logo"><img src="{R}img/logo-manhattan.png" alt="Manhattan Builders" loading="lazy"></div><p>Custom homes, multifamily and light commercial across the Coastal Bend since 2003. The duplexes on this site are theirs.</p><span class="co-link">manhattanbuilders.cc &rarr;</span></a>
     <div class="co-arr">&rarr;</div>
-    <a class="co" href="https://ccleaselocators.com" target="_blank" rel="noopener"><div class="co-step">Fills it</div><div class="co-name">CC Lease Locators</div><p>Free apartment locating for renters across Corpus Christi. 4.9 stars from 150 Google reviews, placing tenants every week.</p><span class="co-link">ccleaselocators.com &rarr;</span></a>
+    <a class="co brand" href="https://ccleaselocators.com" target="_blank" rel="noopener"><div class="co-step">Fills it</div><div class="co-logo"><img src="{R}img/logo-cclease.png" alt="CC Lease Locators" loading="lazy"></div><p>Free apartment locating for renters across Corpus Christi. 4.9 stars from 150 Google reviews, placing tenants every week.</p><span class="co-link">ccleaselocators.com &rarr;</span></a>
     <div class="co-arr">&rarr;</div>
-    <a class="co you" href="{R}property-management/"><div class="co-step">Manages &amp; sells it</div><div class="co-name">Urban Properties</div><p>Property management and a full brokerage, for the day you&rsquo;re ready to buy the next one or sell the last.</p><span class="co-link">You&rsquo;re here</span></a>
+    <a class="co you" href="{R}property-management/"><div class="co-step">Manages &amp; sells it</div><div class="co-logo"><img src="{R}img/logo-light.png" alt="Urban Properties" loading="lazy"></div><p>Property management and a full brokerage, for the day you&rsquo;re ready to buy the next one or sell the last.</p><span class="co-link">You&rsquo;re here</span></a>
   </div></div></section>'''
     + intro("On The Job Right Now", "This one is still going up.", [
         "The drawing is a real Manhattan Builders home under construction right now, sketched from a job-site photo. Every build-to-rent project starts the same way: a lot, a plan, and a crew we&rsquo;ve worked with for years.",
@@ -748,6 +768,18 @@ areas_hub = (hero("Where We Work", "Managing across the <em>Coastal Bend.</em>",
 page("service-areas/", "Service Areas", "Urban Properties manages rental property across Corpus Christi, Padre Island, Calallen, Robstown and the surrounding Coastal Bend.", areas_hub)
 
 # ---- about / companies / reviews / contact -----------------------------
+FACT_ICONS = {'chart': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="m19 9-5 5-4-4-3 3"/></svg>', 'award': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526"/><circle cx="12" cy="8" r="6"/></svg>', 'heart': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19.414 14.414C21 12.828 22 11.5 22 9.5a5.5 5.5 0 0 0-9.591-3.676.6.6 0 0 1-.818.001A5.5 5.5 0 0 0 2 9.5c0 2.3 1.5 4 3 5.5l5.535 5.362a2 2 0 0 0 2.879.052 2.12 2.12 0 0 0-.004-3 2.124 2.124 0 1 0 3-3 2.124 2.124 0 0 0 3.004 0 2 2 0 0 0 0-2.828l-1.881-1.882a2.41 2.41 0 0 0-3.409 0l-1.71 1.71a2 2 0 0 1-2.828 0 2 2 0 0 1 0-2.828l2.823-2.762"/></svg>', 'phone': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2a9 9 0 0 1 9 9"/><path d="M13 6a5 5 0 0 1 5 5"/><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"/></svg>'}
+def facts_html(items):
+    return '<div class="facts2">%s</div>' % "".join('<div class="fact"><span class="fi">%s</span><div><b>%s</b><p>%s</p></div></div>' % (FACT_ICONS[k], t, d) for k, t, d in items)
+
+def roster():
+    ini = lambda n: "".join(w[0] for w in n.split()[:2])
+    broker, agents = TEAM[0], TEAM[1:]
+    return ('<div class="roster"><div class="roster-h">The team</div>'
+            '<div class="broker"><span class="av av-lg">%s</span><div><b>%s</b><span>Designated Broker &middot; TREC #0547401</span></div></div>'
+            '<ul class="agents">%s</ul></div>') % (ini(broker[0]), broker[0],
+            "".join('<li><span class="av">%s</span><div><b>%s</b><span>%s</span></div></li>' % (ini(n), n, r) for n, r in agents))
+
 TEAM = [("Jon Roel", "Broker"), ("Laura Vasquez", "Realtor"), ("Amy Soza", "Realtor"), ("Danny Guerrero", "Realtor"), ("Maria Cruz", "Realtor"), ("Michael Benavidez", "Realtor")]
 about_body = (hero("About Urban Properties", "A Corpus Christi brokerage that <em>actually answers the phone.</em>",
                    "Full-service real estate since 2009. Property management, tenant placement, sales, and a builder down the hall. All under one licensed roof, led by broker Jon Roel.",
@@ -756,7 +788,7 @@ about_body = (hero("About Urban Properties", "A Corpus Christi brokerage that <e
         "Urban Properties started in 2009 as the brokerage side of a family that was already building homes in Corpus Christi. Sixteen years on, we manage rental property, place tenants through our sister firm CC Lease Locators, and help people buy and sell, all from one office on Williams Drive.",
         "We own and manage our own buildings, an eight-unit townhome complex, an eight-tenant commercial building, a duplex and houses, and we run yours the same way. You&rsquo;re not handing your investment to a call center three states away."],
         [], "jon-roel.jpg", "Jon Roel, broker and owner of Urban Properties, with his son",
-        extra='<div class="team" style="margin-top:30px"><div class="team-h">The team</div><ul>%s</ul></div>' % "".join('<li><b>%s</b><span>%s</span></li>' % t for t in TEAM))
+        extra=roster())
     + cards("What We Stand On", "Four things you can hold us to", [
         ("Results", "Occupied units and rent that arrives on time. That&rsquo;s the job."),
         ("Experience", "A licensed Texas broker and six agents, not a leasing app."),
@@ -771,11 +803,11 @@ cos_body = (hero("One Office, Three Companies", "We build it, fill it, manage it
                  "Manhattan Builders, CC Lease Locators and Urban Properties share one office at 5117 Williams Drive. Whatever stage your property is at, the next call is to the same people.",
                  "mb-modern.jpg", "<span>Our Companies</span>")
     + '''<section class="band sec"><div class="wrap"><div class="cos">
-    <a class="co" href="https://manhattanbuilders.cc" target="_blank" rel="noopener"><div class="co-step">Builds it</div><div class="co-name">Manhattan Builders</div><p>Custom homes, multifamily and light commercial across the Coastal Bend since 2003. Corpus Christi, Padre Island, Port Aransas, Rockport.</p><span class="co-link">manhattanbuilders.cc &rarr;</span></a>
+    <a class="co brand" href="https://manhattanbuilders.cc" target="_blank" rel="noopener"><div class="co-step">Builds it</div><div class="co-logo"><img src="{R}img/logo-manhattan.png" alt="Manhattan Builders" loading="lazy"></div><p>Custom homes, multifamily and light commercial across the Coastal Bend since 2003. Corpus Christi, Padre Island, Port Aransas, Rockport.</p><span class="co-link">manhattanbuilders.cc &rarr;</span></a>
     <div class="co-arr">&rarr;</div>
-    <a class="co" href="https://ccleaselocators.com" target="_blank" rel="noopener"><div class="co-step">Fills it</div><div class="co-name">CC Lease Locators</div><p>Free apartment locating for renters across Corpus Christi. 4.9 stars from 150 Google reviews, placing tenants every week.</p><span class="co-link">ccleaselocators.com &rarr;</span></a>
+    <a class="co brand" href="https://ccleaselocators.com" target="_blank" rel="noopener"><div class="co-step">Fills it</div><div class="co-logo"><img src="{R}img/logo-cclease.png" alt="CC Lease Locators" loading="lazy"></div><p>Free apartment locating for renters across Corpus Christi. 4.9 stars from 150 Google reviews, placing tenants every week.</p><span class="co-link">ccleaselocators.com &rarr;</span></a>
     <div class="co-arr">&rarr;</div>
-    <a class="co you" href="{R}property-management/"><div class="co-step">Manages &amp; sells it</div><div class="co-name">Urban Properties</div><p>Property management and a full brokerage since 2009, for the day you&rsquo;re ready to buy the next one or sell the last.</p><span class="co-link">You&rsquo;re here</span></a>
+    <a class="co you" href="{R}property-management/"><div class="co-step">Manages &amp; sells it</div><div class="co-logo"><img src="{R}img/logo-light.png" alt="Urban Properties" loading="lazy"></div><p>Property management and a full brokerage since 2009, for the day you&rsquo;re ready to buy the next one or sell the last.</p><span class="co-link">You&rsquo;re here</span></a>
   </div><p class="co-note">Own land and thinking about building to rent? <a href="{R}build-to-rent/">Here&rsquo;s how that works.</a> One team takes it from dirt to deposit.</p></div></section>'''
     + gallery("Manhattan Builders", "Finished work", "Homes built by our sister company, Manhattan Builders, across the Coastal Bend.", [
         ("mb-white-modern.jpg", "Modern farmhouse exterior", "w2"),
@@ -910,30 +942,21 @@ home = home.replace('<a class="btn btn-g" href="tel:+13614340040">Talk to Jon</a
 # About -> photo band
 a = home.index("<!-- ============ ABOUT ============ -->"); b = home.index("<!-- ============ OUR COMPANIES ============ -->")
 about_home = '''<!-- ============ ABOUT ============ -->
-<section class="sec photo-band" id="about">
+<section class="sec photo-band about-band" id="about">
   <div class="pb-bg">%s</div>
   <div class="wrap g2">
     <div>
       <div class="eyebrow">About Urban Properties</div>
       <h2 class="big">A Corpus Christi brokerage that actually answers the phone.</h2>
       <p class="lead">Full-service real estate since 2009. We manage rental property, place tenants through our sister firm CC Lease Locators, and help people buy and sell, all under one licensed roof, led by broker Jon Roel.</p>
-      <p style="margin-top:14px">The person managing your rental is the same person who can tell you whether the duplex down the street is worth buying. You&rsquo;re not handing your investment to a call center three states away.</p>
-      <div class="facts">
-        <div><div>Results</div><p>Occupied units and rent that arrives on time.</p></div>
-        <div><div>Experience</div><p>A licensed broker and six agents, not a leasing app.</p></div>
-        <div><div>Commitment</div><p>Your property treated like it&rsquo;s ours. Ours are next door.</p></div>
-        <div><div>Straightforward</div><p>Auto-deposit, a direct line, no surprises.</p></div>
-      </div>
-      <div style="margin-top:32px;display:flex;gap:12px;flex-wrap:wrap"><a class="btn btn-p" href="{R}about/">More about us</a><a class="btn btn-o" href="{R}reviews/">Read the reviews</a></div>
+      %s
+      <div style="margin-top:32px;display:flex;gap:12px;flex-wrap:wrap"><a class="btn btn-p" href="{R}about/">Meet the team</a><a class="btn btn-o" href="{R}reviews/">Read the reviews</a></div>
     </div>
-    <div class="team" style="border-top:0;padding-top:0;margin-top:0">
-      <div class="team-h">The team</div>
-      <ul style="grid-template-columns:1fr">%s</ul>
-    </div>
+    <div></div>
   </div>
 </section>
 
-''' % (pic("team.jpg", ""), "".join('<li><b>%s</b><span>%s</span></li>' % t for t in TEAM))
+''' % (pic("team-wide.jpg", "The Urban Properties team outside the office"), facts_html([("chart", "Results", "Occupied units and rent that arrives on time."), ("award", "Experience", "A licensed broker and six agents, not a leasing app."), ("heart", "Commitment", "Your property treated like it&rsquo;s ours. Ours are next door."), ("phone", "Straightforward", "Auto-deposit, a direct line, no surprises.")]))
 home = home[:a] + about_home + home[b:]
 # Service area -> photo band
 home = home.replace('<section class="sec" id="areas" style="background:var(--paper-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">\n  <div class="wrap g2">',
