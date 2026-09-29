@@ -155,6 +155,15 @@ EXTRA_CSS = """
 .photo-band .av:not(.av-lg){background:rgba(226,180,238,.16);color:#E2B4EE}
 @media(max-width:560px){.facts2,.agents{grid-template-columns:1fr}}
 /* home about band: widened team photo (team-wide = real photo + extended office wing on the left), people on the right */
+/* phones: the whole team photo as a band on top (the widened version is a desktop background) */
+@media(max-width:860px){.about-band{padding-top:0}
+  .about-band .pb-bg{position:relative;inset:auto;aspect-ratio:9/5;margin-bottom:34px}
+  .about-band .pb-bg img{object-position:100% 45%}
+  .about-band .pb-bg::after{background:linear-gradient(180deg,rgba(23,20,27,0) 60%,rgba(23,20,27,.55) 85%,var(--ink) 100%)}}
+/* Where We Work: lighter scrim so the coast shows through */
+#areas .pb-bg::after{background:linear-gradient(90deg,rgba(23,20,27,.88) 0%,rgba(23,20,27,.7) 42%,rgba(23,20,27,.34) 100%)}
+@media(max-width:860px){#areas .pb-bg::after{background:linear-gradient(180deg,rgba(23,20,27,.8) 0%,rgba(23,20,27,.66) 45%,rgba(23,20,27,.5) 100%)}}
+#areas .wrap{text-shadow:0 1px 14px rgba(0,0,0,.35)}
 @media(min-width:861px){.about-band .pb-bg{background:var(--ink)}
   .about-band .pb-bg img{position:absolute;left:0;right:0;bottom:0;top:auto;width:100%;height:auto;min-height:72%;object-fit:cover;object-position:100% 60%;-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 38%);mask-image:linear-gradient(180deg,transparent 0,#000 38%)}
   .about-band .pb-bg::after{background:linear-gradient(90deg,rgba(23,20,27,.96) 0%,rgba(23,20,27,.86) 36%,rgba(23,20,27,.3) 54%,rgba(23,20,27,.08) 100%)}}
@@ -215,7 +224,7 @@ def cta(kind="owner"):
     <div class="eyebrow c">Questions?</div>
     <h2 class="big">Text the office. A real person answers.</h2>
     <p class="lead">Repairs, rent, applications, anything about your lease.</p>
-    <div style="margin-top:30px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+    <div class="cta-row cta-c" style="margin-top:30px">
       <a class="btn btn-p" href="%s">Text (361) 510-2325</a>
       <a class="btn btn-o" href="%s">%s Call %s</a>
     </div>
@@ -227,7 +236,7 @@ def cta(kind="owner"):
     <div class="eyebrow c">Free, No Obligation</div>
     <h2 class="big">Let&rsquo;s find out what your property is worth.</h2>
     <p class="lead">A real number from a licensed local broker, and what we&rsquo;d fix first. Yours to keep whether or not you hire us.</p>
-    <div style="margin-top:30px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+    <div class="cta-row cta-c" style="margin-top:30px">
       <a class="btn btn-p btn-lg" href="{R}rent-analysis/">Get your free rent analysis today <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       <a class="btn btn-o" href="%s">%s Call %s</a>
     </div>
@@ -248,7 +257,7 @@ def gallery(eyebrow, h2, lead, items, bg=False, more=None):
     return ('<section class="sec"%s><div class="wrap"><div class="center" style="margin-bottom:40px"><div class="eyebrow c">%s</div>'
             '<h2 class="big">%s</h2><p class="lead">%s</p></div><div class="gal gal-cap">%s</div>%s</div></section>'
             % (' style="background:var(--paper-2);border-top:1px solid var(--line)"' if bg else "", eyebrow, h2, lead, figs,
-               ('<div class="center" style="margin-top:34px"><a class="btn btn-g btn-lg" href="{R}gallery/#%s">See the full gallery %s</a></div>' % (more, ARR)) if more else ""))
+               ('<div class="center cta-row cta-c" style="margin-top:34px"><a class="btn btn-g btn-lg" href="{R}gallery/#%s">See the full gallery %s</a></div>' % (more, ARR)) if more else ""))
 
 def cards(eyebrow, h2, items, lead="", bg=True):
     cs = "".join('<div class="card"><h3>%s</h3><p>%s</p></div>' % (h, p) for h, p in items)
@@ -627,7 +636,7 @@ avail_body = (hero("Available Rentals", "Our listings are <em>everywhere</em> yo
   <p class="lead">We list through the MLS, so the same units show up on every major site at once. Search the address or filter by the Corpus Christi area and look for our name.</p>
   <div class="pill-list"><a href="https://www.zillow.com/" target="_blank" rel="noopener" style="text-decoration:none"><span>Zillow &rarr;</span></a><a href="https://www.realtor.com/" target="_blank" rel="noopener" style="text-decoration:none"><span>Realtor.com &rarr;</span></a><a href="https://www.trulia.com/" target="_blank" rel="noopener" style="text-decoration:none"><span>Trulia &rarr;</span></a><a href="https://www.redfin.com/" target="_blank" rel="noopener" style="text-decoration:none"><span>Redfin &rarr;</span></a><a href="https://www.homes.com/" target="_blank" rel="noopener" style="text-decoration:none"><span>Homes.com &rarr;</span></a></div>
   <p style="color:var(--muted);margin-top:26px">Looking for an apartment rather than a house? Our sister firm <a href="https://ccleaselocators.com" target="_blank" rel="noopener" style="color:var(--pur);font-weight:700">CC Lease Locators</a> finds apartments across Corpus Christi for free.</p>
-  <div style="margin-top:28px;display:flex;gap:12px;flex-wrap:wrap"><a class="btn btn-p" href="{R}apply/">Apply for a rental</a><a class="btn btn-g" href="%s">Text the office</a></div></div>
+  <div class="cta-row" style="margin-top:28px"><a class="btn btn-p" href="{R}apply/">Apply for a rental</a><a class="btn btn-g" href="%s">Text the office</a></div></div>
   <div class="band-img" style="box-shadow:var(--sh-l)">%s</div></div></section>''' % (JON_SMS, pic("int-kitchen-white.jpg", "Rental unit kitchen")))
 page("available-rentals/", "Available Rentals", "Urban Properties rentals in Corpus Christi are listed on the MLS, Zillow, Realtor.com, Trulia, Redfin and Homes.com.", avail_body, cta_kind="tenant")
 
@@ -638,7 +647,7 @@ apply_body = (hero("Apply", "Apply for a <em>rental.</em>",
   <div><div class="eyebrow">How It Works</div><h2 class="big">Three steps to the keys.</h2>
   <ul class="checks" style="color:var(--body)">%s</ul>
   <div class="note-box" style="margin-top:28px"><b>Application fee:</b> $50 per adult applicant, paid when you submit. <b>We look for:</b> stable, verifiable income and rental history. Pets and other specifics are set per property; ask before you apply.</div>
-  <div style="margin-top:28px;display:flex;gap:12px;flex-wrap:wrap"><a class="btn btn-p" href="#">Download the application (PDF)</a><a class="btn btn-g" href="%s">Text a question</a></div></div>
+  <div class="cta-row" style="margin-top:28px"><a class="btn btn-p" href="#">Download the application (PDF)</a><a class="btn btn-g" href="%s">Text a question</a></div></div>
   <div class="band-img" style="box-shadow:var(--sh-l)">%s</div></div></section>''' % ("".join(CHECK % b for b in [
         "Download the application and fill it out for every adult who will live there",
         "Bring it to 5117 Williams Dr (Mon&ndash;Fri, 9 to 5) or send it back the way we sent it to you, with the $50 fee",
@@ -761,7 +770,7 @@ areas_hub = (hero("Where We Work", "Managing across the <em>Coastal Bend.</em>",
   </div></div></section>''' % "".join('<a class="card" href="{R}%s" style="text-decoration:none;display:block"><h3>%s</h3><p>Property management, tenant placement and sales in %s.</p></a>' % (p, t, t) for p, t in TOWNS)
     + '''<section class="sec" style="background:var(--paper-2);border-top:1px solid var(--line)"><div class="wrap g2">
   <div><div class="eyebrow">The Office</div><h2 class="big">5117 Williams Drive, Corpus Christi.</h2><p class="lead">Mon&ndash;Fri, 9:00am to 5:00pm. Tenants drop rent here; owners are welcome to stop by.</p>
-  <div style="margin-top:28px;display:flex;gap:12px;flex-wrap:wrap"><a class="btn btn-p" href="%s">%s Call %s</a><a class="btn btn-g" href="{R}contact/">Contact</a></div></div>
+  <div class="cta-row" style="margin-top:28px"><a class="btn btn-p" href="%s">%s Call %s</a><a class="btn btn-g" href="{R}contact/">Contact</a></div></div>
   <div class="mapbox"><iframe src="https://www.google.com/maps?q=5117+Williams+Dr,+Corpus+Christi,+TX+78411&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Urban Properties office location"></iframe></div></div></section>''' % (TEL, CALL_SVG, PHONE))
 page("service-areas/", "Service Areas", "Urban Properties manages rental property across Corpus Christi, Padre Island, Calallen, Robstown and the surrounding Coastal Bend.", areas_hub)
 
@@ -877,11 +886,6 @@ GAL_CSS = """<style>
 .fg-i img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}.fg-i:hover img{transform:scale(1.05)}
 .fg-i span{position:absolute;left:0;right:0;bottom:0;padding:24px 12px 10px;color:#fff;font-size:14px;font-weight:600;background:linear-gradient(transparent,rgba(23,20,27,.78))}
 @media(max-width:860px){.fg{grid-template-columns:repeat(2,1fr);gap:10px}.fg-i span{font-size:12.5px;padding:18px 9px 8px}}
-.lb{position:fixed;inset:0;z-index:200;background:rgba(12,10,15,.94);display:none;align-items:center;justify-content:center;flex-direction:column;padding:20px}
-.lb.on{display:flex}.lb img{max-width:min(1400px,94vw);max-height:80vh;border-radius:8px;box-shadow:0 30px 80px -20px rgba(0,0,0,.8)}
-.lb p{color:#E7E1EE;margin:14px 0 0;font-size:15.5px;text-align:center}
-.lb button{position:absolute;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;width:48px;height:48px;border-radius:50%;font-size:22px;cursor:pointer;display:grid;place-items:center}
-.lb button:hover{background:rgba(255,255,255,.2)}.lb .x{top:18px;right:18px}.lb .pv{left:18px;top:50%}.lb .nx{right:18px;top:50%}
 </style>"""
 GAL_JS = """<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Photo viewer"><button class="x" aria-label="Close">&times;</button><button class="pv" aria-label="Previous photo">&lsaquo;</button><img alt=""><p></p><button class="nx" aria-label="Next photo">&rsaquo;</button></div>
 <script>(function(){var L=[].slice.call(document.querySelectorAll('.fg-i')),b=document.getElementById('lb'),im=b.querySelector('img'),cp=b.querySelector('p'),i=0;
@@ -1043,7 +1047,7 @@ about_home = '''<!-- ============ ABOUT ============ -->
       <h2 class="big">A Corpus Christi brokerage that actually answers the phone.</h2>
       <p class="lead">Full-service real estate since 2009. We manage rental property, place tenants through our sister firm CC Lease Locators, and help people buy and sell, all under one licensed roof, led by broker Jon Roel.</p>
       %s
-      <div style="margin-top:32px;display:flex;gap:12px;flex-wrap:wrap"><a class="btn btn-p" href="{R}about/">Meet the team</a><a class="btn btn-o" href="{R}reviews/">Read the reviews</a></div>
+      <div class="cta-row" style="margin-top:32px"><a class="btn btn-p btn-lg" href="{R}about/">Meet the team <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a class="btn btn-o btn-lg" href="{R}reviews/">Read the reviews</a></div>
     </div>
     <div></div>
   </div>
@@ -1056,7 +1060,7 @@ home = home.replace('<section class="sec" id="areas" style="background:var(--pap
                     '<section class="sec photo-band" id="areas">\n  <div class="pb-bg">%s</div>\n  <div class="wrap g2">' % pic("aerial-lot.jpg", "Aerial view of a Coastal Bend shoreline"))
 home = home.replace('<span class="town">Corpus Christi</span><span class="town">Padre Island</span>\n        <span class="town">Calallen</span><span class="town">Robstown</span>\n        <span class="town">Surrounding Areas</span>',
                     "".join('<a href="{R}%s" style="text-decoration:none"><span class="town">%s</span></a>' % (p, t) for p, t in TOWNS + [("service-areas/", "Surrounding Areas")]))
-home = home.replace('<p style="margin-top:26px;font-size:15px;color:var(--muted)">Own something just outside the list?', '<p style="margin-top:26px;font-size:15px;color:#C9C2CF">Own something just outside the list?')
+home = home.replace('<p style="margin-top:26px;font-size:15px;color:var(--muted)">Own something just outside the list?', '<p style="margin-top:26px;font-size:15px;color:#E2DCE9">Own something just outside the list?')
 # Home keeps its own copy of the wizard (Jeffrey 9/28: both places). Separate Netlify form name:
 # two copies of one form name = fields silently dropped (netlify-form-fields-registered-once).
 home = home.replace('name="owner-inquiry" method="POST"', 'name="owner-inquiry-home" method="POST"', 1)
