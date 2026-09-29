@@ -171,8 +171,10 @@ def pic(img, alt, lazy=True):
     return ('<picture><source srcset="{R}img/%s.webp" type="image/webp"><img src="{R}img/%s" alt="%s"%s></picture>'
             % (base, img, html.escape(alt), ' loading="lazy"' if lazy else ''))
 
+ARR = '<svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>'
+
 def hero(eyebrow, h1, hl, img, crumb, btn2=None):
-    b2 = btn2 or ('<a class="btn btn-o" href="{R}rent-analysis/">What will my property rent for?</a>')
+    b2 = btn2 or ('<a class="btn btn-o btn-lg cta-quote" href="{R}rent-analysis/">Get a free rent analysis %s</a>' % ARR)
     return '''<section class="phero%s">
   <div class="hero-bg">%s</div>
   <div class="hero-scrim"></div><div class="hero-scrim2"></div>
@@ -182,7 +184,7 @@ def hero(eyebrow, h1, hl, img, crumb, btn2=None):
     <h1>%s</h1>
     <p class="hl">%s</p>
     <div class="hero-btns">
-      <a class="btn btn-p" href="%s">%s Call %s</a>
+      <a class="btn btn-p btn-lg cta-call" href="%s">%s Call %s</a>
       %s
     </div>
   </div>
@@ -209,7 +211,7 @@ def cta(kind="owner"):
     <h2 class="big">Let&rsquo;s find out what your property is worth.</h2>
     <p class="lead">A real number from a licensed local broker, and what we&rsquo;d fix first. Yours to keep whether or not you hire us.</p>
     <div style="margin-top:30px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
-      <a class="btn btn-p" href="{R}rent-analysis/">Start my free rent analysis</a>
+      <a class="btn btn-p btn-lg" href="{R}rent-analysis/">Get your free rent analysis today <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       <a class="btn btn-o" href="%s">%s Call %s</a>
     </div>
   </div>

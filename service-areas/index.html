@@ -70,11 +70,24 @@ h2.big{font-size:clamp(33px,4.6vw,52px)}
 /* ---------- buttons ---------- */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;
   font-family:var(--sans);font-weight:700;font-size:15.5px;letter-spacing:.01em;
-  padding:15px 26px;border-radius:999px;border:1.5px solid transparent;cursor:pointer;
+  padding:16px 28px;border-radius:999px;border:1.5px solid transparent;cursor:pointer;
   transition:transform .16s ease, box-shadow .16s ease, background .16s ease, color .16s ease;white-space:nowrap}
 .btn svg{width:18px;height:18px;flex:none}
-.btn-p{background:var(--pur);color:#fff;box-shadow:0 10px 24px -10px rgba(120,40,136,.7)}
-.btn-p:hover{background:var(--pur-d);transform:translateY(-2px)}
+.btn-p{background:linear-gradient(180deg,#9140a5 0%,#782888 55%,#681f77 100%);color:#fff;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.28),0 1px 2px rgba(0,0,0,.18),0 14px 30px -12px rgba(120,40,136,.8)}
+.btn-p:hover{background:linear-gradient(180deg,#9c49b0 0%,#842f95 55%,#72237f 100%);transform:translateY(-2px);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.32),0 2px 4px rgba(0,0,0,.18),0 20px 40px -14px rgba(120,40,136,.9)}
+.btn .arr{width:18px;height:18px;transition:transform .18s ease}.btn:hover .arr{transform:translateX(3px)}
+.btn-lg{font-size:16.5px;padding:18px 32px}
+/* hero CTA order: phones call first (tap-to-call works there); desktop leads with the rent analysis */
+@media(hover:hover) and (min-width:900px){
+  .hero-btns .cta-quote{order:-1;color:#fff;border-color:transparent;backdrop-filter:none;
+    background:linear-gradient(180deg,#9140a5 0%,#782888 55%,#681f77 100%);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.28),0 1px 2px rgba(0,0,0,.18),0 14px 30px -12px rgba(120,40,136,.8)}
+  .hero-btns .cta-quote:hover{background:linear-gradient(180deg,#9c49b0 0%,#842f95 55%,#72237f 100%)}
+  .hero-btns .cta-call{background:transparent;border-color:rgba(255,255,255,.45);box-shadow:none;backdrop-filter:blur(6px)}
+  .hero-btns .cta-call:hover{background:rgba(255,255,255,.14);border-color:#fff}
+}
 .btn-g{background:#fff;color:var(--ink);border-color:var(--line);box-shadow:var(--sh)}
 .btn-g:hover{border-color:var(--pur);color:var(--pur);transform:translateY(-2px)}
 .btn-o{background:transparent;color:#fff;border-color:rgba(255,255,255,.45);backdrop-filter:blur(6px)}
@@ -590,8 +603,8 @@ footer h4{color:#fff;font-family:var(--sans);font-size:12.5px;font-weight:800;le
     <h1>Managing across the <em>Coastal Bend.</em></h1>
     <p class="hl">Based on Williams Drive in Corpus Christi. Managing across the city, Padre Island, Calallen, Robstown and the surrounding area.</p>
     <div class="hero-btns">
-      <a class="btn btn-p" href="tel:+13614340040"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"/></svg> Call (361) 434-0040</a>
-      <a class="btn btn-o" href="../rent-analysis/">What will my property rent for?</a>
+      <a class="btn btn-p btn-lg cta-call" href="tel:+13614340040"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"/></svg> Call (361) 434-0040</a>
+      <a class="btn btn-o btn-lg cta-quote" href="../rent-analysis/">Get a free rent analysis <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
     </div>
   </div>
 </section><section class="sec"><div class="wrap"><div class="center" style="margin-bottom:46px"><div class="eyebrow c">Areas</div><h2 class="big">One office. Every one of these.</h2></div>
@@ -607,7 +620,7 @@ footer h4{color:#fff;font-family:var(--sans);font-size:12.5px;font-weight:800;le
     <h2 class="big">Let&rsquo;s find out what your property is worth.</h2>
     <p class="lead">A real number from a licensed local broker, and what we&rsquo;d fix first. Yours to keep whether or not you hire us.</p>
     <div style="margin-top:30px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
-      <a class="btn btn-p" href="../rent-analysis/">Start my free rent analysis</a>
+      <a class="btn btn-p btn-lg" href="../rent-analysis/">Get your free rent analysis today <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       <a class="btn btn-o" href="tel:+13614340040"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"/></svg> Call (361) 434-0040</a>
     </div>
   </div>
