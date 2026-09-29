@@ -75,9 +75,6 @@ LINKS = {
     "Urban Properties": "our-companies/",
     "Reviews": "reviews/",
     "Contact": "contact/",
-    "Information About Brokerage Services": "contact/#legal",
-    "Consumer Protection Notice": "contact/#legal",
-    "Privacy Policy": "contact/#legal",
 }
 TOP = {  # top-level nav anchors
     "#services": "property-management/", "#owners": "rent-analysis/", "#tenants": "tenants/",
@@ -105,9 +102,9 @@ def relink(block):
     block = block.replace('class="dlink" href="#reviews"', 'class="dlink" href="{R}reviews/"')
     block = block.replace('class="dlink" href="#contact"', 'class="dlink" href="{R}contact/"')
     block = block.replace('src="img/', 'src="{R}img/')
-    block = block.replace('<a href="#">Information About Brokerage Services</a>', '<a href="{R}contact/#legal">Information About Brokerage Services</a>')
-    block = block.replace('<a href="#">Consumer Protection Notice</a>', '<a href="{R}contact/#legal">Consumer Protection Notice</a>')
-    block = block.replace('<a href="#">Privacy Policy</a>', '<a href="{R}contact/#legal">Privacy Policy</a>')
+    block = block.replace('<a href="#">Information About Brokerage Services</a>', '<a href="{R}docs/TREC-Information-About-Brokerage-Services.pdf" target="_blank" rel="noopener">TREC Information About Brokerage Services</a>')
+    block = block.replace('<a href="#">Consumer Protection Notice</a>', '<a href="{R}docs/TREC-Consumer-Protection-Notice.pdf" target="_blank" rel="noopener">TREC Consumer Protection Notice</a>')
+    block = block.replace('<a href="#">Privacy Policy</a>', '<a href="{R}privacy-policy/">Privacy Policy</a><a href="{R}terms-of-use/">Terms of Use</a><a href="{R}accessibility/">Accessibility</a><a href="{R}fair-housing/">Fair Housing</a>')
     return block
 
 NAV = relink(NAV)
@@ -859,10 +856,68 @@ contact_body = (hero("Contact", "Call, text, or <em>come by.</em>",
   %s</div></section>''' % (TEL, JON_TEL, contact_form)
     + '''<section class="sec" id="legal" style="background:var(--paper-2);border-top:1px solid var(--line)"><div class="wrap" style="max-width:860px"><div class="eyebrow">Required Notices</div><h2 class="big">Brokerage information</h2>
   <div class="prose"><p>Corpus Christi Urban Properties, LLC is a licensed Texas real estate brokerage. Texas Real Estate Commission Broker License #9000508. Jon Roel, Designated Broker, License #0547401.</p>
-  <p>Texas law requires all real estate license holders to provide the <b>Information About Brokerage Services</b> notice to prospective clients, and the <b>Consumer Protection Notice</b> from the Texas Real Estate Commission. Both are available at the office and will be provided before any representation begins.</p>
-  <p><b>Privacy:</b> information submitted through this website is used only to respond to your request and is not sold or shared with third parties.</p>
+  <p><a href="{R}docs/TREC-Information-About-Brokerage-Services.pdf" target="_blank" rel="noopener"><b>Texas Real Estate Commission Information About Brokerage Services</b></a><br><a href="{R}docs/TREC-Consumer-Protection-Notice.pdf" target="_blank" rel="noopener"><b>Texas Real Estate Commission Consumer Protection Notice</b></a></p>
+  <p><a href="{R}privacy-policy/">Privacy Policy</a> &middot; <a href="{R}terms-of-use/">Terms of Use</a> &middot; <a href="{R}accessibility/">Accessibility</a> &middot; <a href="{R}fair-housing/">Fair Housing</a></p>
   <p>All information deemed reliable but not guaranteed. Equal Housing Opportunity.</p></div></div></section>''')
 page("contact/", "Contact", "Contact Urban Properties: 5117 Williams Dr, Corpus Christi, TX 78411. Call (361) 434-0040 or text (361) 510-2325.", contact_body, has_form=True)
+
+
+# ---- legal pages --------------------------------------------------------
+EFFECTIVE = "September 29, 2026"
+FIRM = "Corpus Christi Urban Properties, LLC"
+def legal_page(slug, title, lead, sections):
+    body = ('<section class="sec legal-hero"><div class="wrap" style="max-width:860px"><div class="crumb" style="color:var(--muted)"><a href="{R}" style="color:var(--pur)">Home</a><span>/</span>%s</div>'
+            '<h1 class="big" style="font-size:clamp(34px,4.4vw,52px);margin:14px 0 12px">%s</h1><p class="lead">%s</p><p style="color:var(--muted);font-size:14.5px">Effective %s</p></div></section>'
+            '<section class="sec" style="padding-top:0"><div class="wrap prose" style="max-width:860px">%s</div></section>') % (
+            title, title, lead, EFFECTIVE, "".join('<h3>%s</h3>%s' % (h, "".join('<p>%s</p>' % x for x in ps)) for h, ps in sections))
+    page(slug, title, lead, body, cta_kind=None)
+
+CONTACT_LINE = 'Corpus Christi Urban Properties, LLC, 5117 Williams Dr, Corpus Christi, TX 78411. Phone <a href="tel:+13614340040">(361) 434-0040</a>. Email <a href="mailto:info@urbanpropertiescc.com">info@urbanpropertiescc.com</a>.'
+
+legal_page("privacy-policy/", "Privacy Policy", "How Urban Properties collects, uses and protects the information you share through this website.", [
+  ("Who we are", ["This website is operated by %s (&ldquo;Urban Properties,&rdquo; &ldquo;we,&rdquo; &ldquo;us&rdquo;), a licensed Texas real estate brokerage (TREC Broker License #9000508). This policy covers information collected through this website and the forms on it." % FIRM]),
+  ("Information you give us", ["When you request a rent analysis, send a maintenance request, contact us or apply for a rental, we collect what you choose to enter: typically your name, phone number, email address, property address, details about your property or request, and any message you include.",
+     "Please do not send Social Security numbers, bank account numbers or other sensitive financial information through website forms. Rental applications and payment details are handled directly with our office."]),
+  ("Information collected automatically", ["Like most websites, our hosting and analytics tools may record basic technical information such as your browser type, device, approximate location derived from your IP address, the pages you visit and how you arrived at the site. We use this to keep the site working and to understand which pages are useful. Some of this relies on cookies or similar technologies, which you can block or delete in your browser settings.",
+     "Our contact page includes an embedded Google Map. Google may collect information when you interact with it, under Google&rsquo;s own privacy policy."]),
+  ("How we use your information", ["To respond to your request, including by phone, text message or email about that request; to provide the property management, leasing and brokerage services you ask for; to schedule and coordinate maintenance; to comply with our legal and licensing obligations; and to improve this website.",
+     "We do not sell your personal information, and we do not share it with third parties for their own marketing."]),
+  ("When we share it", ["With service providers that help us run this website and our business, such as website hosting and form processing, only as needed to perform those services. With our affiliated companies in the same office, such as CC Lease Locators, only when it is needed to handle a request you made, such as placing a tenant. With vendors and contractors we dispatch for a maintenance request, limited to what they need to do the work. And when required by law, regulation or subpoena, or to protect our rights or the safety of others."]),
+  ("How long we keep it", ["We keep inquiry information for as long as it is useful to respond to you and serve you, and longer where Texas law or TREC rules require us to keep transaction and management records."]),
+  ("Security", ["We use reasonable administrative and technical safeguards to protect the information we receive. No website or email transmission is completely secure, so please avoid sending sensitive information through forms or email."]),
+  ("Your choices", ["You can ask us what information we have from you through this website, ask us to correct it, or ask us to delete it where we are not required to keep it. You can also ask us to stop contacting you. Use the contact details below and we will respond within a reasonable time."]),
+  ("Children", ["This website is not directed to children under 13, and we do not knowingly collect information from them."]),
+  ("Links to other sites", ["This site links to other websites, including our affiliated companies and the Texas Real Estate Commission. Their privacy practices are their own."]),
+  ("Changes to this policy", ["We may update this policy from time to time. The effective date at the top shows when it last changed."]),
+  ("Contact", [CONTACT_LINE])])
+
+legal_page("terms-of-use/", "Terms of Use", "The terms that apply when you use the Urban Properties website.", [
+  ("Agreement", ["By using this website you agree to these terms. If you do not agree, please do not use the site. This website is operated by %s, a licensed Texas real estate brokerage (TREC Broker License #9000508; Jon Roel, Designated Broker, License #0547401)." % FIRM]),
+  ("Information on this site", ["Property, rental, pricing and market information on this site is provided for general information. It is deemed reliable but not guaranteed, may change without notice, and should be independently verified. Availability, rents, fees and terms are confirmed only in a written agreement with our office."]),
+  ("Rent analysis and estimates", ["A free rent analysis or any estimate of rent, value or cost is an opinion based on information available at the time. It is not an appraisal, a guarantee of rent or occupancy, or a promise of any result."]),
+  ("No agency relationship", ['Using this website, submitting a form or contacting us does not by itself create a broker-client, agency or property management relationship. That relationship begins only when you and our office sign a written agreement. Texas law requires us to provide the <a href="{R}docs/TREC-Information-About-Brokerage-Services.pdf" target="_blank" rel="noopener">Information About Brokerage Services</a> notice, which explains the types of representation available.']),
+  ("Not legal, tax or financial advice", ["Content on this site is not legal, tax, accounting or financial advice. Please consult a qualified professional about your specific situation."]),
+  ("Communications", ["When you give us your phone number or email through this site, you agree that we may contact you by phone, text message or email about your request. Message and data rates may apply. You can ask us to stop at any time."]),
+  ("Acceptable use", ["Please do not use this site to submit false information, interfere with its operation, attempt to access areas you are not authorized to access, copy it in bulk, or use it for any unlawful purpose."]),
+  ("Intellectual property", ["The text, photos, logos and design of this site belong to Urban Properties, its affiliated companies or their licensors, and may not be copied or reused without permission."]),
+  ("Links to other websites", ["We link to other websites for convenience. We are not responsible for their content, accuracy or practices."]),
+  ("Disclaimer and limitation of liability", ["This website is provided &ldquo;as is&rdquo; without warranties of any kind, to the fullest extent permitted by law. Urban Properties is not liable for any indirect, incidental or consequential damages arising from your use of the site or reliance on its content. Nothing here limits any rights you have under Texas law that cannot be limited by agreement."]),
+  ("Governing law", ["These terms are governed by the laws of the State of Texas. Any dispute relating to this website will be brought in the state or federal courts serving Nueces County, Texas."]),
+  ("Changes", ["We may update these terms from time to time. The effective date at the top shows when they last changed."]),
+  ("Contact", [CONTACT_LINE])])
+
+legal_page("accessibility/", "Accessibility Statement", "Urban Properties wants everyone to be able to use this website, including people who use assistive technology.", [
+  ("Our commitment", ["We aim to meet the Web Content Accessibility Guidelines (WCAG) 2.1, Level AA. We design and test this site to work with keyboards, screen readers and zoom, and we treat accessibility as ongoing work rather than a one-time project."]),
+  ("What we do", ["Text is set to meet color-contrast guidelines against its background. Images carry descriptive alternative text, and purely decorative images are hidden from screen readers. Pages use clear headings and landmarks so they can be navigated by structure. Forms have visible labels and plain-language error messages. The site works at any zoom level and on phones, tablets and desktops, and respects your device&rsquo;s reduced-motion setting."]),
+  ("Known limitations", ["Some documents we link to, such as forms published by the Texas Real Estate Commission, are provided by third parties and may not be fully accessible. The embedded map on our contact page is provided by Google. If you have trouble with any of these, contact us and we will provide the information another way."]),
+  ("Need help or found a problem?", ['If any part of this website is hard to use, or you need information in a different format, please call <a href="tel:+13614340040">(361) 434-0040</a> or email <a href="mailto:info@urbanpropertiescc.com">info@urbanpropertiescc.com</a>. Tell us the page and what went wrong, and we will help you directly and work to fix it. You can also visit our office at 5117 Williams Dr, Corpus Christi, TX 78411, Monday through Friday, 9:00am to 5:00pm.'])])
+
+legal_page("fair-housing/", "Fair Housing &amp; Equal Opportunity", "Urban Properties is committed to equal housing opportunity for every owner, tenant, applicant and buyer we work with.", [
+  ("Equal Housing Opportunity", ["We do business in accordance with the federal Fair Housing Act and the Texas Fair Housing Act. We do not discriminate against anyone because of race, color, religion, sex (including sexual orientation and gender identity), disability, familial status or national origin, in renting, selling, advertising, screening or managing property."]),
+  ("How we apply it", ["Every applicant for a property we manage is evaluated on the same written criteria for that property, and those criteria are provided with the application. We do not steer applicants toward or away from any property or neighborhood."]),
+  ("Reasonable accommodations and modifications", ['If you have a disability and need a reasonable accommodation in our rules, policies or services, or a reasonable modification to a home, you can ask at any time and in any form. Contact our office at <a href="tel:+13614340040">(361) 434-0040</a> and we will work with you promptly.']),
+  ("If you believe you have been treated unfairly", ["Please tell us so we can make it right: " + CONTACT_LINE,
+     'You can also contact the U.S. Department of Housing and Urban Development (HUD) Fair Housing hotline at 1-800-669-9777, or the Texas Workforce Commission Civil Rights Division at 1-888-452-4778. Complaints about a real estate license holder can be filed with the Texas Real Estate Commission; see the <a href="{R}docs/TREC-Consumer-Protection-Notice.pdf" target="_blank" rel="noopener">TREC Consumer Protection Notice</a>.'])])
 
 # ---------------------------------------------------------------- render subpages
 SIMPLE_FORM_JS = """
@@ -920,7 +975,7 @@ def finalize(doc):
 count = 0
 for pg in PAGES:
     R = "../"
-    body = pg["body"] + cta(pg["cta"])
+    body = pg["body"] + (cta(pg["cta"]) if pg["cta"] else "")
     doc = (head_for(pg["title"], pg["desc"], pg["slug"]) + "</head>\n<body>" + TOPBAR + NAV + body + FOOTER
            + "<script>" + COMMON_JS + (FORM_JS + SIMPLE_FORM_JS if pg["form"] else "") + "</script>\n</body>\n</html>\n")
     doc = doc.replace("{R}", R)
@@ -960,7 +1015,7 @@ about_home = '''<!-- ============ ABOUT ============ -->
 home = home[:a] + about_home + home[b:]
 # Service area -> photo band
 home = home.replace('<section class="sec" id="areas" style="background:var(--paper-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">\n  <div class="wrap g2">',
-                    '<section class="sec photo-band" id="areas">\n  <div class="pb-bg">%s</div>\n  <div class="wrap g2">' % pic("prop-yard.jpg", ""))
+                    '<section class="sec photo-band" id="areas">\n  <div class="pb-bg">%s</div>\n  <div class="wrap g2">' % pic("aerial-lot.jpg", "Aerial view of a Coastal Bend shoreline"))
 home = home.replace('<span class="town">Corpus Christi</span><span class="town">Padre Island</span>\n        <span class="town">Calallen</span><span class="town">Robstown</span>\n        <span class="town">Surrounding Areas</span>',
                     "".join('<a href="{R}%s" style="text-decoration:none"><span class="town">%s</span></a>' % (p, t) for p, t in TOWNS + [("service-areas/", "Surrounding Areas")]))
 home = home.replace('<p style="margin-top:26px;font-size:15px;color:var(--muted)">Own something just outside the list?', '<p style="margin-top:26px;font-size:15px;color:#C9C2CF">Own something just outside the list?')
@@ -972,7 +1027,7 @@ home = home.replace('<input type="hidden" name="form-name" value="owner-inquiry"
 home = home.replace('<a class="btn btn-g" href="#" style="margin-top:16px">Download the application</a>', '<a class="btn btn-g" href="{R}apply/" style="margin-top:16px">How to apply</a>')
 home = home.replace('<a class="btn btn-g" href="sms:+13615102325" style="margin-top:16px">Text a repair request</a>', '<a class="btn btn-g" href="{R}maintenance-request/" style="margin-top:16px">Report a repair</a>')
 # scripts: common + wizard
-sa = home.index("<script>", home.index("demo-tag")); sb = home.index("</script>", sa)
+sa = home.index("<script>", home.index('id="callbar"')); sb = home.index("</script>", sa)
 home = home[:sa] + "<script>" + COMMON_JS + FORM_JS + "</script>" + home[sb + len("</script>"):]
 home = home.replace("{R}", "")
 io.open("index.html", "w", encoding="utf-8").write(finalize(home))

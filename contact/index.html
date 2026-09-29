@@ -370,7 +370,7 @@ footer h4{color:#fff;font-family:var(--sans);font-size:12.5px;font-weight:800;le
   font-size:11.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#BDB4C8;white-space:nowrap}
 .fbot{border-top:1px solid rgba(255,255,255,.1);margin-top:56px;padding:26px 0 34px;
   display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;font-size:13px;color:#7E7689}
-.fbot a{text-decoration:underline;text-underline-offset:3px}
+.fbot a{text-decoration:underline;text-underline-offset:3px;font-size:14px}
 /* full width so it reads as one legal line under the whole grid, not a tail under column one */
 .legal{font-size:12.5px;color:#6E6779;line-height:1.7;margin-top:48px;padding-top:22px;
   border-top:1px solid rgba(255,255,255,.08);max-width:none}
@@ -388,10 +388,7 @@ footer h4{color:#fff;font-family:var(--sans);font-size:12.5px;font-weight:800;le
 .callbar .c2{background:var(--ink);color:#fff}
 @media(max-width:860px){.callbar.show{display:flex}body{padding-bottom:0}}
 
-.demo-tag{position:fixed;left:14px;bottom:76px;z-index:90;background:rgba(23,20,27,.9);color:#DCA8EA;
-  font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:7px 13px;
-  border-radius:99px;backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.14)}
-@media(min-width:861px){.demo-tag{bottom:14px}}
+.zm{margin-left:10px;white-space:nowrap}.zm a{color:#B9B1C4;text-decoration:underline;text-underline-offset:3px}.zm a:hover{color:#fff}
 
 /* ---- page hero + photo bands (added by build.py) ---- */
 .phero{position:relative;min-height:clamp(380px,48vh,540px);display:flex;align-items:flex-end;background:var(--ink);overflow:hidden}
@@ -648,8 +645,8 @@ footer h4{color:#fff;font-family:var(--sans);font-size:12.5px;font-weight:800;le
   <button type="button" class="btn btn-p" id="c-send">Send</button>
 </form></div></section><section class="sec" id="legal" style="background:var(--paper-2);border-top:1px solid var(--line)"><div class="wrap" style="max-width:860px"><div class="eyebrow">Required Notices</div><h2 class="big">Brokerage information</h2>
   <div class="prose"><p>Corpus Christi Urban Properties, LLC is a licensed Texas real estate brokerage. Texas Real Estate Commission Broker License #9000508. Jon Roel, Designated Broker, License #0547401.</p>
-  <p>Texas law requires all real estate license holders to provide the <b>Information About Brokerage Services</b> notice to prospective clients, and the <b>Consumer Protection Notice</b> from the Texas Real Estate Commission. Both are available at the office and will be provided before any representation begins.</p>
-  <p><b>Privacy:</b> information submitted through this website is used only to respond to your request and is not sold or shared with third parties.</p>
+  <p><a href="../docs/TREC-Information-About-Brokerage-Services.pdf" target="_blank" rel="noopener"><b>Texas Real Estate Commission Information About Brokerage Services</b></a><br><a href="../docs/TREC-Consumer-Protection-Notice.pdf" target="_blank" rel="noopener"><b>Texas Real Estate Commission Consumer Protection Notice</b></a></p>
+  <p><a href="../privacy-policy/">Privacy Policy</a> &middot; <a href="../terms-of-use/">Terms of Use</a> &middot; <a href="../accessibility/">Accessibility</a> &middot; <a href="../fair-housing/">Fair Housing</a></p>
   <p>All information deemed reliable but not guaranteed. Equal Housing Opportunity.</p></div></div></section><section class="sec photo-band cta-band">
   <div class="pb-bg"><picture><source srcset="../img/hero-1200.webp?v=b2ccb596 1200w, ../img/hero.webp?v=b342c3dd 2400w" sizes="(max-width:700px) 200vw, 100vw" type="image/webp"><img src="../img/hero.jpg?v=09c97dfc" srcset="../img/hero-1200.jpg?v=211c3069 1200w, ../img/hero.jpg?v=09c97dfc 2400w" sizes="(max-width:700px) 200vw, 100vw" alt="" loading="lazy"></picture></div>
   <div class="wrap">
@@ -719,11 +716,14 @@ footer h4{color:#fff;font-family:var(--sans);font-size:12.5px;font-weight:800;le
       All information deemed reliable but not guaranteed. Equal Housing Opportunity.
     </div>
     <div class="fbot">
-      <div>&copy; <span id="yr">2026</span> Corpus Christi Urban Properties, LLC. All rights reserved.</div>
+      <div>&copy; <span id="yr">2026</span> Corpus Christi Urban Properties, LLC. All rights reserved. <span class="zm">Site by <a href="https://zonkelmedia.com" target="_blank" rel="noopener">Zonkel Media</a></span></div>
       <div style="display:flex;gap:18px;flex-wrap:wrap">
-        <a href="../contact/#legal">Information About Brokerage Services</a>
-        <a href="../contact/#legal">Consumer Protection Notice</a>
-        <a href="../contact/#legal">Privacy Policy</a>
+        <a href="../docs/TREC-Information-About-Brokerage-Services.pdf" target="_blank" rel="noopener">Texas Real Estate Commission Information About Brokerage Services</a>
+        <a href="../docs/TREC-Consumer-Protection-Notice.pdf" target="_blank" rel="noopener">Texas Real Estate Commission Consumer Protection Notice</a>
+        <a href="../privacy-policy/">Privacy Policy</a>
+        <a href="../terms-of-use/">Terms of Use</a>
+        <a href="../accessibility/">Accessibility</a>
+        <a href="../fair-housing/">Fair Housing</a>
       </div>
     </div>
   </div>
@@ -739,7 +739,6 @@ footer h4{color:#fff;font-family:var(--sans);font-size:12.5px;font-weight:800;le
     Free Rent Analysis</a>
 </div>
 
-<div class="demo-tag">Demo — Zonkel Media</div>
 
 <script>
 /* ---- tall text beside a photo -> .tall (see CSS) */
