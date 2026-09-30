@@ -155,18 +155,25 @@ EXTRA_CSS = """
 .photo-band .av:not(.av-lg){background:rgba(226,180,238,.16);color:#E2B4EE}
 @media(max-width:560px){.facts2,.agents{grid-template-columns:1fr}}
 /* home about band: widened team photo (team-wide = real photo + extended office wing on the left), people on the right */
-/* phones: the whole team photo as a band on top (the widened version is a desktop background) */
-@media(max-width:860px){.about-band{padding-top:0}
+/* phones, tablets, small laptops: the whole team photo as a band on top, text below (below 1400 the
+   text column is too wide for the group to fit beside it at full band height) */
+@media(max-width:1399px){.about-band{padding-top:0}
   .about-band .pb-bg{position:relative;inset:auto;aspect-ratio:9/5;margin-bottom:34px}
   .about-band .pb-bg img{object-position:100% 45%}
   .about-band .pb-bg::after{background:linear-gradient(180deg,rgba(23,20,27,0) 60%,rgba(23,20,27,.55) 85%,var(--ink) 100%)}}
+@media(min-width:861px) and (max-width:1399px){.about-band .wrap.g2{grid-template-columns:1fr}.about-band .wrap.g2>div:empty{display:none}}
+@media(min-width:981px) and (max-width:1399px){.about-band .facts2{grid-template-columns:repeat(4,1fr)}}
 /* Where We Work: lighter scrim so the coast shows through */
 #areas .pb-bg::after{background:linear-gradient(90deg,rgba(23,20,27,.88) 0%,rgba(23,20,27,.7) 42%,rgba(23,20,27,.34) 100%)}
 @media(max-width:860px){#areas .pb-bg::after{background:linear-gradient(180deg,rgba(23,20,27,.8) 0%,rgba(23,20,27,.66) 45%,rgba(23,20,27,.5) 100%)}}
 #areas .wrap{text-shadow:0 1px 14px rgba(0,0,0,.35)}
-@media(min-width:861px){.about-band .pb-bg{background:var(--ink)}
-  .about-band .pb-bg img{position:absolute;left:0;right:0;bottom:0;top:auto;width:100%;height:auto;min-height:72%;object-fit:cover;object-position:100% 60%;-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 38%);mask-image:linear-gradient(180deg,transparent 0,#000 38%)}
-  .about-band .pb-bg::after{background:linear-gradient(90deg,rgba(23,20,27,.96) 0%,rgba(23,20,27,.86) 36%,rgba(23,20,27,.3) 54%,rgba(23,20,27,.08) 100%)}}
+/* wide screens: photo at full band height, roofline to feet, no top fade. The group is pinned to the right
+   edge: 466 of the photo's 1075px height is building to the right of the group, so right = -43.3cqh */
+@media(min-width:1400px){.about-band{padding:76px 0}
+  .about-band .pb-bg{background:var(--ink);container-type:size}
+  .about-band .pb-bg img{position:absolute;top:0;bottom:auto;left:auto;right:calc(8px - 43.3cqh);height:100%;width:auto;max-width:none;
+    -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 18%);mask-image:linear-gradient(90deg,transparent 0,#000 18%)}
+  .about-band .pb-bg::after{background:linear-gradient(90deg,rgba(23,20,27,.96) 0%,rgba(23,20,27,.9) calc(50% - 300px),rgba(23,20,27,.5) calc(50% - 90px),rgba(23,20,27,.1) calc(50% + 80px),rgba(23,20,27,.05) 100%)}}
 .facts{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;margin-top:32px}
 .facts div>div{font-family:var(--serif);font-weight:700;font-size:19px;color:#fff}.facts p{font-size:14.5px;color:#C9C2CF;margin:4px 0 0}
 .prose p{font-size:17px;color:var(--body);max-width:68ch;margin:0 0 18px;line-height:1.7}
@@ -278,9 +285,9 @@ def steps4(eyebrow, h2, items):
 
 FEES = '''<div class="fee" id="fees" style="margin-top:0">
   <div class="fee-h">What we charge</div>
-  <div class="fee-row big"><b>One month&rsquo;s rent</b><span>to find, screen and place your tenant. Collected out of their first month&rsquo;s rent, not from you.</span></div>
+  <div class="fee-row big"><b>One month&rsquo;s rent</b><span>to find, screen and place your tenant. <strong>Collected out of their first month&rsquo;s rent, not from you.</strong></span></div>
   <div class="fee-row big"><b>10% of rent</b><span>each month for ongoing management. Rent comes in, your share is deposited, the rest is handled.</span></div>
-  <div class="fee-row big"><b>Either one on its own</b><span>Already have a tenant? Just the management. Want to manage it yourself? Just the placement.</span></div>
+  <div class="fee-row big"><b>Either one on its own</b><span>Already have a tenant? <strong>Just&nbsp;the&nbsp;management.</strong> Want to manage it yourself? <strong>Just&nbsp;the&nbsp;placement.</strong></span></div>
 </div>'''
 
 SERVICE_LIST = [
@@ -615,18 +622,43 @@ btr_body = (hero("For Investors", "From dirt <em>to deposit.</em>",
 page("build-to-rent/", "Build-to-Rent for Investors", "Build-to-rent in Corpus Christi: Manhattan Builders builds it, CC Lease Locators fills it, Urban Properties manages it. One office.", btr_body)
 
 # ---- tenants -----------------------------------------------------------
+ten_form = '''<form class="form-plain" name="tenant-request" method="POST" data-netlify="true" netlify-honeypot="company-website" id="treq">
+  <input type="hidden" name="form-name" value="tenant-request">
+  <p class="hp"><label>Leave this empty: <input name="company-website"></label></p>
+  <div class="fld"><label>What&rsquo;s it about?</label><div class="tchips">
+    <label><input type="radio" name="topic" value="Rent or payment" checked><span>Paying rent</span></label>
+    <label><input type="radio" name="topic" value="Applying for a rental"><span>Applying</span></label>
+    <label><input type="radio" name="topic" value="Lease, renewal or move-out"><span>My lease</span></label>
+    <label><input type="radio" name="topic" value="Something else"><span>Something else</span></label></div></div>
+  <div class="fld"><label for="t-name">Your name</label><input id="t-name" name="name" autocomplete="name" placeholder="First and last"></div>
+  <div class="fld"><label for="t-phone">Phone</label><input id="t-phone" name="phone" inputmode="tel" autocomplete="tel" placeholder="(361) 555-0123"></div>
+  <div class="fld"><label for="t-addr">Property address and unit, if you rent from us</label><input id="t-addr" name="property_address" placeholder="e.g. 1234 Example St, Unit B"></div>
+  <div class="fld"><label for="t-msg">Your question</label><textarea id="t-msg" name="message" rows="4" placeholder="What do you need from the office?"></textarea></div>
+  <div class="note-box" style="margin-bottom:18px"><b>Something broken?</b> Use the <a href="{R}maintenance-request/" style="color:var(--pur);font-weight:700">maintenance request</a> so it goes straight to repairs.</div>
+  <button type="button" class="btn btn-p" id="t-send">Send to the office</button>
+</form>'''
+TEN_CSS = """<style>
+.tchips{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.tchips label{margin:0;position:relative;display:flex}.tchips input{position:absolute;left:0;top:0;width:1px;height:1px;padding:0;margin:0;border:0;opacity:0;pointer-events:none}
+.tchips span{flex:1;display:flex;align-items:center;justify-content:center;text-align:center;padding:12px 10px;border:1.5px solid var(--line);border-radius:11px;font-size:14.5px;font-weight:600;color:var(--ink-3);cursor:pointer;transition:.15s}
+.tchips input:checked+span{border-color:var(--pur);background:var(--pur-wash);color:var(--pur)}
+.tchips input:focus-visible+span{outline:3px solid var(--pur);outline-offset:2px}
+</style>"""
 ten_hub = (hero("For Tenants", "Renting from us is <em>simple.</em>",
-                "Apply, pay rent, report a repair. Everything you need is here, and a real person answers the office.",
+                "Apply, pay rent or report a repair: pick what you need below. Anything else, send the office a message.",
                 "int-living.jpg", "<span>Tenants</span>", btn2='<a class="btn btn-o" href="%s">Text (361) 510-2325</a>' % JON_SMS)
-    + '''<section class="sec"><div class="wrap"><div class="g3">
-  <a class="card" href="{R}available-rentals/" style="text-decoration:none;display:block"><h3>Available Rentals</h3><p>Our listings run on Zillow, Realtor.com and every MLS site. Here&rsquo;s how to find them.</p></a>
-  <a class="card" href="{R}apply/" style="text-decoration:none;display:block"><h3>Apply for a Rental</h3><p>$50 application. Stable income and rental history preferred. Download the application here.</p></a>
-  <a class="card" href="{R}pay-rent/" style="text-decoration:none;display:block"><h3>Pay Rent</h3><p>Drop off at the office, or Cash App, Avail, Venmo and PayPal.</p></a>
-  <a class="card" href="{R}maintenance-request/" style="text-decoration:none;display:block"><h3>Maintenance Request</h3><p>Text or call the office, or send it through the form with a photo.</p></a>
-  <a class="card" href="{R}tenant-faqs/" style="text-decoration:none;display:block"><h3>Tenant FAQs</h3><p>Due dates, late fees, deposits, moving out, pets. The answers.</p></a>
-  <a class="card" href="{R}contact/" style="text-decoration:none;display:block"><h3>Contact the Office</h3><p>5117 Williams Dr, Corpus Christi. Mon&ndash;Fri, 9 to 5.</p></a>
-</div></div></section>''')
-page("tenants/", "For Tenants", "Urban Properties tenants: apply, pay rent, request maintenance and find available rentals in Corpus Christi.", ten_hub, cta_kind="tenant")
+    + TEN_CSS
+    + '''<section class="sec"><div class="wrap">
+  <div class="center" style="margin-bottom:46px"><div class="eyebrow c">What Do You Need?</div><h2 class="big">Three things, one office.</h2></div>
+  <div class="g3">%s%s%s</div></div></section>''' % (
+      '<div class="card tc"><div class="ico"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 15h6"/><path d="M9 11h6"/></svg></div><h3>Apply for a Rental</h3><p>$50 application fee. Stable income and rental history preferred. Here&rsquo;s how to apply.</p><a class="btn btn-p" href="{R}apply/" style="margin-top:18px">How to apply <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>', '<div class="card tc"><div class="ico"><svg viewBox="0 0 24 24"><rect width="20" height="12" x="2" y="6" rx="2"/><circle cx="12" cy="12" r="2"/><path d="M6 12h.01M18 12h.01"/></svg></div><h3>Pay Rent</h3><p>Drop off a check or cash at 5117 Williams Dr, Mon&ndash;Fri 9 to 5, or pay by Cash App, Avail, Venmo or PayPal.</p><a class="btn btn-p" href="{R}pay-rent/" style="margin-top:18px">How to pay rent <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>', '<div class="card tc"><div class="ico"><svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.106-3.105c.32-.322.863-.22.983.218a6 6 0 0 1-8.259 7.057l-7.91 7.91a1 1 0 0 1-2.999-3l7.91-7.91a6 6 0 0 1 7.057-8.259c.438.12.54.662.219.984z"/></svg></div><h3>Report a Repair</h3><p>Text (361) 510-2325 with your address and a photo, or send the request online. Emergencies: call.</p><a class="btn btn-p" href="{R}maintenance-request/" style="margin-top:18px">Report a repair <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>')
+    + '''<section class="sec" id="message" style="background:var(--paper-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)"><div class="wrap g2" style="align-items:start">
+  <div><div class="eyebrow">Everything Else</div><h2 class="big">Send the office a message.</h2>
+  <p class="lead">Questions about rent, your lease, renewing or moving out. A real person at the office reads it and gets back to you.</p>
+  <p style="color:var(--muted);margin-top:14px">Faster by phone? Call the office at <a href="%s" style="color:var(--pur);font-weight:700;white-space:nowrap">(361) 434-0040</a>, or text <a href="%s" style="color:var(--pur);font-weight:700;white-space:nowrap">(361) 510-2325</a>.</p>
+  <div class="pill-list" style="margin-top:26px"><a href="{R}available-rentals/" style="text-decoration:none"><span>Available Rentals</span></a><a href="{R}tenant-faqs/" style="text-decoration:none"><span>Tenant FAQs</span></a><a href="{R}contact/" style="text-decoration:none"><span>Office hours &amp; address</span></a></div></div>
+  %s</div></section>''' % (TEL, JON_SMS, ten_form))
+page("tenants/", "For Tenants", "Urban Properties tenants: apply, pay rent, request maintenance and find available rentals in Corpus Christi.", ten_hub, cta_kind="tenant", has_form=True)
 
 avail_body = (hero("Available Rentals", "Our listings are <em>everywhere</em> you already look.",
                    "Every Urban Properties rental goes on the MLS and syndicates to Zillow, Realtor.com, Trulia, Redfin and Homes.com.",
@@ -700,6 +732,9 @@ maint_body = (hero("Maintenance", "Something broke? <em>Tell us.</em>",
         ("Do I have to be home?", "Not if you tell us it&rsquo;s OK to enter. If you have pets or would rather be there, say so and we&rsquo;ll schedule around you."),
         ("Who pays for the repair?", "Normal wear and repairs are on the owner. Damage caused by the tenant is charged back per the lease."),
         ("What counts as an emergency?", "Anything that&rsquo;s a safety issue or is actively damaging the property: water where it shouldn&rsquo;t be, no power, no working toilet, no A/C in extreme heat.")]))
+# repairs go to one number: Jon's onboarding form (9/24) says maintenance = text or call (361) 510-2325
+maint_body = maint_body.replace('<a class="btn btn-p btn-lg cta-call" href="%s">%s Call %s</a>' % (TEL, CALL_SVG, PHONE),
+                                '<a class="btn btn-p btn-lg cta-call" href="%s">%s Call (361) 510-2325</a>' % (JON_TEL, CALL_SVG), 1)
 page("maintenance-request/", "Maintenance Request", "Report a repair to Urban Properties: text or call (361) 510-2325, or send a maintenance request online.", maint_body, cta_kind="tenant", has_form=True)
 
 faq_body = (hero("Tenant FAQs", "The answers, <em>before you have to ask.</em>",
@@ -834,7 +869,7 @@ page("our-companies/", "Our Companies", "Manhattan Builders builds it, CC Lease 
 STAR = '<svg viewBox="0 0 24 24"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg>'
 def review(text, name, ini):
     return '<div class="rev"><div class="stars">%s</div><p>%s</p><div class="who"><div class="av">%s</div><div><div class="nm">%s</div><div class="src">Google Review</div></div></div></div>' % (STAR * 5, text, ini, name)
-rev_body = (hero("Reviews", "Straight from <em>Google.</em>",
+rev_body = (hero("Reviews", "Straight from <em>real clients.</em>",
                  "What owners and clients say about working with Jon and the office. Every one of these is a real Google review.",
                  "team.jpg", "<span>Reviews</span>")
     + '''<section class="sec"><div class="wrap"><div class="revs">%s%s</div>
@@ -881,21 +916,16 @@ def _gsec(key, eyebrow, h2, lead, bg):
             % (key, ' style="background:var(--paper-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)"' if bg else "", eyebrow, h2, lead, figs))
 GAL_CSS = """<style>
 .gal-jump{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px}
+@media(max-width:860px){.gal-hero .wrap{text-align:center}.gal-hero .crumb{justify-content:center}.gal-hero .lead{margin-left:auto;margin-right:auto}
+  .gal-jump{flex-direction:column;align-items:stretch;max-width:400px;margin:22px auto 0}.gal-jump .btn{width:100%;font-size:16px;padding:16px 22px}}
 .fg{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
 .fg-i{position:relative;display:block;border-radius:12px;overflow:hidden;background:var(--paper-2);aspect-ratio:4/3}
 .fg-i img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}.fg-i:hover img{transform:scale(1.05)}
 .fg-i span{position:absolute;left:0;right:0;bottom:0;padding:24px 12px 10px;color:#fff;font-size:14px;font-weight:600;background:linear-gradient(transparent,rgba(23,20,27,.78))}
 @media(max-width:860px){.fg{grid-template-columns:repeat(2,1fr);gap:10px}.fg-i span{font-size:12.5px;padding:18px 9px 8px}}
 </style>"""
-GAL_JS = """<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Photo viewer"><button class="x" aria-label="Close">&times;</button><button class="pv" aria-label="Previous photo">&lsaquo;</button><img alt=""><p></p><button class="nx" aria-label="Next photo">&rsaquo;</button></div>
-<script>(function(){var L=[].slice.call(document.querySelectorAll('.fg-i')),b=document.getElementById('lb'),im=b.querySelector('img'),cp=b.querySelector('p'),i=0;
-function show(n){i=(n+L.length)%L.length;im.src=L[i].href;im.alt=L[i].dataset.cap;cp.textContent=L[i].dataset.cap;b.classList.add('on');document.body.style.overflow='hidden'}
-function hide(){b.classList.remove('on');document.body.style.overflow='';L[i].focus()}
-L.forEach(function(a,n){a.addEventListener('click',function(e){e.preventDefault();show(n)})});
-b.querySelector('.x').onclick=hide;b.querySelector('.pv').onclick=function(){show(i-1)};b.querySelector('.nx').onclick=function(){show(i+1)};
-b.addEventListener('click',function(e){if(e.target===b)hide()});
-document.addEventListener('keydown',function(e){if(!b.classList.contains('on'))return;if(e.key==='Escape')hide();if(e.key==='ArrowLeft')show(i-1);if(e.key==='ArrowRight')show(i+1)})})();</script>"""
-gal_body = (GAL_CSS + '<section class="sec legal-hero" style="padding-bottom:40px"><div class="wrap"><div class="crumb" style="color:var(--muted)"><a href="{R}" style="color:var(--pur)">Home</a><span>/</span>Photo Gallery</div>'
+GAL_JS = ""  # the shared photo viewer in src/home.html (COMMON_JS) drives .fg-i too
+gal_body = (GAL_CSS + '<section class="sec legal-hero gal-hero" style="padding-bottom:40px"><div class="wrap"><div class="crumb" style="color:var(--muted)"><a href="{R}" style="color:var(--pur)">Home</a><span>/</span>Photo Gallery</div>'
     '<h1 class="big" style="font-size:clamp(36px,4.8vw,60px);margin:14px 0 12px">Photo gallery</h1><p class="lead" style="max-width:62ch">Properties we manage, homes our sister company Manhattan Builders has on the way up, and finished work. Tap any photo to see it full size.</p>'
     '<div class="gal-jump"><a class="btn btn-g" href="#managed">Properties we manage</a><a class="btn btn-g" href="#progress">Builds in progress</a><a class="btn btn-g" href="#finished">Finished homes</a></div></div></section>'
     + _gsec("managed", "Urban Properties", "Properties we manage", "Duplexes, townhomes and the units inside them, managed by our office.", True)
@@ -964,7 +994,7 @@ legal_page("fair-housing/", "Fair Housing &amp; Equal Opportunity", "Urban Prope
 # ---------------------------------------------------------------- render subpages
 SIMPLE_FORM_JS = """
 /* ---- simple forms (contact / maintenance): demo alert ---- */
-['c-send','m-send'].forEach(function(id){
+['c-send','m-send','t-send'].forEach(function(id){
   var b = document.getElementById(id); if(!b) return;
   b.onclick = function(){
     var f = b.closest('form'); var ok = true;
@@ -1020,6 +1050,9 @@ for pg in PAGES:
     body = pg["body"] + (cta(pg["cta"]) if pg["cta"] else "")
     doc = (head_for(pg["title"], pg["desc"], pg["slug"]) + "</head>\n<body>" + TOPBAR + NAV + body + FOOTER
            + "<script>" + COMMON_JS + (FORM_JS + SIMPLE_FORM_JS if pg["form"] else "") + "</script>\n</body>\n</html>\n")
+    if pg["cta"] == "tenant":   # tenant pages: the sticky bar's second button texts the office instead of selling a rent analysis
+        doc = re.sub(r'<a class="c2" href="\{R\}rent-analysis/">\s*<svg.*?</svg>\s*Free Rent Analysis</a>',
+                     '<a class="c2" href="%s"><svg viewBox="0 0 24 24"><path d="M22 17a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 21.286V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2z"/></svg> Text the Office</a>' % JON_SMS, doc, flags=re.S)
     doc = doc.replace("{R}", R)
     d = os.path.join(ROOT, pg["slug"].rstrip("/"))
     os.makedirs(d, exist_ok=True)

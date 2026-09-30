@@ -70,9 +70,12 @@ h2.big{font-size:clamp(33px,4.6vw,52px)}
 /* ---------- buttons ---------- */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;
   font-family:var(--sans);font-weight:700;font-size:15.5px;letter-spacing:.01em;
-  padding:16px 28px;border-radius:999px;border:1.5px solid transparent;cursor:pointer;background-origin:border-box;
+  padding:16px 28px;border-radius:999px;border:1.5px solid transparent;cursor:pointer;background-origin:border-box!important;
   transition:transform .16s ease, box-shadow .16s ease, background .16s ease, color .16s ease;white-space:nowrap}
 .btn svg{width:18px;height:18px;flex:none}
+/* gradient fills must start at the border edge, or the gradient tiles into the transparent border and leaves a light 1px line
+   along the bottom. !important because every `background:` shorthand (.btn-p, hovers) silently resets origin to padding-box */
+.burger,.step::before,.co,.fact .fi,.svc-body .ico,.av-lg,.callbar a,.opt{background-origin:border-box!important}
 .btn-p{background:linear-gradient(180deg,#9140a5 0%,#782888 55%,#681f77 100%);color:#fff;
   box-shadow:inset 0 1px 0 rgba(255,255,255,.28),0 1px 2px rgba(0,0,0,.18),0 14px 30px -12px rgba(120,40,136,.8)}
 .btn-p:hover{background:linear-gradient(180deg,#9c49b0 0%,#842f95 55%,#72237f 100%);transform:translateY(-2px);
@@ -310,7 +313,7 @@ body.dopen .nav{z-index:110}
 .fee-row{display:grid;grid-template-columns:170px 1fr;gap:14px;padding:10px 0;border-top:1px solid var(--line);align-items:baseline}
 .fee-row:first-of-type{border-top:0}
 .fee-row b{font-family:var(--serif);font-size:20px;color:var(--ink);font-weight:700}
-.fee-row span{font-size:14.5px;color:var(--body);line-height:1.5}
+.fee-row span{font-size:14.5px;color:var(--body);line-height:1.5}.fee-row span strong{color:var(--ink);font-weight:700}
 @media(max-width:560px){.fee-row{grid-template-columns:1fr;gap:4px}}
 .team{margin-top:28px;padding-top:22px;border-top:1px solid var(--line)}
 .team-h{font-size:11.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--pur);margin-bottom:10px}
@@ -357,7 +360,16 @@ body.dopen .nav{z-index:110}
 .lb button{position:absolute;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;width:48px;height:48px;border-radius:50%;font-size:22px;cursor:pointer;display:grid;place-items:center}
 .lb button:hover{background:rgba(255,255,255,.2)}.lb .x{top:18px;right:18px}.lb .pv{left:18px;top:50%}.lb .nx{right:18px;top:50%}
 @media(max-width:860px){.lb .pv,.lb .nx{top:auto;bottom:26px}.lb .pv{left:calc(50% - 60px)}.lb .nx{right:calc(50% - 60px)}.lb p{margin-bottom:70px}}
-@media(max-width:860px){.gal{grid-template-columns:repeat(2,1fr);grid-auto-rows:180px}}
+@media(max-width:860px){
+  .gal{display:flex;position:relative;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;margin:0 -24px;padding:0 24px 4px;
+    scroll-padding:0 24px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .gal::-webkit-scrollbar{display:none}
+  .gal figure,.gal .w2,.gal .h2{flex:0 0 84%;aspect-ratio:4/3;scroll-snap-align:center;grid-column:auto;grid-row:auto}
+}
+.gal-dots{display:none}
+@media(max-width:860px){.gal-dots{display:flex;justify-content:center;gap:7px;margin-top:16px}
+  .gal-dots i{width:7px;height:7px;border-radius:4px;background:#D9D2DE;transition:width .25s ease,background .25s ease}
+  .gal-dots i.on{width:22px;background:var(--pur)}}
 
 /* ---------- reviews ---------- */
 .revs{display:grid;grid-template-columns:repeat(2,1fr);gap:26px;max-width:940px;margin:0 auto}
@@ -398,6 +410,7 @@ body.dopen .nav{z-index:110}
 .opt.sel{border-color:var(--pur);background:var(--pur-wash);color:var(--pur)}
 .opt .dot{width:20px;height:20px;border:2px solid var(--line);border-radius:50%;flex:none;position:relative}
 .opt.sel .dot{border-color:var(--pur)}
+.opt-link{text-decoration:none}.opt-link .opt-arr{margin-left:auto;color:var(--pur);font-weight:800}
 .opt.sel .dot::after{content:"";position:absolute;inset:3px;border-radius:50%;background:var(--pur)}
 .fld{margin-bottom:16px}
 .fld label{display:block;font-size:13.5px;font-weight:700;color:var(--ink);margin-bottom:7px}
@@ -422,7 +435,11 @@ footer h4{color:#fff;font-family:var(--sans);font-size:12.5px;font-weight:800;le
 .fgrid ul{list-style:none;margin:0;padding:0;display:grid;gap:11px}
 .fgrid a:hover{color:#fff}
 .flogo{height:74px;width:auto;margin-bottom:20px}
-/* text chips for the demo; the real Equal Housing / REALTOR® marks drop in at build */
+/* credentials as an editorial list (hairline rules, small caps). The official HUD Equal Housing logo can sit beside it at launch */
+.fcreds{list-style:none;margin:24px 0 0;padding:0;max-width:300px;border-top:1px solid rgba(255,255,255,.12)}
+.fcreds li{padding:10px 0;border-bottom:1px solid rgba(255,255,255,.12);font-size:11.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#BDB4C8}
+.fgrid .fcreds{display:block;justify-items:stretch}
+@media(max-width:860px){.fgrid .fcreds{margin-left:auto;margin-right:auto;width:100%;align-self:center}}
 .fbadges{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:22px}
 .fbadges span{border:1px solid rgba(255,255,255,.2);border-radius:999px;padding:6px 13px;
   font-size:11.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#BDB4C8;white-space:nowrap}
@@ -442,6 +459,8 @@ footer h4{color:#fff;font-family:var(--sans);font-size:12.5px;font-weight:800;le
   .fbot{flex-direction:column;align-items:center;text-align:center}
   .fbot>div:last-child{justify-content:center;gap:12px 18px!important}
   .zm{display:block;margin:6px 0 0}
+  .fbot .tl2{display:block}
+  .fbot a.trec{flex-basis:100%}
 }
 
 /* ---------- sticky call bar ---------- */
@@ -466,8 +485,8 @@ footer h4{color:#fff;font-family:var(--sans);font-size:12.5px;font-weight:800;le
   <div class="wrap">
     <div class="tb-l">5117 Williams Dr, Corpus Christi, TX 78411 &nbsp;·&nbsp; Mon–Fri 9–5</div>
     <div class="tb-r">
-      <a href="#owners">Owner Inquiries</a>
-      <a href="#contact">Tenant Requests</a>
+      <a href="{R}#owners">Owner Inquiries</a>
+      <a href="{R}tenants/">Tenant Requests</a>
       <a href="tel:+13614340040"><b>(361) 434-0040</b></a>
     </div>
   </div>
@@ -680,9 +699,9 @@ footer h4{color:#fff;font-family:var(--sans);font-size:12.5px;font-weight:800;le
       </ul>
       <div class="fee" id="fees">
         <div class="fee-h">What we charge</div>
-        <div class="fee-row"><b>One month&rsquo;s rent</b><span>to find, screen and place your tenant. Paid out of their first month, not by you.</span></div>
+        <div class="fee-row"><b>One month&rsquo;s rent</b><span>to find, screen and place your tenant. <strong>Paid out of their first month, not by you.</strong></span></div>
         <div class="fee-row"><b>10% of rent</b><span>each month for ongoing management. Rent comes in, your share is deposited, the rest is handled.</span></div>
-        <div class="fee-row"><b>Either one on its own</b><span>Already have a tenant? Just the management. Want to manage it yourself? Just the placement.</span></div>
+        <div class="fee-row"><b>Either one on its own</b><span>Already have a tenant? <strong>Just&nbsp;the&nbsp;management.</strong> Want to manage it yourself? <strong>Just&nbsp;the&nbsp;placement.</strong></span></div>
       </div>
       <div class="cta-row" style="margin-top:32px">
         <a class="btn btn-p btn-lg" href="#analysis">Get your free rent analysis <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
@@ -703,11 +722,11 @@ footer h4{color:#fff;font-family:var(--sans);font-size:12.5px;font-weight:800;le
   <div class="wrap">
     <div class="center" style="margin-bottom:54px">
       <div class="eyebrow c">What We Handle</div>
-      <h2 class="big">Everything between "I own a rental"<br>and "the money showed up."</h2>
+      <h2 class="big">Everything between &ldquo;I&nbsp;own a&nbsp;rental&rdquo;<br> and &ldquo;the money showed&nbsp;up.&rdquo;</h2>
     </div>
     <div class="g3 svcs">
       <a class="card svc" href="{R}full-service-management/">
-        <div class="svc-img"><picture><source srcset="img/ext-duplex-front.webp" type="image/webp"><img src="img/ext-duplex-front.jpg" alt="A duplex managed by Urban Properties" loading="lazy" style="object-position:50% 60%"></picture></div>
+        <div class="svc-img"><picture><source srcset="img/ext-blue-stone.webp" type="image/webp"><img src="img/ext-blue-stone.jpg" alt="A single-family rental home with a stone front" loading="lazy" style="object-position:40% 55%"></picture></div>
         <div class="svc-body">
           <div class="ico"><svg viewBox="0 0 24 24"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/><path d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></div>
           <h3>Full-Service Management</h3>
@@ -752,7 +771,7 @@ footer h4{color:#fff;font-family:var(--sans);font-size:12.5px;font-weight:800;le
         </div>
       </a>
       <a class="card svc" href="{R}investment-property-sales/">
-        <div class="svc-img"><picture><source srcset="img/prop-tan-corner.webp" type="image/webp"><img src="img/prop-tan-corner.jpg" alt="A multiplex rental in Corpus Christi" loading="lazy" style="object-position:50% 55%"></picture></div>
+        <div class="svc-img"><picture><source srcset="img/mb-white-modern.webp" type="image/webp"><img src="img/mb-white-modern.jpg" alt="A newly built modern farmhouse" loading="lazy" style="object-position:50% 50%"></picture></div>
         <div class="svc-body">
           <div class="ico"><svg viewBox="0 0 24 24"><path d="M16 7h6v6"/><path d="m22 7-8.5 8.5-5-5L2 17"/></svg></div>
           <h3>Investment Property Sales</h3>
@@ -761,7 +780,7 @@ footer h4{color:#fff;font-family:var(--sans);font-size:12.5px;font-weight:800;le
         </div>
       </a>
       <a class="card svc" href="{R}commercial-leasing-multifamily/">
-        <div class="svc-img"><picture><source srcset="img/build-fourplex.webp" type="image/webp"><img src="img/build-fourplex.jpg" alt="A newly built fourplex" loading="lazy" style="object-position:50% 20%"></picture></div>
+        <div class="svc-img"><picture><source srcset="img/ext-multiunit.webp" type="image/webp"><img src="img/ext-multiunit.jpg" alt="A single-story multi-unit rental building" loading="lazy" style="object-position:40% 45%"></picture></div>
         <div class="svc-body">
           <div class="ico"><svg viewBox="0 0 24 24"><path d="M10 12h4"/><path d="M10 8h4"/><path d="M14 21v-3a2 2 0 0 0-4 0v3"/><path d="M6 10H4a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-2"/><path d="M6 21V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v16"/></svg></div>
           <h3>Commercial Leasing &amp; Multifamily</h3>
@@ -820,8 +839,8 @@ footer h4{color:#fff;font-family:var(--sans);font-size:12.5px;font-weight:800;le
 <section class="sec-tight" id="reviews" style="background:var(--paper-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
   <div class="wrap">
     <div class="center" style="margin-bottom:42px">
-      <div class="eyebrow c">What Owners Say</div>
-      <h2 class="big">Straight from Google.</h2>
+      <div class="eyebrow c">What Clients Say</div>
+      <h2 class="big">Straight from real clients.</h2>
     </div>
     <div class="revs">
       <div class="rev">
@@ -868,8 +887,8 @@ footer h4{color:#fff;font-family:var(--sans);font-size:12.5px;font-weight:800;le
     </div>
     <div class="band-img">
       <picture>
-        <source srcset="img/int-kitchen-open.webp" type="image/webp">
-        <img src="img/int-kitchen-open.jpg" alt="Interior of a managed rental property">
+        <source srcset="img/ext-yellow-home.webp" type="image/webp">
+        <img src="img/ext-yellow-home.jpg" alt="A single-family home under a bright blue sky">
       </picture>
     </div>
   </div>
@@ -1041,7 +1060,7 @@ footer h4{color:#fff;font-family:var(--sans);font-size:12.5px;font-weight:800;le
           <button type="button" class="opt" data-name="goal" data-value="Find a tenant only"><span class="dot"></span>I just need a tenant placed</button>
           <button type="button" class="opt" data-name="goal" data-value="Thinking about buying an investment property"><span class="dot"></span>I'm thinking about buying an investment property</button>
           <button type="button" class="opt" data-name="goal" data-value="Sell a property"><span class="dot"></span>I want to sell a property</button>
-          <button type="button" class="opt" data-name="goal" data-value="Tenant or maintenance question"><span class="dot"></span>I'm a tenant with a question</button>
+          <a class="opt opt-link" href="{R}tenants/"><span class="dot"></span>I'm a tenant: take me to the tenant page <span class="opt-arr">&rarr;</span></a>
         </div>
       </div>
 
@@ -1112,11 +1131,11 @@ footer h4{color:#fff;font-family:var(--sans);font-size:12.5px;font-weight:800;le
       <div>
         <img class="flogo" src="img/logo-light.png" alt="Urban Properties">
         <p style="max-width:34ch">Corpus Christi Urban Properties, LLC — a full-service real estate brokerage. Property management, leasing, investment sales.</p>
-        <div class="fbadges">
-          <span>Equal Housing Opportunity</span>
-          <span>REALTOR&reg;</span>
-          <span>TREC #9000508</span>
-        </div>
+        <ul class="fcreds">
+          <li>Equal Housing Opportunity</li>
+          <li>REALTOR&reg;</li>
+          <li>TREC Broker License #9000508</li>
+        </ul>
       </div>
       <div>
         <h4>Management</h4>
@@ -1167,8 +1186,8 @@ footer h4{color:#fff;font-family:var(--sans);font-size:12.5px;font-weight:800;le
     <div class="fbot">
       <div>&copy; <span id="yr">2026</span> Corpus Christi Urban Properties, LLC. All rights reserved. <span class="zm">Site by <a href="https://zonkelmedia.com" target="_blank" rel="noopener">Zonkel Media</a></span></div>
       <div style="display:flex;gap:18px;flex-wrap:wrap">
-        <a href="{R}docs/TREC-Information-About-Brokerage-Services.pdf" target="_blank" rel="noopener">Texas Real Estate Commission Information About Brokerage Services</a>
-        <a href="{R}docs/TREC-Consumer-Protection-Notice.pdf" target="_blank" rel="noopener">Texas Real Estate Commission Consumer Protection Notice</a>
+        <a class="trec" href="{R}docs/TREC-Information-About-Brokerage-Services.pdf" target="_blank" rel="noopener">Texas Real Estate Commission <span class="tl2">Information About Brokerage Services</span></a>
+        <a class="trec" href="{R}docs/TREC-Consumer-Protection-Notice.pdf" target="_blank" rel="noopener">Texas Real Estate Commission <span class="tl2">Consumer Protection Notice</span></a>
         <a href="{R}privacy-policy/">Privacy Policy</a>
         <a href="{R}terms-of-use/">Terms of Use</a>
         <a href="{R}accessibility/">Accessibility</a>
@@ -1219,9 +1238,12 @@ drawer.querySelectorAll('.dgroup>button').forEach(function(b){
 /* ---- sticky call bar after hero ---- */
 var bar = document.getElementById('callbar');
 var hero = document.querySelector('.hero');
-new IntersectionObserver(function(e){
+// pages without a photo hero (gallery, legal pages): bar shows from the start. Without this guard
+// observe(null) throws and kills every script after it on the page.
+if(hero) new IntersectionObserver(function(e){
   bar.classList.toggle('show', !e[0].isIntersecting);
 },{rootMargin:'-60px'}).observe(hero);
+else bar.classList.add('show');
 
 /* ---- steps: phone timeline lights up and the line fills as you scroll ---- */
 (function(){var st=[].slice.call(document.querySelectorAll('.step'));if(!st.length)return;
@@ -1231,23 +1253,38 @@ function upd(){tick=false;var m=innerHeight*0.62;
   bars.forEach(function(b){var r=b.getBoundingClientRect(),f=r.height?(m-r.top)/r.height:0;b.style.setProperty('--f',Math.max(0,Math.min(1,f)).toFixed(3))})}
 addEventListener('scroll',function(){if(!tick){tick=true;requestAnimationFrame(upd)}},{passive:true});addEventListener('resize',upd);upd()})();
 
-/* ---- photo grid previews (.gal): tap a photo for the full-size viewer ---- */
-(function(){var F=[].slice.call(document.querySelectorAll('.gal figure'));if(!F.length)return;
+/* ---- photo viewer: every .gal preview + the gallery page (.fg-i). Swipe (finger-follow), arrows, keys ---- */
+(function(){var items=[].slice.call(document.querySelectorAll('.gal figure, .fg-i'));if(!items.length)return;
 var b=document.createElement('div');b.className='lb';b.setAttribute('role','dialog');b.setAttribute('aria-modal','true');b.setAttribute('aria-label','Photo viewer');
-b.innerHTML='<button class="x" aria-label="Close">&times;</button><button class="pv" aria-label="Previous photo">&lsaquo;</button><img alt=""><p></p><button class="nx" aria-label="Next photo">&rsaquo;</button>';
-document.body.appendChild(b);var im=b.querySelector('img'),cp=b.querySelector('p'),i=0,x0=null;
-function src(f){var s=f.querySelector('source'),set=s&&s.getAttribute('srcset');if(!set)return f.querySelector('img').currentSrc||f.querySelector('img').src;
-  var L=set.split(',');return (innerWidth<900?L[0]:L[L.length-1]).trim().split(' ')[0]}
-function cap(f){var c=f.querySelector('figcaption');return c?c.textContent:(f.querySelector('img').alt||'')}
-function show(n){i=(n+F.length)%F.length;im.src=src(F[i]);im.alt=cap(F[i]);cp.textContent=cap(F[i])+'  ·  '+(i+1)+' of '+F.length;b.classList.add('on');document.body.style.overflow='hidden'}
-function hide(){b.classList.remove('on');document.body.style.overflow='';F[i].focus()}
-F.forEach(function(f,n){f.tabIndex=0;f.setAttribute('role','button');f.setAttribute('aria-label','View photo: '+cap(f));
-  f.addEventListener('click',function(){show(n)});f.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();show(n)}})});
-b.querySelector('.x').onclick=hide;b.querySelector('.pv').onclick=function(){show(i-1)};b.querySelector('.nx').onclick=function(){show(i+1)};
+b.innerHTML='<button class="x" aria-label="Close">&times;</button><button class="pv" aria-label="Previous photo">&lsaquo;</button><img alt="" draggable="false"><p></p><button class="nx" aria-label="Next photo">&rsaquo;</button>';
+document.body.appendChild(b);var im=b.querySelector('img'),cp=b.querySelector('p'),G=[],i=0,x0=null,y0=0,dx=0,busy=false,last=null;
+function src(f){if(f.tagName==='A')return f.getAttribute('href');var s=f.querySelector('source'),set=s&&s.getAttribute('srcset');
+  if(!set)return f.querySelector('img').currentSrc||f.querySelector('img').src;var L=set.split(',');return(innerWidth<900?L[0]:L[L.length-1]).trim().split(' ')[0]}
+function cap(f){if(f.dataset.cap)return f.dataset.cap;var c=f.querySelector('figcaption');return c?c.textContent:(f.querySelector('img').alt||'')}
+function paint(){var f=G[i];im.src=src(f);im.alt=cap(f);cp.textContent=cap(f)+(G.length>1?'  \u00b7  '+(i+1)+' of '+G.length:'')}
+function open(f){last=f;G=f.tagName==='A'?items.filter(function(x){return x.tagName==='A'}):[].slice.call(f.parentNode.querySelectorAll('figure'));
+  i=G.indexOf(f);paint();b.classList.add('on');document.body.style.overflow='hidden'}
+function hide(){b.classList.remove('on');document.body.style.overflow='';if(last)last.focus()}
+function slide(d){if(busy||G.length<2)return;busy=true;im.style.transition='transform .18s ease,opacity .18s ease';im.style.transform='translateX('+(-d*45)+'vw)';im.style.opacity='0';
+  setTimeout(function(){i=(i+d+G.length)%G.length;paint();im.style.transition='none';im.style.transform='translateX('+(d*45)+'vw)';
+    requestAnimationFrame(function(){requestAnimationFrame(function(){im.style.transition='transform .24s ease,opacity .24s ease';im.style.transform='';im.style.opacity='';busy=false})})},180)}
+items.forEach(function(f){if(f.tagName!=='A'){f.tabIndex=0;f.setAttribute('role','button');f.setAttribute('aria-label','View photo: '+cap(f))}
+  f.addEventListener('click',function(e){e.preventDefault();open(f)});
+  f.addEventListener('keydown',function(e){if(f.tagName!=='A'&&(e.key==='Enter'||e.key===' ')){e.preventDefault();open(f)}})});
+b.querySelector('.x').onclick=hide;b.querySelector('.pv').onclick=function(){slide(-1)};b.querySelector('.nx').onclick=function(){slide(1)};
 b.addEventListener('click',function(e){if(e.target===b)hide()});
-b.addEventListener('touchstart',function(e){x0=e.touches[0].clientX},{passive:true});
-b.addEventListener('touchend',function(e){if(x0===null)return;var dx=e.changedTouches[0].clientX-x0;if(Math.abs(dx)>50)show(i+(dx<0?1:-1));x0=null});
-document.addEventListener('keydown',function(e){if(!b.classList.contains('on'))return;if(e.key==='Escape')hide();if(e.key==='ArrowLeft')show(i-1);if(e.key==='ArrowRight')show(i+1)})})();
+b.addEventListener('touchstart',function(e){if(e.touches.length>1){x0=null;return}x0=e.touches[0].clientX;y0=e.touches[0].clientY;dx=0;im.style.transition='none'},{passive:true});
+b.addEventListener('touchmove',function(e){if(x0===null||busy)return;dx=e.touches[0].clientX-x0;if(Math.abs(dx)>Math.abs(e.touches[0].clientY-y0))im.style.transform='translateX('+dx+'px)'},{passive:true});
+b.addEventListener('touchend',function(){if(x0===null)return;x0=null;if(Math.abs(dx)>50)slide(dx<0?1:-1);else{im.style.transition='transform .2s ease';im.style.transform=''}dx=0});
+document.addEventListener('keydown',function(e){if(!b.classList.contains('on'))return;if(e.key==='Escape')hide();if(e.key==='ArrowLeft')slide(-1);if(e.key==='ArrowRight')slide(1)})})();
+
+/* ---- swipe rows (.gal on phones): dots follow the photo in the middle ---- */
+[].forEach.call(document.querySelectorAll('.gal'),function(g){var F=g.querySelectorAll('figure');if(F.length<2)return;
+  var d=document.createElement('div');d.className='gal-dots';d.setAttribute('aria-hidden','true');
+  for(var k=0;k<F.length;k++)d.appendChild(document.createElement('i'));g.parentNode.insertBefore(d,g.nextSibling);
+  function upd(){var c=g.scrollLeft+g.clientWidth/2,best=0,bd=1e9;[].forEach.call(F,function(f,n){var m=Math.abs(f.offsetLeft+f.offsetWidth/2-c);if(m<bd){bd=m;best=n}});
+    [].forEach.call(d.children,function(x,n){x.classList.toggle('on',n===best)})}
+  g.addEventListener('scroll',function(){requestAnimationFrame(upd)},{passive:true});addEventListener('resize',upd);upd()});
 
 /* ---- US phone validation + as-you-type formatting ---- */
 function fmtPhone(v){
@@ -1282,7 +1319,7 @@ var picked = {};
 var form = document.getElementById('wiz');
 var nextB = document.getElementById('next'), backB = document.getElementById('back');
 
-form.querySelectorAll('.opt').forEach(function(o){
+form.querySelectorAll('.opt[data-name]').forEach(function(o){
   o.onclick = function(){
     var nm = o.dataset.name;
     form.querySelectorAll('.opt[data-name="'+nm+'"]').forEach(function(x){ x.classList.remove('sel'); });
