@@ -708,12 +708,12 @@ page("available-rentals/", "Available Rentals", "Urban Properties rentals in Cor
 
 apply_body = (hero("Apply", "Apply for a <em>rental.</em>",
                    "$50 application fee per adult. Stable, verifiable income and rental history preferred. Download the application, fill it out, and bring or send it to the office.",
-                   "int-kitchen-white.jpg", '<a href="{R}tenants/">Tenants</a><span>/</span><span>Apply</span>', btn2='<a class="btn btn-o" href="#">Download the application</a>')
+                   "int-kitchen-white.jpg", '<a href="{R}tenants/">Tenants</a><span>/</span><span>Apply</span>', btn2='<a class="btn btn-o btn-lg" href="{R}docs/Urban-Properties-Lease-Application.pdf" target="_blank" rel="noopener">Download the application</a>')
     + '''<section class="sec"><div class="wrap g2">
   <div><div class="eyebrow">How It Works</div><h2 class="big">Three steps to the keys.</h2>
   <ul class="checks" style="color:var(--body)">%s</ul>
   <div class="note-box" style="margin-top:28px"><b>Application fee:</b> $50 per adult applicant, paid when you submit. <b>We look for:</b> stable, verifiable income and rental history. Pets and other specifics are set per property; ask before you apply.</div>
-  <div class="cta-row" style="margin-top:28px"><a class="btn btn-p" href="#">Download the application (PDF)</a><a class="btn btn-g" href="%s">Text a question</a></div></div>
+  <div class="cta-row" style="margin-top:28px"><a class="btn btn-p" href="{R}docs/Urban-Properties-Lease-Application.pdf" target="_blank" rel="noopener">Download the application (PDF)</a><a class="btn btn-g" href="%s">Text a question</a></div></div>
   <div class="band-img" style="box-shadow:var(--sh-l)">%s</div></div></section>''' % ("".join(CHECK % b for b in [
         "Download the application and fill it out for every adult who will live there",
         "Bring it to 5117 Williams Dr (Mon&ndash;Fri, 9 to 5) or send it back the way we sent it to you, with the $50 fee",
