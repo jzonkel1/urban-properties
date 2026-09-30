@@ -387,9 +387,15 @@ body.dopen .nav{z-index:110}
 /* ---------- map ---------- */
 .mapbox{border-radius:var(--r);overflow:hidden;border:1px solid var(--line);box-shadow:var(--sh);height:100%;min-height:400px}
 .mapbox iframe{width:100%;height:100%;min-height:400px;border:0;display:block;filter:grayscale(.25)}
-.towns{display:flex;flex-wrap:wrap;gap:9px;margin-top:24px}
-.town{background:#fff;border:1px solid var(--line);border-radius:999px;padding:8px 16px;
-  font-size:14px;font-weight:600;color:var(--ink-3)}
+/* editorial index list: replaces every pill group (services, towns, tenant links, listing sites) */
+.idx{list-style:none;margin:22px 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:0 44px;border-top:1px solid var(--line)}
+.idx-towns{grid-template-columns:repeat(auto-fill,minmax(190px,1fr))}
+.idx li{border-bottom:1px solid var(--line)}
+.idx a,.idx .cur{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 2px;font-size:15px;font-weight:600;color:var(--ink);text-decoration:none;line-height:1.3}
+.idx a svg{width:16px;height:16px;flex:none;color:var(--pur);fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;transition:transform .2s}
+.idx a:hover{color:var(--pur)}.idx a:hover svg{transform:translateX(3px)}
+.idx .cur{color:var(--pur)}.idx .cur small{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:700}
+@media(max-width:560px){.idx,.idx-towns{grid-template-columns:1fr}}
 
 /* ---------- form / wizard ---------- */
 .formwrap{background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:var(--sh-l);
@@ -492,13 +498,29 @@ footer h4{color:#fff;font-family:var(--sans);font-size:12.5px;font-weight:800;le
 @media(max-width:860px){.phero-team .hero-bg img{width:100%;object-position:60% 20%;-webkit-mask-image:none;mask-image:none}}
 .phero p.hl{color:#DAD3E2;font-size:clamp(16.5px,1.3vw,19.5px);margin:18px 0 26px;max-width:54ch}
 .crumb{font-size:13px;color:#A79FB2;margin-bottom:18px;display:flex;gap:8px;flex-wrap:wrap}.crumb a{color:#DCA8EA}
+.phero .hero-trust{margin-top:26px}
+/* phones: subpage heroes centred like the home hero, trust lines left-aligned inside a centred block */
+@media(max-width:860px){
+  .phero{align-items:center;min-height:auto}
+  .phero .wrap{text-align:center;padding-top:80px;padding-bottom:54px}
+  .phero .crumb{justify-content:center}
+  .phero .eyebrow{justify-content:center;font-size:10.5px;letter-spacing:.13em;gap:9px;flex-wrap:nowrap}
+  .phero .eyebrow::before{content:"";height:1px;flex:1;max-width:34px;background:rgba(255,255,255,.3)}
+  .phero .eyebrow::after{max-width:34px}
+  .phero h1{max-width:none}
+  .phero p.hl{margin-left:auto;margin-right:auto}
+  .phero .hero-btns{justify-content:center}.phero .hero-btns .btn{flex:1 1 260px}
+  .phero .hero-trust{display:inline-grid;grid-template-columns:1fr;gap:11px;text-align:left;margin-top:26px}
+  .phero .hero-scrim{background:linear-gradient(to bottom,rgba(18,14,22,.72) 0%,rgba(18,14,22,.68) 45%,rgba(18,14,22,.88) 100%)}
+}
 .photo-band{position:relative;overflow:hidden;background:var(--ink);color:#DAD3E2}
 .photo-band .pb-bg{position:absolute;inset:0}.photo-band .pb-bg img{width:100%;height:100%;object-fit:cover}
 .photo-band .pb-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(23,20,27,.95) 0%,rgba(23,20,27,.86) 45%,rgba(23,20,27,.66) 100%)}
 .photo-band .wrap{position:relative;z-index:2}
 .photo-band h2,.photo-band h3,.photo-band h4{color:#fff}.photo-band .lead{color:#DAD3E2}.photo-band p{color:#CFC8D8}
 .photo-band .eyebrow{color:#DCA8EA}.photo-band .eyebrow::after,.photo-band .eyebrow::before{background:rgba(255,255,255,.25)}
-.photo-band .town{background:rgba(255,255,255,.08);color:#fff;border-color:rgba(255,255,255,.22)}
+.photo-band .idx{border-top-color:rgba(255,255,255,.2)}.photo-band .idx li{border-bottom-color:rgba(255,255,255,.2)}
+.photo-band .idx a,.photo-band .idx .cur{color:#fff}.photo-band .idx a svg{color:#E2B4EE}.photo-band .idx a:hover{color:#E2B4EE}
 .photo-band .team{border-top-color:rgba(255,255,255,.15)}.photo-band .team-h{color:#DCA8EA}
 .photo-band .team li{border-bottom-color:rgba(255,255,255,.15)}.photo-band .team li b{color:#fff}.photo-band .team li span{color:#C9C2CF}
 .photo-band .mapbox{border-color:rgba(255,255,255,.15)}
@@ -526,7 +548,9 @@ footer h4{color:#fff;font-family:var(--sans);font-size:12.5px;font-weight:800;le
   .about-band .pb-bg{position:relative;inset:auto;aspect-ratio:9/5;margin-bottom:34px}
   .about-band .pb-bg img{object-position:100% 45%}
   .about-band .pb-bg::after{background:linear-gradient(180deg,rgba(23,20,27,0) 60%,rgba(23,20,27,.55) 85%,var(--ink) 100%)}}
-@media(min-width:861px) and (max-width:1399px){.about-band .wrap.g2{grid-template-columns:1fr}.about-band .wrap.g2>div:empty{display:none}}
+/* phones: zoom the band a touch so the people read clearly; origin low so nobody's feet leave the frame */
+@media(max-width:860px){.about-band{padding-bottom:56px}.about-band+section{border-top:1px solid rgba(255,255,255,.12);padding-top:64px}.about-band .pb-bg{overflow:hidden}.about-band .pb-bg img{transform:scale(1.22);transform-origin:50% 80%}}
+@media(max-width:1399px){.about-band .wrap.g2{grid-template-columns:1fr}.about-band .wrap.g2>div:empty{display:none}}
 @media(min-width:981px) and (max-width:1399px){.about-band .facts2{grid-template-columns:repeat(4,1fr)}}
 /* Where We Work: lighter scrim so the coast shows through */
 #areas .pb-bg::after{background:linear-gradient(90deg,rgba(23,20,27,.88) 0%,rgba(23,20,27,.7) 42%,rgba(23,20,27,.34) 100%)}
@@ -548,7 +572,6 @@ footer h4{color:#fff;font-family:var(--sans);font-size:12.5px;font-weight:800;le
 .faq summary::-webkit-details-marker{display:none}
 .faq summary::after{content:"+";color:var(--pur);font-size:26px;line-height:1;flex:none}.faq details[open] summary::after{content:"\2013"}
 .faq p{margin:12px 0 0;color:var(--body);max-width:70ch;font-size:16px}
-.pill-list{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}.pill-list span{background:#fff;border:1px solid var(--line);border-radius:999px;padding:8px 16px;font-size:14px;font-weight:600;color:var(--ink)}
 .fee-row.big b{font-size:26px}
 .form-plain{background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:var(--sh-l);padding:34px;max-width:680px;margin:0 auto}
 .form-plain .btn{width:100%;margin-top:6px}
@@ -732,12 +755,26 @@ footer h4{color:#fff;font-family:var(--sans);font-size:12.5px;font-weight:800;le
       <a class="btn btn-p btn-lg cta-call" href="tel:+13614340040"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"/></svg> Call (361) 434-0040</a>
       <a class="btn btn-o btn-lg cta-quote" href="../rent-analysis/">Get a free rent analysis <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
     </div>
+    <ul class="hero-trust">
+        <li><span class="hi"><svg viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg></span>Licensed Texas brokerage &middot; TREC #9000508</li>
+        <li><span class="hi"><svg viewBox="0 0 24 24"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/><path d="m9 16 2 2 4-4"/></svg></span>Serving Corpus Christi since 2009</li>
+        <li><span class="hi"><svg viewBox="0 0 24 24"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg></span>A real local office on Williams Drive</li>
+        <li><span class="hi"><svg viewBox="0 0 24 24"><rect width="20" height="12" x="2" y="6" rx="2"/><circle cx="12" cy="12" r="2"/><path d="M6 12h.01M18 12h.01"/></svg></span>Rent auto-deposited to owners every month</li>
+      </ul>
+  </div>
+</section>
+<section class="trust">
+  <div class="wrap">
+    <div class="ti"><div class="tn">30+</div><div class="tl">Doors Managed</div></div>
+    <div class="ti"><div class="tn">10%</div><div class="tl">Management Fee</div></div>
+    <div class="ti"><div class="tn">Free</div><div class="tl">Rent Analysis</div></div>
+    <div class="ti"><div class="tn">3</div><div class="tl">Companies, One Office</div></div>
   </div>
 </section><section class="sec"><div class="wrap g2"><div><div class="eyebrow">What&rsquo;s Included</div><h2 class="big">A good tenant is the whole game.</h2><p class="lead">Most rental headaches trace back to one bad placement. So we treat screening like the most important thing we do, because it is.</p><p style="color:var(--muted);margin-top:14px">Our sister firm, CC Lease Locators, places renters across Corpus Christi, which means your vacancy gets a steady stream of candidates who are already looking.</p><ul class="checks" style="color:var(--body)"><li><svg viewBox="0 0 24 24" style="stroke:var(--pur)"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg><span style="color:var(--body)">Listed on the MLS and syndicated to Zillow, Realtor.com, Trulia, Redfin and Homes.com</span></li><li><svg viewBox="0 0 24 24" style="stroke:var(--pur)"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg><span style="color:var(--body)">Showings handled by our agents</span></li><li><svg viewBox="0 0 24 24" style="stroke:var(--pur)"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg><span style="color:var(--body)">Income and rental history verified on every applicant</span></li><li><svg viewBox="0 0 24 24" style="stroke:var(--pur)"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg><span style="color:var(--body)">$50 application fee paid by the applicant, not you</span></li><li><svg viewBox="0 0 24 24" style="stroke:var(--pur)"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg><span style="color:var(--body)">You approve the tenant before anyone signs</span></li><li><svg viewBox="0 0 24 24" style="stroke:var(--pur)"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg><span style="color:var(--body)">Lease prepared and executed by a licensed broker</span></li></ul></div><div class="band-img" style="box-shadow:var(--sh-l)"><picture><source srcset="../img/ext-duplex-front-1200.webp?v=dcb46b0e 1200w, ../img/ext-duplex-front.webp?v=7f0cbf36 2400w" sizes="(min-width:900px) 50vw, 100vw" type="image/webp"><img src="../img/ext-duplex-front.jpg?v=60b4b9ec" srcset="../img/ext-duplex-front-1200.jpg?v=a1736533 1200w, ../img/ext-duplex-front.jpg?v=60b4b9ec 2400w" sizes="(min-width:900px) 50vw, 100vw" alt="Tenant Screening &amp;amp; Placement" loading="lazy"></picture></div></div></section><section class="sec" style="background:var(--paper-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)"><div class="wrap">
   <div class="center" style="margin-bottom:50px"><div class="eyebrow c">The Details</div><h2 class="big">What that looks like in practice</h2></div>
   <div class="g3"><div class="card"><h3>Priced right, from day one</h3><p>A vacancy that sits for six weeks costs more than a rent that&rsquo;s $50 too low. We price from real comps.</p></div><div class="card"><h3>Screened, not guessed</h3><p>Stable income, verified history, a clean background. We don&rsquo;t rent to a good feeling.</p></div><div class="card"><h3>Fast, because we have the flow</h3><p>CC Lease Locators already has renters looking. Your unit goes in front of them the day it&rsquo;s listed.</p></div><div class="card"><h3>Move-in documented</h3><p>Photos and a condition report before the keys change hands, so the deposit conversation later is simple.</p></div><div class="card"><h3>Placement only, if that&rsquo;s all you want</h3><p>Find the tenant, sign the lease, hand it back to you. One month&rsquo;s rent, done.</p></div><div class="card"><h3>Or keep going</h3><p>Add management and the same office collects the rent and takes the calls.</p></div></div></div></section><section class="sec"><div class="wrap" style="max-width:860px">
   <div class="center" style="margin-bottom:40px"><div class="eyebrow c">Common Questions</div><h2 class="big">Owners usually ask</h2></div>
-  <div class="faq"><details><summary>What do you charge to place a tenant?</summary><p>One month&rsquo;s rent, collected out of the tenant&rsquo;s first month. You don&rsquo;t write a check.</p></details><details><summary>Who pays the application fee?</summary><p>The applicant. $50 per application.</p></details><details><summary>What are the requirements?</summary><p>Stable, verifiable income and rental history preferred. Pets and other specifics are set with you, per property.</p></details></div></div></section><section class="sec-tight" style="border-top:1px solid var(--line)"><div class="wrap"><div class="eyebrow">Everything Else We Handle</div><div class="pill-list"><a href="../full-service-management/" style="text-decoration:none"><span>Full-Service Management</span></a><span>Tenant Screening &amp; Placement</span><a href="../rent-collection-owner-deposits/" style="text-decoration:none"><span>Rent Collection &amp; Owner Deposits</span></a><a href="../maintenance-coordination/" style="text-decoration:none"><span>Maintenance Coordination</span></a><a href="../lease-renewals-enforcement/" style="text-decoration:none"><span>Lease Renewals &amp; Enforcement</span></a><a href="../move-in-move-out-inspections/" style="text-decoration:none"><span>Move-In / Move-Out Inspections</span></a><a href="../investment-property-sales/" style="text-decoration:none"><span>Investment Property Sales</span></a><a href="../residential-sales/" style="text-decoration:none"><span>Residential Sales</span></a><a href="../lot-land-sales/" style="text-decoration:none"><span>Lot &amp; Land Sales</span></a><a href="../commercial-leasing-multifamily/" style="text-decoration:none"><span>Commercial Leasing &amp; Multifamily</span></a></div></div></section><section class="sec photo-band cta-band">
+  <div class="faq"><details><summary>What do you charge to place a tenant?</summary><p>One month&rsquo;s rent, collected out of the tenant&rsquo;s first month. You don&rsquo;t write a check.</p></details><details><summary>Who pays the application fee?</summary><p>The applicant. $50 per application.</p></details><details><summary>What are the requirements?</summary><p>Stable, verifiable income and rental history preferred. Pets and other specifics are set with you, per property.</p></details></div></div></section><section class="sec-tight" style="border-top:1px solid var(--line)"><div class="wrap"><div class="eyebrow">Everything Else We Handle</div><ul class="idx"><li><a href="../full-service-management/">Full-Service Management <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li><li><span class="cur">Tenant Screening &amp; Placement <small>This page</small></span></li><li><a href="../rent-collection-owner-deposits/">Rent Collection &amp; Owner Deposits <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li><li><a href="../maintenance-coordination/">Maintenance Coordination <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li><li><a href="../lease-renewals-enforcement/">Lease Renewals &amp; Enforcement <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li><li><a href="../move-in-move-out-inspections/">Move-In / Move-Out Inspections <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li><li><a href="../investment-property-sales/">Investment Property Sales <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li><li><a href="../residential-sales/">Residential Sales <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li><li><a href="../lot-land-sales/">Lot &amp; Land Sales <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li><li><a href="../commercial-leasing-multifamily/">Commercial Leasing &amp; Multifamily <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li></ul></div></section><section class="sec photo-band cta-band">
   <div class="pb-bg"><picture><source srcset="../img/hero-1200.webp?v=b2ccb596 1200w, ../img/hero.webp?v=b342c3dd 2400w" sizes="(max-width:700px) 200vw, 100vw" type="image/webp"><img src="../img/hero.jpg?v=09c97dfc" srcset="../img/hero-1200.jpg?v=211c3069 1200w, ../img/hero.jpg?v=09c97dfc 2400w" sizes="(max-width:700px) 200vw, 100vw" alt="" loading="lazy"></picture></div>
   <div class="wrap">
     <div class="eyebrow c">Free, No Obligation</div>

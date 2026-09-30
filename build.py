@@ -127,13 +127,29 @@ EXTRA_CSS = """
 @media(max-width:860px){.phero-team .hero-bg img{width:100%;object-position:60% 20%;-webkit-mask-image:none;mask-image:none}}
 .phero p.hl{color:#DAD3E2;font-size:clamp(16.5px,1.3vw,19.5px);margin:18px 0 26px;max-width:54ch}
 .crumb{font-size:13px;color:#A79FB2;margin-bottom:18px;display:flex;gap:8px;flex-wrap:wrap}.crumb a{color:#DCA8EA}
+.phero .hero-trust{margin-top:26px}
+/* phones: subpage heroes centred like the home hero, trust lines left-aligned inside a centred block */
+@media(max-width:860px){
+  .phero{align-items:center;min-height:auto}
+  .phero .wrap{text-align:center;padding-top:80px;padding-bottom:54px}
+  .phero .crumb{justify-content:center}
+  .phero .eyebrow{justify-content:center;font-size:10.5px;letter-spacing:.13em;gap:9px;flex-wrap:nowrap}
+  .phero .eyebrow::before{content:"";height:1px;flex:1;max-width:34px;background:rgba(255,255,255,.3)}
+  .phero .eyebrow::after{max-width:34px}
+  .phero h1{max-width:none}
+  .phero p.hl{margin-left:auto;margin-right:auto}
+  .phero .hero-btns{justify-content:center}.phero .hero-btns .btn{flex:1 1 260px}
+  .phero .hero-trust{display:inline-grid;grid-template-columns:1fr;gap:11px;text-align:left;margin-top:26px}
+  .phero .hero-scrim{background:linear-gradient(to bottom,rgba(18,14,22,.72) 0%,rgba(18,14,22,.68) 45%,rgba(18,14,22,.88) 100%)}
+}
 .photo-band{position:relative;overflow:hidden;background:var(--ink);color:#DAD3E2}
 .photo-band .pb-bg{position:absolute;inset:0}.photo-band .pb-bg img{width:100%;height:100%;object-fit:cover}
 .photo-band .pb-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(23,20,27,.95) 0%,rgba(23,20,27,.86) 45%,rgba(23,20,27,.66) 100%)}
 .photo-band .wrap{position:relative;z-index:2}
 .photo-band h2,.photo-band h3,.photo-band h4{color:#fff}.photo-band .lead{color:#DAD3E2}.photo-band p{color:#CFC8D8}
 .photo-band .eyebrow{color:#DCA8EA}.photo-band .eyebrow::after,.photo-band .eyebrow::before{background:rgba(255,255,255,.25)}
-.photo-band .town{background:rgba(255,255,255,.08);color:#fff;border-color:rgba(255,255,255,.22)}
+.photo-band .idx{border-top-color:rgba(255,255,255,.2)}.photo-band .idx li{border-bottom-color:rgba(255,255,255,.2)}
+.photo-band .idx a,.photo-band .idx .cur{color:#fff}.photo-band .idx a svg{color:#E2B4EE}.photo-band .idx a:hover{color:#E2B4EE}
 .photo-band .team{border-top-color:rgba(255,255,255,.15)}.photo-band .team-h{color:#DCA8EA}
 .photo-band .team li{border-bottom-color:rgba(255,255,255,.15)}.photo-band .team li b{color:#fff}.photo-band .team li span{color:#C9C2CF}
 .photo-band .mapbox{border-color:rgba(255,255,255,.15)}
@@ -161,7 +177,9 @@ EXTRA_CSS = """
   .about-band .pb-bg{position:relative;inset:auto;aspect-ratio:9/5;margin-bottom:34px}
   .about-band .pb-bg img{object-position:100% 45%}
   .about-band .pb-bg::after{background:linear-gradient(180deg,rgba(23,20,27,0) 60%,rgba(23,20,27,.55) 85%,var(--ink) 100%)}}
-@media(min-width:861px) and (max-width:1399px){.about-band .wrap.g2{grid-template-columns:1fr}.about-band .wrap.g2>div:empty{display:none}}
+/* phones: zoom the band a touch so the people read clearly; origin low so nobody's feet leave the frame */
+@media(max-width:860px){.about-band{padding-bottom:56px}.about-band+section{border-top:1px solid rgba(255,255,255,.12);padding-top:64px}.about-band .pb-bg{overflow:hidden}.about-band .pb-bg img{transform:scale(1.22);transform-origin:50% 80%}}
+@media(max-width:1399px){.about-band .wrap.g2{grid-template-columns:1fr}.about-band .wrap.g2>div:empty{display:none}}
 @media(min-width:981px) and (max-width:1399px){.about-band .facts2{grid-template-columns:repeat(4,1fr)}}
 /* Where We Work: lighter scrim so the coast shows through */
 #areas .pb-bg::after{background:linear-gradient(90deg,rgba(23,20,27,.88) 0%,rgba(23,20,27,.7) 42%,rgba(23,20,27,.34) 100%)}
@@ -183,7 +201,6 @@ EXTRA_CSS = """
 .faq summary::-webkit-details-marker{display:none}
 .faq summary::after{content:"+";color:var(--pur);font-size:26px;line-height:1;flex:none}.faq details[open] summary::after{content:"\\2013"}
 .faq p{margin:12px 0 0;color:var(--body);max-width:70ch;font-size:16px}
-.pill-list{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}.pill-list span{background:#fff;border:1px solid var(--line);border-radius:999px;padding:8px 16px;font-size:14px;font-weight:600;color:var(--ink)}
 .fee-row.big b{font-size:26px}
 .form-plain{background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:var(--sh-l);padding:34px;max-width:680px;margin:0 auto}
 .form-plain .btn{width:100%;margin-top:6px}
@@ -206,6 +223,9 @@ def pic(img, alt, lazy=True):
 
 ARR = '<svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>'
 
+HERO_TRUST = SRC[SRC.index('<ul class="hero-trust">'):SRC.index('</ul>', SRC.index('<ul class="hero-trust">')) + 5]
+TRUST_STRIP = SRC[SRC.index('<section class="trust">'):SRC.index('</section>', SRC.index('<section class="trust">')) + 10]
+
 def hero(eyebrow, h1, hl, img, crumb, btn2=None):
     b2 = btn2 or ('<a class="btn btn-o btn-lg cta-quote" href="{R}rent-analysis/">Get a free rent analysis %s</a>' % ARR)
     return '''<section class="phero%s">
@@ -220,8 +240,9 @@ def hero(eyebrow, h1, hl, img, crumb, btn2=None):
       <a class="btn btn-p btn-lg cta-call" href="%s">%s Call %s</a>
       %s
     </div>
+    %s
   </div>
-</section>''' % (" phero-team" if img.startswith("team") else "", pic(img, re.sub(r"<[^>]+>", "", h1), lazy=False), crumb, eyebrow, h1, hl, TEL, CALL_SVG, PHONE, b2)
+</section>''' % (" phero-team" if img.startswith("team") else "", pic(img, re.sub(r"<[^>]+>", "", h1), lazy=False), crumb, eyebrow, h1, hl, TEL, CALL_SVG, PHONE, b2, HERO_TRUST)
 
 def cta(kind="owner"):
     if kind == "tenant":
@@ -302,16 +323,29 @@ SERVICE_LIST = [
     ("lot-land-sales/", "Lot &amp; Land Sales"),
     ("commercial-leasing-multifamily/", "Commercial Leasing &amp; Multifamily"),
 ]
+def idx(items, current=None, cls=""):
+    """editorial index list: items = [(href, label)]; the current page shows as a marked row"""
+    return '<ul class="idx%s">%s</ul>' % (" " + cls if cls else "", "".join(
+        '<li><span class="cur">%s <small>This page</small></span></li>' % l if p == current
+        else '<li><a href="%s"%s>%s %s</a></li>' % (p, ' target="_blank" rel="noopener"' if p.startswith("http") else "", l, ARR)
+        for p, l in items))
 def service_links(current=None):
-    return '<div class="pill-list">%s</div>' % "".join(
-        '<span>%s</span>' % l if p == current else '<a href="{R}%s" style="text-decoration:none"><span>%s</span></a>' % (p, l)
-        for p, l in SERVICE_LIST)
+    return idx([("{R}" + p, l) for p, l in SERVICE_LIST], "{R}" + current if current else None)
 
+LANDING = set()   # services, towns, hubs, owner pages -> trust strip under the hero
+LANDING.update(p for p, _ in SERVICE_LIST)
+LANDING.update(["property-management/", "service-areas/", "rent-analysis/", "what-we-charge/", "how-onboarding-works/", "build-to-rent/"])
 TOWNS = [("corpus-christi/", "Corpus Christi"), ("padre-island/", "Padre Island"), ("calallen/", "Calallen"), ("robstown/", "Robstown")]
+LANDING.update(p for p, _ in TOWNS)
 
 # ---------------------------------------------------------------- pages
 PAGES = []
 def page(slug, title, desc, body, crumb_label=None, cta_kind="owner", has_form=False):
+    if cta_kind == "tenant":
+        body = body.replace(HERO_TRUST, "", 1)   # owner proof lines don't belong on tenant pages
+    if slug in LANDING:
+        i = body.index("</section>") + len("</section>")   # first section = the hero
+        body = body[:i] + "\n" + TRUST_STRIP + body[i:]
     PAGES.append(dict(slug=slug, title=title, desc=desc, body=body, crumb=crumb_label or title, cta=cta_kind, form=has_form))
 
 # ---- services --------------------------------------------------------
@@ -656,8 +690,8 @@ ten_hub = (hero("For Tenants", "Renting from us is <em>simple.</em>",
   <div><div class="eyebrow">Everything Else</div><h2 class="big">Send the office a message.</h2>
   <p class="lead">Questions about rent, your lease, renewing or moving out. A real person at the office reads it and gets back to you.</p>
   <p style="color:var(--muted);margin-top:14px">Faster by phone? Call the office at <a href="%s" style="color:var(--pur);font-weight:700;white-space:nowrap">(361) 434-0040</a>, or text <a href="%s" style="color:var(--pur);font-weight:700;white-space:nowrap">(361) 510-2325</a>.</p>
-  <div class="pill-list" style="margin-top:26px"><a href="{R}available-rentals/" style="text-decoration:none"><span>Available Rentals</span></a><a href="{R}tenant-faqs/" style="text-decoration:none"><span>Tenant FAQs</span></a><a href="{R}contact/" style="text-decoration:none"><span>Office hours &amp; address</span></a></div></div>
-  %s</div></section>''' % (TEL, JON_SMS, ten_form))
+  %s</div>
+  %s</div></section>''' % (TEL, JON_SMS, idx([("{R}available-rentals/", "Available Rentals"), ("{R}tenant-faqs/", "Tenant FAQs"), ("{R}contact/", "Office hours &amp; address")]), ten_form))
 page("tenants/", "For Tenants", "Urban Properties tenants: apply, pay rent, request maintenance and find available rentals in Corpus Christi.", ten_hub, cta_kind="tenant", has_form=True)
 
 avail_body = (hero("Available Rentals", "Our listings are <em>everywhere</em> you already look.",
@@ -666,10 +700,10 @@ avail_body = (hero("Available Rentals", "Our listings are <em>everywhere</em> yo
     + '''<section class="sec"><div class="wrap g2">
   <div><div class="eyebrow">Where To Look</div><h2 class="big">Search &ldquo;Urban Properties&rdquo; on any of these.</h2>
   <p class="lead">We list through the MLS, so the same units show up on every major site at once. Search the address or filter by the Corpus Christi area and look for our name.</p>
-  <div class="pill-list"><a href="https://www.zillow.com/" target="_blank" rel="noopener" style="text-decoration:none"><span>Zillow &rarr;</span></a><a href="https://www.realtor.com/" target="_blank" rel="noopener" style="text-decoration:none"><span>Realtor.com &rarr;</span></a><a href="https://www.trulia.com/" target="_blank" rel="noopener" style="text-decoration:none"><span>Trulia &rarr;</span></a><a href="https://www.redfin.com/" target="_blank" rel="noopener" style="text-decoration:none"><span>Redfin &rarr;</span></a><a href="https://www.homes.com/" target="_blank" rel="noopener" style="text-decoration:none"><span>Homes.com &rarr;</span></a></div>
+  %s
   <p style="color:var(--muted);margin-top:26px">Looking for an apartment rather than a house? Our sister firm <a href="https://ccleaselocators.com" target="_blank" rel="noopener" style="color:var(--pur);font-weight:700">CC Lease Locators</a> finds apartments across Corpus Christi for free.</p>
   <div class="cta-row" style="margin-top:28px"><a class="btn btn-p" href="{R}apply/">Apply for a rental</a><a class="btn btn-g" href="%s">Text the office</a></div></div>
-  <div class="band-img" style="box-shadow:var(--sh-l)">%s</div></div></section>''' % (JON_SMS, pic("int-kitchen-white.jpg", "Rental unit kitchen")))
+  <div class="band-img" style="box-shadow:var(--sh-l)">%s</div></div></section>''' % (idx([("https://www.zillow.com/", "Zillow"), ("https://www.realtor.com/", "Realtor.com"), ("https://www.trulia.com/", "Trulia"), ("https://www.redfin.com/", "Redfin"), ("https://www.homes.com/", "Homes.com")]), JON_SMS, pic("int-kitchen-white.jpg", "Rental unit kitchen")))
 page("available-rentals/", "Available Rentals", "Urban Properties rentals in Corpus Christi are listed on the MLS, Zillow, Realtor.com, Trulia, Redfin and Homes.com.", avail_body, cta_kind="tenant")
 
 apply_body = (hero("Apply", "Apply for a <em>rental.</em>",
@@ -759,10 +793,10 @@ def town_page(slug, name, h1, hl, img, para1, para2, bullets, mapq):
         + intro("Managing In " + name, "Local, licensed, and already here.", [para1, para2], bullets, "int-kitchen-open.jpg", "Managed rental interior")
         + '''<section class="sec" style="background:var(--paper-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)"><div class="wrap g2">
   <div><div class="eyebrow">Where We Work</div><h2 class="big">%s and the surrounding area.</h2><p class="lead">Our office is at 5117 Williams Drive in Corpus Christi. We manage across the city, the Island, Calallen, Robstown and beyond.</p>
-  <div class="towns">%s</div>
+  %s
   <div style="margin-top:30px">%s</div></div>
   <div class="mapbox"><iframe src="https://www.google.com/maps?q=%s&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Map of %s"></iframe></div></div></section>''' % (
-            name, "".join('<span class="town">%s</span>' % t if p == slug else '<a href="{R}%s" style="text-decoration:none"><span class="town">%s</span></a>' % (p, t) for p, t in TOWNS + [("service-areas/", "Surrounding Areas")]),
+            name, idx([("{R}" + p, t) for p, t in TOWNS + [("service-areas/", "Surrounding Areas")]], "{R}" + slug, "idx-towns"),
             FEES.replace('id="fees"', ''), mapq, name)
         + '<section class="sec-tight"><div class="wrap"><div class="eyebrow">What We Handle In %s</div>%s</div></section>' % (name, service_links()))
     page(slug, "Property Management in " + name, hl, body, crumb_label=name)
@@ -1091,8 +1125,8 @@ home = home[:a] + about_home + home[b:]
 # Service area -> photo band
 home = home.replace('<section class="sec" id="areas" style="background:var(--paper-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">\n  <div class="wrap g2">',
                     '<section class="sec photo-band" id="areas">\n  <div class="pb-bg">%s</div>\n  <div class="wrap g2">' % pic("aerial-lot.jpg", "Aerial view of a Coastal Bend shoreline"))
-home = home.replace('<span class="town">Corpus Christi</span><span class="town">Padre Island</span>\n        <span class="town">Calallen</span><span class="town">Robstown</span>\n        <span class="town">Surrounding Areas</span>',
-                    "".join('<a href="{R}%s" style="text-decoration:none"><span class="town">%s</span></a>' % (p, t) for p, t in TOWNS + [("service-areas/", "Surrounding Areas")]))
+_ta = home.index('<ul class="idx idx-towns">'); _tb = home.index('</ul>', _ta) + 5
+home = home[:_ta] + idx([("{R}" + p, t) for p, t in TOWNS + [("service-areas/", "Surrounding Areas")]], None, "idx-towns") + home[_tb:]
 home = home.replace('<p style="margin-top:26px;font-size:15px;color:var(--muted)">Own something just outside the list?', '<p style="margin-top:26px;font-size:15px;color:#E2DCE9">Own something just outside the list?')
 # Home keeps its own copy of the wizard (Jeffrey 9/28: both places). Separate Netlify form name:
 # two copies of one form name = fields silently dropped (netlify-form-fields-registered-once).
